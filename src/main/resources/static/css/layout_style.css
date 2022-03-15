@@ -1,16 +1,34 @@
+/*gnb영역*/
 #gnb {background-color: white; position: fixed }
+#mainLogo {position: fixed;}
+#userLogo {margin-left: auto; margin-right: 50px;}
+#userLogo img {width: 40px; height: 40px;}
+#basket_logo img {width: 40px; height: 40px; margin-right: 200px;}
+
 .title:hover {text-decoration: none;}
-.dropdown {height: 250px;}
 .nav-font {font-size: 30px; font-weight: bold; color: #000; }
 .nav-font:hover {color:#000;}
 
+.dropdown {padding-top: 50px;}
 .dropdown li ul {display:none;}
 .dropdown li:hover ul{display:block;}
 .dropdown li:hover {background-color: #ffe6e6; }
 
+/*main페이지*/
 .shop-sub a {font-size: 20px; font-weight: bold; color: #000;}
 .shop-sub a:hover{background-color: #ffb3b3;}
 
-#content {padding-top: 400px;}
-.main_images {margin: auto; width: 1500px; height: 400px; background-color: yellow;}
+#content {padding-top: 300px;}
+#mainImage {margin: auto; display: block; width: 1000px; height: 400px;}
+
+.random_product {margin:auto; width: 1000px;}
+.random_product img {width: 300px; height: 350px; background-color: yellow;}
+
+
+
+.signIn_box {width: 500px; margin: auto;}
+.signUp_box {width: 900px; margin: auto;}
+#passwordRule {padding-left: 102px; display: block;}
+/*footer영역*/
+.footerText{margin-top: 150px; margin-bottom: 100px; font-size: 13px; color: #999;}
 

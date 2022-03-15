@@ -14,7 +14,12 @@ public class UserController {
 		model.addAttribute("viewName", "user/sign_in");
 		return "template/layout";
 	}
+	
 	// 회원가입 화면
-	// 
+	@RequestMapping("/sign_up_view")
+	public String signUpView(Model model) {
+		model.addAttribute("viewName", "user/sign_up");
+		return "template/layout";
+	}
 	
 }

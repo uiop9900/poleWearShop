@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div id="gnb" class="pt-5 w-100">
-	<div class="d-flex justify-content-center">
-		<a class="display-4 text-decoration-none font-weight-bold text-dark title" href="#">모두 다 폴웨어</a>
+	<div class="d-flex justify-content-center align-items-center">
+		<a href="/product/main_view" id="mainLogo" class="display-4 text-decoration-none font-weight-bold text-dark title">모두 다 폴웨어</a>
+		<div id="userLogo">
+			<a href="/user/sign_in_view"><img src="/static/images/user_logo.png" alt="user_logo"></a>
+		</div>
+		<div id="basket_logo">
+			<a href="#"><img src="/static/images/basket_logo.png" alt="basket_logo"></a>
+		</div>
 	</div>
 	
 	<nav class="dropdown mt-3">
