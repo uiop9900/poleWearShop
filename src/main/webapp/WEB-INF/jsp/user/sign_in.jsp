@@ -10,7 +10,7 @@
 		<input type="text" class="form-control mt-2" placeholder="아이디를 입력하세요.">
 
 		<div class="mt-3 font-weight-bold">비밀번호</div>
-		<input type="text" class="form-control mt-2" placeholder="비밀번호를 입력하세요.">
+		<input type="password" class="form-control mt-2" placeholder="비밀번호를 입력하세요.">
 		
 		<button type="submit" id="loginBtn" class="btn btn-primary w-100 mt-4 font-weight-bold">로그인</button>
 		</form>

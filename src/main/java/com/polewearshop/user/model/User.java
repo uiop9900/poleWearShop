@@ -1,17 +1,22 @@
-package com.polewearshop.test;
+package com.polewearshop.user.model;
 
 import java.util.Date;
 
 public class User {
-	private int id;
+	private int id; 
 	private String loginId;
 	private String password;
 	private String name;
+	private String phoneNumber;
 	private String email;
-	private String introduce;
-	private String profileImageUrl;
-	private Date createdAt;
+	private String address;
+	private String sex;
+	private String birth;
+	private Integer mileage;
+	private Date createdAt;	
 	private Date updatedAt;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -36,23 +41,41 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getIntroduce() {
-		return introduce;
+	public String getAddress() {
+		return address;
 	}
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getProfileImageUrl() {
-		return profileImageUrl;
+	public String getSex() {
+		return sex;
 	}
-	public void setProfileImageUrl(String profileImageUrl) {
-		this.profileImageUrl = profileImageUrl;
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	public Integer getMileage() {
+		return mileage;
+	}
+	public void setMileage(Integer mileage) {
+		this.mileage = mileage;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -68,5 +91,4 @@ public class User {
 	}
 	
 	
-
 }

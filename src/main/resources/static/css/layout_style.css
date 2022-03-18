@@ -29,6 +29,7 @@
 .signIn_box {width: 500px; margin: auto;}
 .signUp_box {width: 900px; margin: auto;}
 #passwordRule {padding-left: 102px; display: block;}
+#possibleId {padding-left: 150px; font-weight: bold;}
 /*footer영역*/
 .footerText{margin-top: 150px; margin-bottom: 100px; font-size: 13px; color: #999;}
 

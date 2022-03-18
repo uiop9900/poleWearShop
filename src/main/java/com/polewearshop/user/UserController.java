@@ -22,4 +22,5 @@ public class UserController {
 		return "template/layout";
 	}
 	
+	
 }

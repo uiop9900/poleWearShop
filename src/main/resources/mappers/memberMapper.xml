@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.polewearshop.user.dao.UserDAO">
+  <select id="selectUser" resultType="com.polewearshop.user.model.User">
+	 	SELECT
+	 		`id`
+			,`loginId`
+			,`password`
+			,`name`
+			,`phoneNumber`
+			,`email`
+			,`address`
+			,`sex`
+			,`birth`
+			,`mileage`
+			,`createdAt`
+			,`updatedAt`
+	 	
+	 	FROM `member`
+	 	
+	 	WHERE
+	 		 loginId = #{loginId} 	
+ </select>
+ 
+ <insert id="insertUser" parameterType="map">
+ 	INSERT INTO `member`
+ 			(
+ 			`loginId`
+			,`password`
+			,`name`
+			,`phoneNumber`
+			,`email`
+			,`address`
+			,`sex`
+			,`birth`
+			,`createdAt`
+			,`updatedAt`
+			)
+ 	VALUES
+ 			(
+ 			#{loginId}
+ 			,#{password}
+ 			,#{name}
+ 			,#{phoneNumber}
+ 			,#{email}
+ 			,#{address}
+ 			,#{sex}
+ 			,#{birth}
+ 			,NOW()
+ 			,NOW()
+ 			)
+ 	
+ </insert>
+ 
+ </mapper>

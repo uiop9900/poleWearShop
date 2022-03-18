@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.polewearshop.user.bo.UserBO;
+import com.polewearshop.user.model.User;
+
 @Controller
 public class TestController {
 
@@ -17,11 +20,6 @@ public class TestController {
 		return "test입니다";
 	}
 	
-	@RequestMapping("/test/data")
-	public User testDate() {
-	User user = userBO.getUser();
-		return user;
-	}
 	
 	@RequestMapping("/test/jsp")
 	public String testJsp() {
