@@ -10,6 +10,10 @@ public interface UserDAO {
 
 	public User selectUser(String loginId);
 	
+	public User selectUserByLoginIdPassword(
+			@Param("loginId") String loginId, 
+			@Param("password") String password);
+	
 	public int insertUser(
 			@Param("loginId") String loginId, 
 			@Param("password") String password, 

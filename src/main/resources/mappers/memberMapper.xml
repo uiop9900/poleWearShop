@@ -24,6 +24,29 @@
 	 		 loginId = #{loginId} 	
  </select>
  
+   <select id="selectUserByLoginIdPassword" parameterType="map" resultType="com.polewearshop.user.model.User">
+	 	SELECT
+	 		`id`
+			,`loginId`
+			,`password`
+			,`name`
+			,`phoneNumber`
+			,`email`
+			,`address`
+			,`sex`
+			,`birth`
+			,`mileage`
+			,`createdAt`
+			,`updatedAt`
+	 	
+	 	FROM `member`
+	 	
+	 	WHERE
+	 		 loginId = #{loginId} 	
+	 		 AND password = #{password}
+ </select>
+ 
+ 
  <insert id="insertUser" parameterType="map">
  	INSERT INTO `member`
  			(

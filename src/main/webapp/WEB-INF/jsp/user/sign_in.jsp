@@ -7,10 +7,10 @@
 		<%--로그인 화면 --%>
 		<form>
 		<div class="mt-4 font-weight-bold">아이디</div>
-		<input type="text" class="form-control mt-2" placeholder="아이디를 입력하세요.">
+		<input type="text" id="loginId" class="form-control mt-2" placeholder="아이디를 입력하세요.">
 
 		<div class="mt-3 font-weight-bold">비밀번호</div>
-		<input type="password" class="form-control mt-2" placeholder="비밀번호를 입력하세요.">
+		<input type="password" id="password" class="form-control mt-2" placeholder="비밀번호를 입력하세요.">
 		
 		<button type="submit" id="loginBtn" class="btn btn-primary w-100 mt-4 font-weight-bold">로그인</button>
 		</form>
@@ -29,9 +29,41 @@
 <script>
 $(document).ready(function(e){
 	$("#loginBtn").on('click', function(e){
-		e.preventDefault();
 		
-		alert("넘어간다 화면");
+		//validation
+		let loginId = $("#loginId").val();
+		let password = $("#password").val();
+		
+		if(loginId == "") {
+			alert("아이디를 입력해주세요.");
+			return;
+		}
+		
+		if(password == "") {
+			alert("아이디를 입력해주세요.");
+			return;
+		}
+		
+		
+		$.ajax({
+			type: "POST"
+			, url:"/user/sign_in"
+			, data: {"loginId": loginId, "password":password}
+			, success: function(data) {
+				if (data.result == "success") {
+					alert(data.successMessage);
+					location.href= "/product/main_view";
+				} else if (data.result == "errorPassword") {
+					alert(data.errorPasswordMessage);
+					location.reload();
+				} 
+			}
+			, error: function(e) {
+				alert("아이디가 존재하지 않습니다.");
+				location.reload();
+			}
+		});
+		
 	});
 });
 </script>

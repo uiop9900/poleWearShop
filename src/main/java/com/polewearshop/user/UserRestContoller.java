@@ -74,4 +74,30 @@ public class UserRestContoller {
     	return result;
     }
     
+    @ApiOperation(
+            value = "로그인"
+            , notes = "입력받은 id를 통해 가입했던 아이디인지 확인후 가지고 온다.")
+    @PostMapping("/sign_in")
+    public Map<String, Object> signIn(
+    		@RequestParam("loginId") String loginId,
+    		@RequestParam("password") String password
+    		) {
+
+    	User user = userBO.getUser(loginId);
+    	Boolean checkPassword = encoder.matches(password, user.getPassword());
+    	
+    	
+    	Map<String, Object> result = new HashMap<>();
+    	
+    	if (user != null && checkPassword == true) {
+    		result.put("result", "success");
+    		result.put("successMessage", user.getName() +"님 반갑습니다. 모두다폴웨어에서 즐거운 쇼핑 바랍니다.");
+    	} else if ( user != null && checkPassword == false) {
+    		result.put("result", "errorPassword");
+    		result.put("errorPasswordMessage", "비밀번호를 다시 확인해주세요");
+    	}
+    	
+    	return result;
+    }
+    
 }
