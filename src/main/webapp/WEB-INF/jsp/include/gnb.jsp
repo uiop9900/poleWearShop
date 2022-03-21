@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div id="gnb" class="pt-5 w-100">
 	<div class="d-flex justify-content-center align-items-center">
 		<a href="/product/main_view" id="mainLogo" class="display-4 text-decoration-none font-weight-bold text-dark title">모두 다 폴웨어</a>
 		<div id="userLogo">
-			<a href="/user/sign_in_view"><img src="/static/images/user_logo.png" alt="user_logo"></a>
+			<c:choose>
+			<c:when test="${not empty memberId}">
+				<a href="/user/member_page_view?memberLoginId=${memberLoginId}"><img src="/static/images/user_logo.png" alt="user_logo"></a>
+			</c:when>
+			<c:otherwise>
+				<a href="/user/sign_in_view"><img src="/static/images/user_logo.png" alt="user_logo"></a>
+			</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="basket_logo">
 			<a href="#"><img src="/static/images/basket_logo.png" alt="basket_logo"></a>

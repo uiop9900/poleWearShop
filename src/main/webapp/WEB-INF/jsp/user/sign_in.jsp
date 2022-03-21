@@ -12,7 +12,7 @@
 		<div class="mt-3 font-weight-bold">비밀번호</div>
 		<input type="password" id="password" class="form-control mt-2" placeholder="비밀번호를 입력하세요.">
 		
-		<button type="submit" id="loginBtn" class="btn btn-primary w-100 mt-4 font-weight-bold">로그인</button>
+		<button type="button" id="loginBtn" class="btn btn-primary w-100 mt-4 font-weight-bold">로그인</button>
 		</form>
 		<%--가입하기, 주문조회 a태그 --%>
 		<div class="mt-3 d-flex justify-content-between align-items-center">
@@ -20,7 +20,7 @@
 				<a href="/user/sign_up_view" class="text-primary font-weight-bold text-decoration-none">가입하기</a>
 			</div>
 			<div>
-				<a href="#" class="text-danger font-weight-bold text-decoration-none">비회원 주문 조회</a>
+				<a href="/user/nonMember/orderNumber_check_view" class="text-danger font-weight-bold text-decoration-none">비회원 주문 조회</a>
 			</div>
 		</div>
 </div>
@@ -28,6 +28,7 @@
 
 <script>
 $(document).ready(function(e){
+	
 	$("#loginBtn").on('click', function(e){
 		
 		//validation
@@ -52,7 +53,7 @@ $(document).ready(function(e){
 			, success: function(data) {
 				if (data.result == "success") {
 					alert(data.successMessage);
-					location.href= "/product/main_view";
+					location.href="/product/main_view"
 				} else if (data.result == "errorPassword") {
 					alert(data.errorPasswordMessage);
 					location.reload();

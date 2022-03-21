@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.box {width: 600px; height: 200px; margin:auto; padding-top:200px; }
+.box2 {margin:auto;}
+
+ #textarea {width: 800px; height: 100px; resize: vertical;}

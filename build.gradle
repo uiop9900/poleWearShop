@@ -21,16 +21,15 @@ repositories {
 dependencies {
 	//암호화
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.4.2'
-	
 	implementation "io.springfox:springfox-boot-starter:3.0.0"
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation 'javax.servlet:jstl:1.2'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'javax.servlet:jstl:1.2'
 }
 
 tasks.named('test') {

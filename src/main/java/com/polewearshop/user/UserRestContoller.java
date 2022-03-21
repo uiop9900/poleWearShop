@@ -3,6 +3,9 @@ package com.polewearshop.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,7 +83,8 @@ public class UserRestContoller {
     @PostMapping("/sign_in")
     public Map<String, Object> signIn(
     		@RequestParam("loginId") String loginId,
-    		@RequestParam("password") String password
+    		@RequestParam("password") String password,
+    		HttpServletRequest request
     		) {
 
     	User user = userBO.getUser(loginId);
@@ -92,6 +96,11 @@ public class UserRestContoller {
     	if (user != null && checkPassword == true) {
     		result.put("result", "success");
     		result.put("successMessage", user.getName() +"님 반갑습니다. 모두다폴웨어에서 즐거운 쇼핑 바랍니다.");
+    		HttpSession session = request.getSession();
+    		session.setAttribute("memberLoginId", user.getLoginId());
+    		session.setAttribute("memberId", user.getId());
+    		session.setAttribute("memberName", user.getName());
+    		
     	} else if ( user != null && checkPassword == false) {
     		result.put("result", "errorPassword");
     		result.put("errorPasswordMessage", "비밀번호를 다시 확인해주세요");
