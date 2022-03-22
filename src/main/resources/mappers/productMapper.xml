@@ -28,4 +28,25 @@
 	)
 	</insert>
  
+ 
+ 	<select id="selectProductListByType" resultType="com.polewearshop.product.model.Product">
+ 		SELECT
+	 		`id`
+	 		,`productNumber`
+			,`type`
+			,`productName`
+			,`content`
+			,`price`
+			,`stock`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product`
+		<if test=" type != null ">
+		WHERE
+			`type` = #{type}
+		</if>
+		ORDER BY 
+			`id` DESC;
+ 	</select>
 </mapper>

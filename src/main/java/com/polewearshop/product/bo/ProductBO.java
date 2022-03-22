@@ -1,5 +1,7 @@
 package com.polewearshop.product.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +18,10 @@ public class ProductBO {
 		productDAO.insertProduct(product);
 	}
 	
+	public List<Product> getProductListByType(String type) {
+		if (type == null || type.equals("all")) {
+			type = null;
+		}
+		return productDAO.selectProductListByType(type);
+	}
 }

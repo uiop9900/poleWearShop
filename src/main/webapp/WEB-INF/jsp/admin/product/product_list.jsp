@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +19,16 @@
 <body>
 	<div class="mt-5 ml-3">
 	<select id="typeSelectBtn">
-		<option>All</option>
-		<option>top</option>
-		<option>bottom</option>
-		<option>set</option>
-		<option>etc</option>
+		<option>고르기</option>
+		<option value="/admin/product/product_list_view?type=all">All</option>
+		<option value="/admin/product/product_list_view?type=top">top</option>
+		<option value="/admin/product/product_list_view?type=bottom">bottom</option>
+		<option value="/admin/product/product_list_view?type=set">set</option>
+		<option value="/admin/product/product_list_view?type=etc">etc</option>
 	</select>
 	</div>
+	
+	<h1 class="mt-4 ml-4">${type}</h1>
 	
 	<div class="mt-4 ml-3">
 		<table class="table">
@@ -36,12 +41,16 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach items="${productList}" var="product" varStatus="status">
 				<tr>
-					<td>1</td>
-					<td>203323</td>
-					<td>브이넥</td>
-					<td>2022.03.10</td>
+					<td>${product.id}</td>
+					<td>${product.productNumber}</td>
+					<td>${product.productName}</td>
+					<td>
+						<fmt:formatDate value="${product.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
+					</td>
 				</tr>
+				</c:forEach>
 			</tbody>	
 		</table>
 	</div>
@@ -54,8 +63,8 @@
 <script>
 $(document).ready(function(e){
 	$("#typeSelectBtn").on('change', function(e){
-		let type = $(this).val();
-		alert(type);
+		let url = $(this).val();
+		location.href = url;
 	});
 });
 
