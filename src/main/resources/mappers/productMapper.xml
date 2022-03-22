@@ -28,6 +28,24 @@
 	)
 	</insert>
  
+ 	<select id="selectProductById" resultType="com.polewearshop.product.model.Product">
+ 		SELECT
+	 		`id`
+	 		,`productNumber`
+			,`type`
+			,`productName`
+			,`content`
+			,`price`
+			,`stock`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product`
+		WHERE
+			`id`= #{productId}
+ 	</select>
+ 	
+ 	
  
  	<select id="selectProductListByType" resultType="com.polewearshop.product.model.Product">
  		SELECT

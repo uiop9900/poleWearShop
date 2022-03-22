@@ -11,5 +11,7 @@ public interface ProductDAO {
 	
 	public void insertProduct(Product product);
 	
+	public Product selectProductById(int productId);
+	
 	public List<Product> selectProductListByType(String type);
 }

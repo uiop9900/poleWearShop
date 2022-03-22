@@ -45,7 +45,7 @@
 				<tr>
 					<td>${product.id}</td>
 					<td>${product.productNumber}</td>
-					<td>${product.productName}</td>
+					<td><a href="/admin/product/product_detailed_view?productId=${product.id}">${product.productName}</a></td>
 					<td>
 						<fmt:formatDate value="${product.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
 					</td>

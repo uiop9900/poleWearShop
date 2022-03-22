@@ -1,9 +1,12 @@
 package com.polewearshop.product.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.polewearshop.product.dao.ColorDAO;
+import com.polewearshop.product.model.Color;
 
 @Service
 public class ColorBO {
@@ -19,8 +22,12 @@ public class ColorBO {
 		}
 	}
 	
-	
 	public void addColor(int productId, String color) {
 		colorDAO.insertColor(productId, color);
+	}
+	
+	
+	public List<Color> getColorListByProductId(int productId) {
+		return colorDAO.selectColorListByProductId(productId);
 	}
 }

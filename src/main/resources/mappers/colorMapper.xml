@@ -20,4 +20,17 @@
 			,NOW()
 		)
 	</insert>
+	
+	<select id="selectColorListByProductId" resultType="com.polewearshop.product.model.Color">
+		SELECT
+			`productId`
+			,`color`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`color`
+		WHERE
+			`productId` = #{productId}
+	
+	</select>
 </mapper>
