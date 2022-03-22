@@ -15,4 +15,5 @@ public class AdminBO {
 	public Admin getAdmin(String loginId) {
 		return adminDAO.selectAdmin(loginId);
 	}
+	
 }

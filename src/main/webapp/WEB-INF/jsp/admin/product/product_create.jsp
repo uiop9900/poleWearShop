@@ -39,6 +39,10 @@
 			<input id="price" type="text">
 		</div>
 		
+		<div>재고
+			<input id="stock" type="text">
+		</div>
+		
 		<div>색상
 			<label><input type="checkbox" name="color" value="black"> Black</label>
 			<label><input type="checkbox" name="color" value="white"> White</label>
@@ -159,11 +163,19 @@ $(document).ready(function(e){
 			return;
 		}
 		
+		let stock = $("#stock").val();
+		if (stock == "") {
+			alert("재고를 입력하세요.");
+			return;
+		}
+		
 		let content = $("#content").val();
 		if (content == "") {
 			alert("상품설명을 입력하세요.");
+			return;
 		}
 		
+		//formData에 담아서 보내기
 		let formData = new FormData();
 		formData.append("type", type);
 		formData.append("colorArr", colorArr);
@@ -171,6 +183,7 @@ $(document).ready(function(e){
 		formData.append("productName", productName);
 		formData.append("productNumber", productNumber);
 		formData.append("price", price);
+		formData.append("stock", stock);
 		formData.append("content", content);
 		formData.append("file1", $(".file")[0].files[0]);
 		formData.append("file2", $(".file")[1].files[0]);
@@ -190,7 +203,7 @@ $(document).ready(function(e){
 					if (data.result == 'success') {
 						alert("상품을 성공적으로 업로드 되었습니다.");
 						location.href="/admin/product/product_list_view"
-					} else {
+					} else if (data.result == "fail"){
 						alert("업로드를 실패했습니다. 다시 시도해주세요.");
 						location.reload();
 					}
