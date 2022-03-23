@@ -33,6 +33,53 @@ public class ProductImagesBO {
 		productImagesDAO.deleteProductImagesdbByProductId(productId);
 	}
 	
+	public void updateProductImagestoNullByimagePath(int productId, String productImagePath) {
+		//실제 이미지 삭제 후 db는 null로 변환
+		try {
+			fileManager.deleteFile(productImagePath);
+		} catch (IOException e) {
+			logger.error("[delete productImage] 삭제할 이미지가 없습니다. productId: {}, productImagePath: {}", productId, productImagePath);
+		}
+	
+		productImagesDAO.updateProductImagestoNullByimagePath(productId, productImagePath);;
+	}
+	
+	public void updateProductImagesByProductId (int productId, String loginId, MultipartFile file1, MultipartFile file2,
+			MultipartFile file3, MultipartFile file4, MultipartFile file5) {
+		
+		String imagePath = null;
+		// 삭제 -> 바로 삭제된다.
+		// 사진이 들어오는 경우 update해주기
+		// 아무것도 들어오지 않는 경우 -> 기존의 path 다시 저장
+		List<MultipartFile> fileList = new ArrayList<>();
+		fileList.add(file1);
+		fileList.add(file2);
+		fileList.add(file3);
+		fileList.add(file4);
+		fileList.add(file5);
+		
+		for (MultipartFile file : fileList) {
+			if (file != null) { //파일을 받으면 파일저장 후 imagePath 저장
+				imagePath = fileManager.savefile(loginId, file);
+				productImagesDAO.insertProductImages(imagePath, productId);
+				continue;
+			} 
+			
+			if (file == null) {  //파일이 없으면 기존의 imagePath 그대로
+					return;
+				}
+		}
+		
+		List<ProductImages> productImages = getProductImagesListByProductId(productId);
+			for (ProductImages productImage : productImages ) {
+				imagePath = productImage.getProductImagePath();
+				productImagesDAO.insertProductImages(imagePath, productId);
+			}
+
+			
+ 	}
+	
+	
 	public void addProductImages(int productId, MultipartFile file1, MultipartFile file2,
 			MultipartFile file3, MultipartFile file4, MultipartFile file5, String loginId) {
 		

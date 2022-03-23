@@ -22,10 +22,21 @@ public class SizeBO {
 		}
 	}
 	
+	public void generateUpdateColorBtProductId(int productId, String sizeArr) {
+		String[] sizeList = sizeArr.split(",");
+		for (int i = 0; i < sizeList.length; i++) {
+			String size = sizeList[i];
+			sizeDAO.updateSizeByProductId(productId, size);
+		}
+	}
+	
 	public void addSize(int productId, String size) {
 		sizeDAO.insertSize(productId, size);
 	}
 	
+	public void updateSizeByProductId(int productId, String size) {
+		
+	}
 	
 	public List<Size> getSizeListByProductId(int productId) {
 		return sizeDAO.selectSizeListByProductId(productId);

@@ -36,9 +36,21 @@
  	
  	</insert>
  	
+ 	<update id="updateProductImagestoNullByimagePath" >
+ 		UPDATE `productImages`
+ 		SET
+ 			`productImagePath` = null
+ 		WHERE
+ 			`productId` = #{productId}
+ 		AND `productImagePath` = #{productImagePath}
+ 	</update>
+ 	
+ 	
  	<delete id="deleteProductImagesdbByProductId">
  		DELETE FROM `productImages`
  		WHERE
  			`productId` = #{productId}
  	</delete>
+ 	
+ 	
 </mapper>

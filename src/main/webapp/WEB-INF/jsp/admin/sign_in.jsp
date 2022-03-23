@@ -18,7 +18,7 @@
 		<input type="text" id="adminId">
 		비밀번호
 		<input type="password" id="adminPassword">
-		<button id="adminLoginBtn" type="submit">로그인</button>
+		<button id="adminLoginBtn" type="button">로그인</button>
 		
 		</form>
 	</div>

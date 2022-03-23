@@ -34,6 +34,15 @@
 	
 	</select>
 	
+	<update id="updateColorByProductId" parameterType="map">
+		UPDATE `color`
+		SET
+			`color` = #{color}
+		WHERE
+		 	`productId` = #{productId}	
+	
+	</update>
+	
 	<delete id="deleteColorByProductId">
 		DELETE FROM `color`
 		WHERE

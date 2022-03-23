@@ -68,6 +68,20 @@
 			`id` DESC;
  	</select>
  	
+ 	<update id="updateProductById" parameterType="map">
+ 		UPDATE `product`
+ 		SET
+ 			productNumber` = #{productNumber}
+			,`type` = #{type}
+			,`productName` = #{productName}
+			,`content` = #{content}
+			,`price` = #{price}
+			,`stock` = #{stock}
+			,`updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+ 	
+ 	</update>
  	
  	<delete id="deleteProductById">
 	 	DELETE FROM `product`

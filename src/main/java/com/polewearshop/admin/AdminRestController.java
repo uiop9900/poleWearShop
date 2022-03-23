@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +37,7 @@ public class AdminRestController {
 	@Autowired
 	private SizeBO sizeBO;
 	
-	@Autowired
+	@Autowired 
 	private ColorBO colorBO;
 	
 	@Autowired
@@ -117,6 +118,47 @@ public class AdminRestController {
 		return result;
 	}
 
+	
+	@ApiOperation(
+            value = "상품 업데이트하기"
+            , notes = "입력받은 상품id를 기반으로 변경된 정보를 저장한다.,")
+	@PutMapping("/product_update")
+	public Map<String, Object> productUpdate(
+			@RequestParam("productNumber") String productNumber,
+			@RequestParam("type") String type,
+			@RequestParam("productName") String productName,
+			@RequestParam("content") String content,
+			@RequestParam("price") int price,
+			@RequestParam("stock") int stock,
+			@RequestParam("productId") int productId,
+			@RequestParam("colorArr") String colorArr,
+			@RequestParam("sizeArr") String sizeArr,
+			@RequestParam(value="file1", required=false) MultipartFile file1 ,
+			@RequestParam(value="file2", required=false) MultipartFile file2 ,
+			@RequestParam(value="file3", required=false) MultipartFile file3 ,
+			@RequestParam(value="file4", required=false) MultipartFile file4 ,
+			@RequestParam(value="file5", required=false) MultipartFile file5 ,
+			HttpServletRequest request
+			){
+		
+		HttpSession session = request.getSession();
+		String adminLogindId = (String)session.getAttribute("adminId");
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "fail");
+		
+		//기존의 product 정보 update
+		productBO.updateProductById(productId, productNumber, type, productName, content, price, stock);
+		colorBO.generateUpdateColorByProductId(productId, colorArr);
+		sizeBO.generateColorBySizeArr(productId, sizeArr);
+		
+		//사진 삭제는 화면에서 바로 가능, 추가시 새롭게 저장
+		productImagesBO.addProductImages(productId, file1, file2, file3, file4, file5, adminLogindId);
+		
+		result.put("result", "success");
+		return result;
+	}
+	
 	
 	@ApiOperation(
             value = "상품삭제하기"

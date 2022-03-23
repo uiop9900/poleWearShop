@@ -33,6 +33,15 @@
 	
 	</select>
 	
+	<update id="updateSizeByProductId" parameterType="map">
+		UPDATE `size`
+		SET
+			`size` = #{size}
+		WHERE
+		 	`productId` = #{productId}	
+	
+	</update>
+	
 	<delete id="deleteSizeByProductId">
 	DELETE FROM `size`
 		WHERE

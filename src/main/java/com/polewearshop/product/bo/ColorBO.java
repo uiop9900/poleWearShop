@@ -26,6 +26,17 @@ public class ColorBO {
 		colorDAO.insertColor(productId, color);
 	}
 	
+	public void updateColorByProductId(int productId, String color) {
+		colorDAO.updateColorByProductId(productId, color);
+	}
+	
+	public void generateUpdateColorByProductId(int productId, String colorArr) {
+		String[] colorList = colorArr.split(",");
+		for (int i = 0; i < colorList.length; i++) {
+			String color = colorList[i];
+			updateColorByProductId(productId, color);
+		}
+	}
 	
 	public List<Color> getColorListByProductId(int productId) {
 		return colorDAO.selectColorListByProductId(productId);

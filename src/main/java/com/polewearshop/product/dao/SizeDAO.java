@@ -16,5 +16,9 @@ public interface SizeDAO {
 	
 	public List<Size> selectSizeListByProductId(int productId);
 	
+	public void updateSizeByProductId(
+			@Param("productId") int productId,
+			@Param("size") String size);
+	
 	public void deleteSizeByProductId(int productId);
 }
