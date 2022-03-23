@@ -32,4 +32,11 @@
 			`productId` = #{productId}
 	
 	</select>
+	
+	<delete id="deleteSizeByProductId">
+	DELETE FROM `size`
+		WHERE
+			`productId` = #{productId}
+	
+	</delete>
 </mapper>

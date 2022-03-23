@@ -44,61 +44,85 @@
 			<input id="stock" type="text" value="${productView.product.stock}">
 		</div>
 		
+		
+
 		<div>색상
-			<c:forEach items="${productView.color}" var="color">
-				<c:set var="colorList" value="${color}" />
-			</c:forEach>
-				<label><input  type="checkbox" name="color" value="black" <c:if test="${fn:contains(colors, 'black')}"> checked="checked" </c:if>> Black</label>
-				<label><input  type="checkbox" name="color" value="white" <c:if test="${fn:contains(colors, 'white')}"> checked="checked" </c:if> > White</label>
-				<label><input  type="checkbox" name="color" value="blue"<c:if test="${fn:contains(colors, 'blue')}"> checked="checked" </c:if>> Blue</label>
-				<label><input  type="checkbox" name="color" value="navy" <c:if test="${fn:contains(colors, 'navy')}"> checked="checked" </c:if>> Navy</label>
-				<label><input  type="checkbox" name="color" value="pink" <c:if test="${fn:contains(colors, 'pink')}"> checked="checked" </c:if>> Pink</label>
-				<label><input  type="checkbox" name="color" value="red" <c:if test="${fn:contains(colors, 'red')}"> checked="checked" </c:if>> Red</label>
+				<c:forEach var="color" items="${productView.color}" >
+					<label><input type="checkbox" name="color" value="${color.color}" checked="checked">${color.color}</label>
+				</c:forEach>
 		</div>
 		
 		<div>사이즈
-			<c:forEach items="${productView.size}" var="size">
-				<label><input  type="checkbox" name="size" value="s" <c:if test="${size.size == 's'}"> checked="checked" </c:if>> S</label>
-				<label><input  type="checkbox" name="size" value="m" <c:if test="${size.size == 'm'}"> checked="checked" </c:if>> M</label>
-				<label><input type="checkbox" name="size" value="l" <c:if test="${size.size == 'l'}"> checked="checked" </c:if> > L</label>
-				<label><input type="checkbox" name="size" value="xl" <c:if test="${size.size == 'xl'}"> checked="checked" </c:if> > XL</label>
+			<c:forEach var="size" items="${productView.size}">
+				<label><input type="checkbox" name="size" value="${size.size}" checked="checked">${size.size}</label>
 			</c:forEach>
 		</div>
 
 		<div>상품설명
 		</div>
-			<textarea id="content"></textarea>
+			<textarea id="content">${productView.product.content}</textarea>
 
 		<div>상품사진</div>
-		<div>1. 메인사진
-			<input class="file" id="file1" type="file" multiple accept=".jpg,.gif,.jpeg,.png">
-		</div>
 		
-		<div>2. 추가사진
-			<input class="file" id="file2" type="file" accept=".jpg,.gif,.jpeg,.png">
-		</div>
-		<div>3. 추가사진
-			<input class="file" id="file3" type="file" accept=".jpg,.gif,.jpeg,.png">
-		</div>
-		<div>4. 추가사진
-			<input class="file" id="file4" type="file" accept=".jpg,.gif,.jpeg,.png">
-		</div>
-		<div>5. 추가사진
-			<input class="file" id="file5" type="file" accept=".jpg,.gif,.jpeg,.png">
-		</div>
+		<c:forEach var="productImages" items="${productView.productImages}" varStatus="status">
+			<c:if test="${not empty productImages.productImagePath}">
+			<div class="border">
+				${status.count}. 사진
+				<input class="file"  type="file" value="${productImages.productImagePath}" accept=".jpg,.gif,.jpeg,.png">
+				<img src="${productImages.productImagePath}" alt="product_images" width="200">
+				<button id="imageDeleteBtn" type="button" class="btn btn-danger ml-3">삭제</button>
+			</div>
+			</c:if>
+			<c:if test="${empty productImages.productImagePath}" >
+				<div class="border">
+				${status.count}. 사진
+					<input class="file" value="sdfsd" id="file2" type="file" accept=".jpg,.gif,.jpeg,.png">
+				</div>
+			</c:if>
+		</c:forEach>
+		
 		
 		<div class="d-flex mt-5">
 			<div class="mr-5">
 				<a href="/admin/product/product_list_view" class="btn btn-primary">목록</a>
 			</div>
 			<div class="mr-5">
-				<button type="button" id="clearBtn" class="btn btn-secondary">취소하기</button>
+				<button type="button" id="deleteBtn" data-product-id="${productView.product.id}" class="btn btn-secondary">삭제하기</button>
 			</div>
 			<div>
-				<button type="button" id="uploadBtn" class="btn btn-primary">게시하기</button>
+				<button type="button" id="updateBtn" class="btn btn-primary">수정하기</button>
 			</div>
 		</div>
 	</section>
 </body>
+<script>
+$(document).ready(function(e){
+	// 게시물 삭제를 누르면 걍 바로 삭제한다. - productId받아서
+	$("#deleteBtn").on('click', function(e){
+		let productId = $(this).data("product-id");
+		
+		$.ajax({
+			type: "DELETE"
+			, url: "/admin/product/delete_product"
+			, data: {"productId":productId}
+			, success: function(data) {
+				if (data.result == 'success') {
+					alert("삭제되었습니다.");
+					location.href="/admin/product/product_list_view";
+				} else if (data.result == 'fail') {
+					alert("상품삭제가 실패되었습니다. 다시한번 시도하세요.");
+					location.reload();
+				}
+			}
+			, error: function(e) {
+				alert("error");
+			}
+		});
 
+	});
+	// update한다. 변경된거 받아서 update한다.
+	
+});
+
+</script>
 </html>

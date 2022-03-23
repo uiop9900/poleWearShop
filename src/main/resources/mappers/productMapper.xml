@@ -67,4 +67,13 @@
 		ORDER BY 
 			`id` DESC;
  	</select>
+ 	
+ 	
+ 	<delete id="deleteProductById">
+	 	DELETE FROM `product`
+	 	WHERE
+	 		`id` = #{productId}
+ 	</delete>
+ 	
+ 	
 </mapper>

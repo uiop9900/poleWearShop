@@ -30,4 +30,8 @@ public class SizeBO {
 	public List<Size> getSizeListByProductId(int productId) {
 		return sizeDAO.selectSizeListByProductId(productId);
 	}
+	
+	public void deleteSizeByProductId(int productId) {
+		sizeDAO.deleteSizeByProductId(productId);
+	}
 }

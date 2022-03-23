@@ -15,4 +15,6 @@ public interface SizeDAO {
 			@Param("size") String size);
 	
 	public List<Size> selectSizeListByProductId(int productId);
+	
+	public void deleteSizeByProductId(int productId);
 }

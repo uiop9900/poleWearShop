@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -116,4 +117,19 @@ public class AdminRestController {
 		return result;
 	}
 
+	
+	@ApiOperation(
+            value = "상품삭제하기"
+            , notes = "productId를 받아서 상품을 삭제한다.")
+	@DeleteMapping("/product/delete_product")
+	public Map<String, Object> deleteProduct(@RequestParam("productId") int productId) {
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result","fail");
+		
+		productBO.generateDeleteProductById(productId);
+		result.put("result","success");
+		
+		return result;
+	}
 }

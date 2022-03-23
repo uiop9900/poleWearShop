@@ -14,4 +14,6 @@ public interface ProductDAO {
 	public Product selectProductById(int productId);
 	
 	public List<Product> selectProductListByType(String type);
+	
+	public void deleteProductById(int productId);
 }

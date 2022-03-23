@@ -15,4 +15,6 @@ public interface ColorDAO {
 			@Param("color") String color);
 	
 	public List<Color> selectColorListByProductId(int productId);
+	
+	public void deleteColorByProductId(int productId);
 }

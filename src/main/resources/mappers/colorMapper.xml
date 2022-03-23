@@ -33,4 +33,11 @@
 			`productId` = #{productId}
 	
 	</select>
+	
+	<delete id="deleteColorByProductId">
+		DELETE FROM `color`
+		WHERE
+			`productId` = #{productId}
+	
+	</delete>
 </mapper>

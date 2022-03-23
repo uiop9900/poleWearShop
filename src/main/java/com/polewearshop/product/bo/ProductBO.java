@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import com.polewearshop.product.dao.ProductDAO;
 import com.polewearshop.product.model.Color;
 import com.polewearshop.product.model.Product;
+import com.polewearshop.product.model.ProductImages;
 import com.polewearshop.product.model.ProductView;
 import com.polewearshop.product.model.Size;
 
 @Service
 public class ProductBO {
 
+	@Autowired
+	private ProductImagesBO productImagesBO;
+	
 	@Autowired
 	private ColorBO colorBO;
 	
@@ -39,6 +43,10 @@ public class ProductBO {
 		return productDAO.selectProductListByType(type);
 	}
 	
+	public void deleteProductById(int productId) {
+		productDAO.deleteProductById(productId);
+	}
+	
 	public ProductView generateProductViewById(int productId) {
 		ProductView productView = new ProductView();
 		
@@ -48,13 +56,34 @@ public class ProductBO {
 		
 		//color List담기
 		List<Color> colorList = colorBO.getColorListByProductId(productId);
-			productView.setColor(colorList);
+		productView.setColor(colorList);
 			
 		//size List담기
 		List<Size> sizeList = sizeBO.getSizeListByProductId(productId);
-			productView.setSize(sizeList);
+		productView.setSize(sizeList);
 			
-			return productView;
+			
+		// productImages 담기
+		List<ProductImages> productImagesList = productImagesBO.getProductImagesListByProductId(productId);
+		productView.setProductImages(productImagesList);
+				
+		return productView;
 		}
+	
+	public void generateDeleteProductById(int productId) {
+		//product
+		deleteProductById(productId);
+		
+		//color
+		colorBO.deleteColorByProductId(productId);
+		
+		//size
+		sizeBO.deleteSizeByProductId(productId);
+		
+		//productImages
+		productImagesBO.deleteProductImagesByProductId(productId);
+		productImagesBO.deleteProductImagesdbByProductId(productId);
+		
+	}
 		
 }

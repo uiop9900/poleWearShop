@@ -30,4 +30,8 @@ public class ColorBO {
 	public List<Color> getColorListByProductId(int productId) {
 		return colorDAO.selectColorListByProductId(productId);
 	}
+	
+	public void deleteColorByProductId(int productId) {
+		colorDAO.deleteColorByProductId(productId);
+	}
 }

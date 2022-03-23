@@ -3,6 +3,21 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.polewearshop.product.dao.ProductImagesDAO">
+	
+	<select id="selectProductImagesListByProductId" resultType="com.polewearshop.product.model.ProductImages">
+		SELECT 
+			`productId`
+			,`productImagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`productImages`
+		WHERE
+			`productId` = #{productId}
+	
+	</select>
+
+
  	<insert id="insertProductImages" parameterType="map">
  		INSERT INTO `productImages`
  		(
@@ -20,4 +35,10 @@
  		)
  	
  	</insert>
+ 	
+ 	<delete id="deleteProductImagesdbByProductId">
+ 		DELETE FROM `productImages`
+ 		WHERE
+ 			`productId` = #{productId}
+ 	</delete>
 </mapper>

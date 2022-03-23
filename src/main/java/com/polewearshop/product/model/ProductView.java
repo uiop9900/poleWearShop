@@ -6,6 +6,7 @@ public class ProductView {
 	private Product product;
 	private List<Color> color;
 	private List<Size> size;
+	private List<ProductImages> productImages;
 	
 	public Product getProduct() {
 		return product;
@@ -24,6 +25,12 @@ public class ProductView {
 	}
 	public void setSize(List<Size> size) {
 		this.size = size;
+	}
+	public List<ProductImages> getProductImages() {
+		return productImages;
+	}
+	public void setProductImages(List<ProductImages> productImages) {
+		this.productImages = productImages;
 	}
 	
 	
