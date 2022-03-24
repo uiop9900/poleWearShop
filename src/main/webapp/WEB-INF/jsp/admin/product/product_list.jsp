@@ -28,7 +28,12 @@
 	</select>
 	</div>
 	
-	<h1 class="mt-4 ml-4">${type}</h1>
+	<div class="d-flex justify-content-around">
+		<h1 class="mt-4 ml-4">${type}</h1>
+		<div>
+			<a href="/admin/sign_out" class="btn btn-secondary" >로그아웃</a>
+		</div>
+	</div>
 	
 	<div class="mt-4 ml-3">
 		<table class="table">

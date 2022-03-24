@@ -2,6 +2,9 @@ package com.polewearshop.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,5 +69,13 @@ public class AdminController {
 		ProductView productView = productBO.generateProductViewById(productId);
 		model.addAttribute("productView", productView);
 		return "admin/product/product_detailed";
+	}
+	
+	@RequestMapping("/sign_out")
+	public String signOut(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("adminId");
+		
+		return "admin/sign_in";
 	}
 }
