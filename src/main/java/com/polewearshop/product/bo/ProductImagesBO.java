@@ -62,21 +62,13 @@ public class ProductImagesBO {
 			if (file != null) { //파일을 받으면 파일저장 후 imagePath 저장
 				imagePath = fileManager.savefile(loginId, file);
 				productImagesDAO.insertProductImages(imagePath, productId);
-				continue;
+				return;
 			} 
 			
 			if (file == null) {  //파일이 없으면 기존의 imagePath 그대로
 					return;
 				}
 		}
-		
-		List<ProductImages> productImages = getProductImagesListByProductId(productId);
-			for (ProductImages productImage : productImages ) {
-				imagePath = productImage.getProductImagePath();
-				productImagesDAO.insertProductImages(imagePath, productId);
-			}
-
-			
  	}
 	
 	

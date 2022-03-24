@@ -31,10 +31,19 @@ public class ColorBO {
 	}
 	
 	public void generateUpdateColorByProductId(int productId, String colorArr) {
+		//color가 들어오면 새롭게 저장하고 들어오지않으면 냅둔다.
 		String[] colorList = colorArr.split(",");
-		for (int i = 0; i < colorList.length; i++) {
-			String color = colorList[i];
-			updateColorByProductId(productId, color);
+		
+		if (colorList == null) {
+			return;
+		}
+		
+		if (colorList !=null) {
+			deleteColorByProductId(productId);
+			for (int i = 0; i < colorList.length; i++) {
+				String color = colorList[i];
+				addColor(productId, color);
+			}
 		}
 	}
 	

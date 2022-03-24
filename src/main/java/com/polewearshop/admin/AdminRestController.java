@@ -85,7 +85,7 @@ public class AdminRestController {
 	@ApiOperation(
             value = "새로운 상품 추가하기"
             , notes = "입력받은 상품명, 정보들을 확인 후 새로운 상품에 추가한다.")
-	@PostMapping("/product_create")
+	@PostMapping("/product/product_create")
 	public Map<String, Object> productCreate(
 			@ModelAttribute Product product,
 			@RequestParam("colorArr") String colorArr,
@@ -122,7 +122,7 @@ public class AdminRestController {
 	@ApiOperation(
             value = "상품 업데이트하기"
             , notes = "입력받은 상품id를 기반으로 변경된 정보를 저장한다.,")
-	@PutMapping("/product_update")
+	@PutMapping("/product/product_update")
 	public Map<String, Object> productUpdate(
 			@RequestParam("productNumber") String productNumber,
 			@RequestParam("type") String type,
@@ -150,10 +150,10 @@ public class AdminRestController {
 		//기존의 product 정보 update
 		productBO.updateProductById(productId, productNumber, type, productName, content, price, stock);
 		colorBO.generateUpdateColorByProductId(productId, colorArr);
-		sizeBO.generateColorBySizeArr(productId, sizeArr);
+		sizeBO.generateUpdateColorBtProductId(productId, sizeArr);
 		
 		//사진 삭제는 화면에서 바로 가능, 추가시 새롭게 저장
-		productImagesBO.addProductImages(productId, file1, file2, file3, file4, file5, adminLogindId);
+		productImagesBO.updateProductImagesByProductId(productId, adminLogindId, file1, file2, file3, file4, file5);
 		
 		result.put("result", "success");
 		return result;

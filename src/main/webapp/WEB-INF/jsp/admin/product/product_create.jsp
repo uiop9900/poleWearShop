@@ -194,7 +194,7 @@ $(document).ready(function(e){
 		
 		$.ajax({
 				type: "post"
-				, url: "/admin/product_create"
+				, url: "/admin/product/product_create"
 				, data: formData 
 				, enctype: "multipart/form-data" 
 				, processData: false 

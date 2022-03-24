@@ -19,7 +19,7 @@
 	
 	<section class="mt-5 ml-5 box2">
 		<div>
-		타입
+		<b>타입</b>
 		<select id="type">
 			<option value="top" <c:if test="${productView.product.type == 'top'}"> selected="selected" </c:if>>top</option>
 			<option value="bottom" <c:if test="${productView.product.type == 'bottom'}"> selected="selected" </c:if>>bottom</option>
@@ -28,58 +28,87 @@
 		</select>
 		</div>
 	
-		<div>상품명
+		<div class="mt-2"><b>상품명</b>
 			<input id="productName" type="text" value="${productView.product.productName}">
 		</div>
 		
-		<div>상품번호
+		<div class="mt-2"><b>상품번호</b>
 			<input id="productNumber" type="text" value="${productView.product.productNumber}">
 		</div>
 	
-		<div>상품가격
+		<div class="mt-2"><b>상품가격</b>
 			<input id="price" type="text" value="${productView.product.price}">
 		</div>
 		
-		<div>재고
+		<div class="mt-2"><b>재고</b>
 			<input id="stock" type="text" value="${productView.product.stock}">
 		</div>
 		
 		
 
-		<div>색상
+		<div class="mt-2"><b>현재 색상:</b> 
 				<c:forEach var="color" items="${productView.color}" >
-					<label><input type="checkbox" name="color" value="${color.color}" checked="checked">${color.color}</label>
+					${color.color}
 				</c:forEach>
+				<br>
+					<label><input type="checkbox" name="color" value="black">black</label>
+					<label><input type="checkbox" name="color" value="white">white</label>
+					<label><input type="checkbox" name="color" value="navy">navy</label>
+					<label><input type="checkbox" name="color" value="blue">blue</label>
+					<label><input type="checkbox" name="color" value="red">red</label>
+					<label><input type="checkbox" name="color" value="pink">pink</label>
+				
 		</div>
 		
-		<div>사이즈
+		<div class="mt-2"><b>현재 사이즈:</b>
 			<c:forEach var="size" items="${productView.size}">
-				<label><input type="checkbox" name="size" value="${size.size}" checked="checked">${size.size}</label>
+				${size.size}
 			</c:forEach>
+			<br>
+				<label><input type="checkbox" name="size" value="s">S</label>
+				<label><input type="checkbox" name="size" value="m">M</label>
+				<label><input type="checkbox" name="size" value="l">L</label>
+				<label><input type="checkbox" name="size" value="xl">XL</label>
 		</div>
 
-		<div>상품설명
+		<div class="mt-2"><b>상품설명</b>
 		</div>
 			<textarea id="content">${productView.product.content}</textarea>
 
-		<div>상품사진</div>
+		<div class="mt-5"><b>현재 상품사진</b></div>
 		
+		<div class="d-flex justify-content-begin">
 		<c:forEach var="productImages" items="${productView.productImages}" varStatus="status">
 			<c:if test="${not empty productImages.productImagePath}">
 				<div class="border">
-					${status.count}. 사진
-					<input class="file" type="file"  accept=".jpg,.gif,.jpeg,.png">
-					<img src="${productImages.productImagePath}" alt="product_images" width="200">
-					<button class="imageDeleteBtn" type="button" class="btn btn-danger ml-3" data-product-id ="${productView.product.id}" data-image-path ="${productImages.productImagePath}" >삭제</button>
-				</div>
-			</c:if>
-			<c:if test="${empty productImages.productImagePath}" >
-				<div class="border">
-					${status.count}. 사진
-					<input class="file" value="${status.count}" type="file" accept=".jpg,.gif,.jpeg,.png">
+					<div class="ml-4">
+						<img src="${productImages.productImagePath}" alt="product_images" width="200">
+					</div>
+					<div class="ml-2">
+						<button class="imageDeleteBtn" type="button" class="btn btn-danger ml-3" data-product-id ="${productView.product.id}" data-image-path ="${productImages.productImagePath}" >삭제</button>
+					</div>
 				</div>
 			</c:if>
 		</c:forEach>
+		</div>
+	
+		<div class="mt-5"><b>상품 추가 사진</b></div>
+		<div>1. 메인사진
+			<input class="file" id="file1" type="file" multiple accept=".jpg,.gif,.jpeg,.png">
+		</div>
+		
+		<div>2. 추가사진
+			<input class="file" id="file2" type="file" accept=".jpg,.gif,.jpeg,.png">
+		</div>
+		<div>3. 추가사진
+			<input class="file" id="file3" type="file" accept=".jpg,.gif,.jpeg,.png">
+		</div>
+		<div>4. 추가사진
+			<input class="file" id="file4" type="file" accept=".jpg,.gif,.jpeg,.png">
+		</div>
+		<div>5. 추가사진
+			<input class="file" id="file5" type="file" accept=".jpg,.gif,.jpeg,.png">
+		</div>
 		
 		<%--버튼 --%>
 		<div class="d-flex mt-5">
@@ -176,22 +205,12 @@ $(document).ready(function(e){
 			let color = $(this).val();
 			colorArr.push(color);
 		});
-		
-		if (colorArr == "") {
-			alert("색을 선택하세요.");
-			return;
-		}
-		
+
 		let sizeArr = [];
 		$("input:checkbox[name='size']:checked").each(function(){
 			let size = $(this).val();
 			sizeArr.push(size);
 		});
-		
-		if (sizeArr == "") {
-			alert("사이즈를 선택하세요.");
-			return;
-		}
 		
 		let productName = $("#productName").val();
 		if (productName == "") {
@@ -210,6 +229,7 @@ $(document).ready(function(e){
 			alert("가격을 입력하세요.");
 			return;
 		}
+		alert(price);
 		
 		let stock = $("#stock").val();
 		if (stock == "") {
@@ -243,14 +263,14 @@ $(document).ready(function(e){
 		
 		$.ajax({
 				type: "PUT"
-				, url: "/admin/product_update"
+				, url: "/admin/product/product_update"
 				, data: formData 
 				, enctype: "multipart/form-data" 
 				, processData: false 
 				, contentType: false 
 				, success: function(data) {
 					if (data.result == 'success') {
-						alert("상품을 성공적으로 업로드 되었습니다.");
+						alert("상품을 성공적으로 수정했습니다.");
 						location.href="/admin/product/product_list_view"
 					} else if (data.result == "fail"){
 						alert("업로드를 실패했습니다. 다시 시도해주세요.");

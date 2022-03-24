@@ -38,6 +38,7 @@
 					<th>물품번호</th>
 					<th>상품명</th>
 					<th>생성일자</th>
+					<th>수정일자</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,6 +49,9 @@
 					<td><a href="/admin/product/product_detailed_view?productId=${product.id}">${product.productName}</a></td>
 					<td>
 						<fmt:formatDate value="${product.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
+					</td>
+					<td>
+						<fmt:formatDate value="${product.updatedAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
 					</td>
 				</tr>
 				</c:forEach>

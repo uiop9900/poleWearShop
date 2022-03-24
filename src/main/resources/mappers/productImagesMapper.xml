@@ -33,7 +33,6 @@
  			,NOW()
  			,NOW()
  		)
- 	
  	</insert>
  	
  	<update id="updateProductImagestoNullByimagePath" >

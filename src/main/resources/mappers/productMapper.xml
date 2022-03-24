@@ -71,7 +71,7 @@
  	<update id="updateProductById" parameterType="map">
  		UPDATE `product`
  		SET
- 			productNumber` = #{productNumber}
+ 			`productNumber` = #{productNumber}
 			,`type` = #{type}
 			,`productName` = #{productName}
 			,`content` = #{content}
