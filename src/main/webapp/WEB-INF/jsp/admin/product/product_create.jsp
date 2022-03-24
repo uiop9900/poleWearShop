@@ -128,10 +128,6 @@ $(document).ready(function(e){
 			colorArr.push(color);
 		});
 		
-		if (colorArr == "") {
-			alert("색을 선택하세요.");
-			return;
-		}
 		
 		// 사이즈
 		let sizeArr = [];
@@ -140,10 +136,6 @@ $(document).ready(function(e){
 			sizeArr.push(size);
 		});
 		
-		if (sizeArr == "") {
-			alert("사이즈를 선택하세요.");
-			return;
-		}
 		
 		let productName = $("#productName").val();
 		if (productName == "") {

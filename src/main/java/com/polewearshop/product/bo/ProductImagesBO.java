@@ -62,7 +62,6 @@ public class ProductImagesBO {
 			if (file != null) { //파일을 받으면 파일저장 후 imagePath 저장
 				imagePath = fileManager.savefile(loginId, file);
 				productImagesDAO.insertProductImages(imagePath, productId);
-				return;
 			} 
 			
 			if (file == null) {  //파일이 없으면 기존의 imagePath 그대로
@@ -86,8 +85,11 @@ public class ProductImagesBO {
 			String imagePath = null;
 			if (file != null) {
 				imagePath = fileManager.savefile(loginId, file);
+				productImagesDAO.insertProductImages(imagePath, productId);
 			} 
-			productImagesDAO.insertProductImages(imagePath, productId);
+			if (file == null) {
+				return;
+			}
 		}
 	}
 	

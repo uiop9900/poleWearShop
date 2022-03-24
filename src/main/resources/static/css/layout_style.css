@@ -24,6 +24,11 @@
 .random_product {margin:auto; width: 1000px;}
 .random_product img {width: 300px; height: 350px; background-color: yellow;}
 
+.product-box {margin:auto; width: 1000px;}
+.product-box a{text-decoration: none;} 
+.product-box img {width: 300px; height: 350px;}
+.product-text1 {color: black; font-size: 20px; font-weight: bold; padding-left: 20px;}
+.product-text2 {color: #333331; font-size: 18px; padding-left: 20px;}
 
 
 .signIn_box {width: 500px; margin: auto;}

@@ -1,5 +1,6 @@
 package com.polewearshop.product.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.polewearshop.product.model.Color;
 import com.polewearshop.product.model.Product;
 import com.polewearshop.product.model.ProductImages;
 import com.polewearshop.product.model.ProductView;
+import com.polewearshop.product.model.ProductViewCompact;
 import com.polewearshop.product.model.Size;
 
 @Service
@@ -27,6 +29,8 @@ public class ProductBO {
 	@Autowired
 	private ProductDAO productDAO;
 	
+	
+	
 	public void addProduct(Product product) {
 		productDAO.insertProduct(product);
 	}
@@ -41,6 +45,26 @@ public class ProductBO {
 			type = null;
 		}
 		return productDAO.selectProductListByType(type);
+	}
+	
+	
+	public List<ProductViewCompact> generateProductViewCompactListByType(String type) {
+		List<ProductViewCompact> productViewCompactList = new ArrayList<>();
+		
+		
+		List<Product> productList = getProductListByType(type);
+		for (Product product: productList) {
+			// 반복마다 새롭게 new로 객체 생성
+			ProductViewCompact productViewCompact = new ProductViewCompact();
+			// 하나의 상품 정보 저장
+			productViewCompact.setProduct(product);
+			// 사진리스트 중 하나만 메인 사진으로 저장
+			List<ProductImages> productImgaesList = productImagesBO.getProductImagesListByProductId(product.getId());
+			productViewCompact.setProductImagePath(productImgaesList.get(0).getProductImagePath());
+			//list에 append
+			productViewCompactList.add(productViewCompact);
+		}
+		return productViewCompactList;
 	}
 	
 	public void deleteProductById(int productId) {
@@ -69,6 +93,7 @@ public class ProductBO {
 				
 		return productView;
 		}
+
 	
 	public void updateProductById(int productId, String productNumber, String type, String productName,
 			String content, int price, int stock) {

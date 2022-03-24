@@ -25,10 +25,10 @@
 			<li class="nav-item"><a class="nav-link nav-font" href="#">best</a></li>
 			<li class="nav-item shop-main"><a class="nav-link nav-font">shop</a>
 				 <ul class="shop-sub nav flex-column">
-					<li class="nav-item"><a class="nav-link" href="#">top</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">bottom</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">set</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">etc</a></li>
+					<li class="nav-item"><a class="nav-link" href="/product/shop_view?type=top">top</a></li>
+					<li class="nav-item"><a class="nav-link" href="/product/shop_view?type=bottom">bottom</a></li>
+					<li class="nav-item"><a class="nav-link" href="/product/shop_view?type=set">set</a></li>
+					<li class="nav-item"><a class="nav-link" href="/product/shop_view?type=etc">etc</a></li>
 				</ul> 
 			</li>
 			<li class="nav-item"><a class="nav-link nav-font" href="#">studio</a></li>
