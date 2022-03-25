@@ -95,6 +95,7 @@ public class ProductBO {
 		}
 
 	
+	
 	public void updateProductById(int productId, String productNumber, String type, String productName,
 			String content, int price, int stock) {
 		productDAO.updateProductById(productId, productNumber, type, productName, content, price, stock);

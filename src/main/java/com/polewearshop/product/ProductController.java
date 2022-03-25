@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.product.bo.ProductBO;
+import com.polewearshop.product.bo.ProductImagesBO;
+import com.polewearshop.product.model.ProductView;
 import com.polewearshop.product.model.ProductViewCompact;
 
 @Controller
@@ -17,6 +19,10 @@ public class ProductController {
 	
 	@Autowired
 	private ProductBO productBO;
+	
+	@Autowired
+	private ProductImagesBO productImagesBO;
+	
 	
 	// 쇼핑몰 메인 화면
 	@RequestMapping("/main_view")
@@ -48,7 +54,11 @@ public class ProductController {
 			) {
 		
 		
-
+		ProductView product = productBO.generateProductViewById(productId);
+		String mainImagePath = productImagesBO.getOneProductImagePathByProductId(productId);
+		
+		model.addAttribute("mainImagePath", mainImagePath);
+		model.addAttribute("product", product);
 		model.addAttribute("type", type);
 		model.addAttribute("productId", productId);
 		

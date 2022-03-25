@@ -25,6 +25,13 @@ public class ProductImagesBO {
 	@Autowired
 	private ProductImagesDAO productImagesDAO;
 	
+	
+	public String getOneProductImagePathByProductId(int productId) {
+		List<ProductImages> imagesList = getProductImagesListByProductId(productId);
+		String productImagePath = imagesList.get(0).getProductImagePath();
+		return productImagePath;
+	}
+	
 	public List<ProductImages> getProductImagesListByProductId(int productId) {
 		return productImagesDAO.selectProductImagesListByProductId(productId);
 	}
