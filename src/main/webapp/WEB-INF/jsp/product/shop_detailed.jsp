@@ -95,10 +95,11 @@ $(document).ready(function(e) {
 				, url: "/order/order_member"
 				, data: {"productId":productId, "memberId":memberId, "size":size,
 						"color":color, "count":count, "price":price}
-				, success: function(date) {
-					if(date.result == "success") {
-						let basketId = data.basketId;
-						location.href="/order/order_member_view?basketId=" + basketId;
+				, success: function(data) {
+					if(data.result == "success") {
+						//let basketId = data.basketId;
+						alert("구매 성공");
+						//location.href="/order/order_member_view?basketId=" + basketId;
 					} else if (data.result == "fail") {
 						alert("구매하기에 실패했습니다. 다시 시도해주세요.");
 						location.reload();

@@ -28,6 +28,7 @@ public class UserController {
 		session.removeAttribute("loginId");
 		session.removeAttribute("userName");
 		session.removeAttribute("userId");
+		session.removeAttribute("basketNumber");
 		
 		model.addAttribute("viewName", "product/main");
 		return "template/layout";

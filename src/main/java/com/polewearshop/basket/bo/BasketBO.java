@@ -16,7 +16,7 @@ public class BasketBO {
 		basketDAO.addBasket(basket);
 	}
 	
-	public void updateBasketNumberById(int basketId) {
-		basketDAO.updateBasketNumberById(basketId);;
+	public void updateBasketNumberById(int basketId, int basketNumber) {
+		basketDAO.updateBasketNumberById(basketId, basketNumber);;
 	}
 }

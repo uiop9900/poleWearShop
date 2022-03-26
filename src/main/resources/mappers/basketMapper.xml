@@ -5,9 +5,10 @@
  <mapper namespace="com.polewearshop.basket.dao.BasketDAO">
  	<insert id="addBasket" parameterType="com.polewearshop.basket.model.Basket"
  	useGeneratedKeys="true" keyProperty="id">
- 		INSERT INTO
+ 		INSERT INTO `basket`
  		(
 			`productId`
+			,`memberId`
 			,`count`
 			,`color`
 			,`size`
@@ -18,6 +19,7 @@
  		VALUES
  		(
  			#{productId}
+ 			,#{memberId}
  			,#{count}
  			,#{color}
  			,#{size}
@@ -30,7 +32,7 @@
  	
  	<update id="updateBasketNumberById">
  		UPDATE `basket`
- 		SET `basketNumber` = #{id}
+ 		SET `basketNumber` = #{basketNumber}
  		WHERE
  			`id` = #{id}
  	
