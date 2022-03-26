@@ -25,11 +25,11 @@ public class UserController {
 			HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute("loginId");
-		session.removeAttribute("userName");
-		session.removeAttribute("userId");
+		session.removeAttribute("memberLoginId");
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
 		session.removeAttribute("basketNumber");
-		
+
 		model.addAttribute("viewName", "product/main");
 		return "template/layout";
 	}

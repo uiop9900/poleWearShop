@@ -13,4 +13,8 @@ public interface BasketDAO {
 	public void updateBasketNumberById(
 			@Param("id") int basketId,
 			@Param("basketNumber") int basketNumber);
+	
+	public void updateMemberIdByBasketNumber(
+			@Param("memberId") int memberId, 
+			@Param("basketNumber") int basketNumber);
 }

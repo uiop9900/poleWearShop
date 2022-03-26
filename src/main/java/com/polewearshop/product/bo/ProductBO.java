@@ -30,7 +30,6 @@ public class ProductBO {
 	private ProductDAO productDAO;
 	
 	
-	
 	public void addProduct(Product product) {
 		productDAO.insertProduct(product);
 	}

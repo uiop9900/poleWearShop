@@ -19,8 +19,52 @@
 				<a href="/user/sign_up_view" class="text-primary font-weight-bold text-decoration-none">가입하기</a>
 			</div>
 			<div>
-				<a href="#" class="text-danger font-weight-bold text-decoration-none">비회원으로 주문하기</a>
+				<a href="/order/order_nonMember_view" class="text-danger font-weight-bold text-decoration-none">비회원으로 주문하기</a>
 			</div>
 		</div>
 </div>
-	
+
+<script>
+$(document).ready(function(e){
+	//로그인
+	$("#loginBtn").on('click', function(e){
+		
+		//validation
+		let loginId = $("#loginId").val();
+		let password = $("#password").val();
+		
+		if(loginId == "") {
+			alert("아이디를 입력해주세요.");
+			return;
+		}
+		
+		if(password == "") {
+			alert("아이디를 입력해주세요.");
+			return;
+		}
+		
+		
+		$.ajax({
+			type: "POST"
+			, url:"/user/sign_in"
+			, data: {"loginId": loginId, "password":password}
+			, success: function(data) {
+				if (data.result == "success") {
+					let basketNumber = data.basketNumber;
+					alert(data.successMessage);
+					alert("멤버 전용의 주문하기 페이지로 넘어갑니다.");
+					location.href="/order/order_member_view?basketNumber=" + basketNumber;
+				} else if (data.result == "errorPassword") {
+					alert(data.errorPasswordMessage);
+					location.reload();
+				} 
+			}
+			, error: function(e) {
+				alert("아이디가 존재하지 않습니다.");
+				location.reload();
+			}
+		});
+		
+	});
+});
+</script>

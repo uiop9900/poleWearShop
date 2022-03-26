@@ -83,33 +83,37 @@ $(document).ready(function(e) {
 			return;
 		}
 		
-		// 로그인 유무에 따라 다른 화면으로 보낸다.
-		if (memberId == "") { //비로그인-로그인 창
-			
-			location.href="/order/sign_in_view";
+		if (memberId == "") {
+			memberId = 0;
 		}
 		
-		if (memberId != "") { //로그인-구매하기로 넘어가기 
-			$.ajax({
-				type:"Get"
-				, url: "/order/order_member"
-				, data: {"productId":productId, "memberId":memberId, "size":size,
-						"color":color, "count":count, "price":price}
-				, success: function(data) {
-					if(data.result == "success") {
-						//let basketId = data.basketId;
-						alert("구매 성공");
-						//location.href="/order/order_member_view?basketId=" + basketId;
-					} else if (data.result == "fail") {
-						alert("구매하기에 실패했습니다. 다시 시도해주세요.");
-						location.reload();
-					}
+		// 로그인 유무에 따라 다른 화면으로 보낸다.
+		$.ajax({
+			type:"Get"
+			, url: "/order/order/basket_list"
+			, data: {"productId":productId, "memberId":memberId, "size":size,
+					"color":color, "count":count, "price":price}
+			, success: function(data) {
+				if(data.memberId != 0 && data.result == "success") {
+					//로그인 회원이 구매하기
+					let basketNumber = data.basketNumber;
+					alert("구매 성공");
+					location.href="/order/order_member_view?basketNumber=" + basketNumber;
+				} else if(data.memberId == 0 && data.result == 'success') {
+					//비회원이 구매하기
+					let basketNumber = data.basketNumber;
+					location.href="/order/sign_in_view?";
 				}
-				, error: function(e){
-					alert("error");
+				
+				else if (data.result == "fail") {
+					alert("구매하기에 실패했습니다. 다시 시도해주세요.");
+					location.reload();
 				}
-			});
-		}
+			}
+			, error: function(e){
+				alert("error");
+			}
+		});
 
 	});
 	

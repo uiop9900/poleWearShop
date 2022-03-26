@@ -106,6 +106,11 @@ public class UserRestContoller {
     		result.put("errorPasswordMessage", "비밀번호를 다시 확인해주세요");
     	}
     	
+    	HttpSession session = request.getSession();
+    	Integer basketNumber = (Integer)session.getAttribute("basketNumber");
+    	if (basketNumber != null) {
+    		result.put("basketNumber", basketNumber);
+    	}
     	return result;
     }
     

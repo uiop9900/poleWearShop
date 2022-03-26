@@ -30,11 +30,19 @@
  		
  	</insert>
  	
- 	<update id="updateBasketNumberById">
+ 	<update id="updateBasketNumberById" parameterType="map">
  		UPDATE `basket`
  		SET `basketNumber` = #{basketNumber}
  		WHERE
  			`id` = #{id}
  	
  	</update>
+ 	
+ 	<update id="updateMemberIdByBasketNumber" parameterType="map">
+ 	 	UPDATE `basket`
+ 		SET `memberId` = #{memberId}
+ 		WHERE
+ 			`basketNumber` = #{basketNumber}
+ 	</update>
+ 	
  </mapper>

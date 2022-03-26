@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Basket {
 	private int id;
-	private int basketNumber;
-	private int memberId;
+	private Integer basketNumber;
+	private Integer memberId;
 	private int productId;
 	private int count;
 	private String color;

@@ -19,4 +19,8 @@ public class BasketBO {
 	public void updateBasketNumberById(int basketId, int basketNumber) {
 		basketDAO.updateBasketNumberById(basketId, basketNumber);;
 	}
+	
+	public void updateMemberIdByBasketNumber(int memberId, int basketNumber) {
+		basketDAO.updateMemberIdByBasketNumber(memberId, basketNumber);
+	}
 }
