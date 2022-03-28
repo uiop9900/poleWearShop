@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.polewearshop.common.CommonEncoder;
 import com.polewearshop.user.bo.UserBO;
-import com.polewearshop.user.model.User;
+import com.polewearshop.user.model.Member;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -37,7 +37,7 @@ public class UserRestContoller {
 		
 		Map<String, Object> result = new HashMap<>();
 		
-		User user = userBO.getUser(loginId);
+		Member user = userBO.getMember(loginId);
 		if (user == null) {
 			result.put("result", 0);
 		} else {
@@ -67,7 +67,7 @@ public class UserRestContoller {
     	String encodingPassword = encoder.encode(password);
     	
     	Map<String, Object> result = new HashMap<>();
-    	int count = userBO.addUser(loginId, encodingPassword, name, phoneNumber, email, sex, address, birth);
+    	int count = userBO.addMember(loginId, encodingPassword, name, phoneNumber, email, sex, address, birth);
     	if(count > 0 ) {
     		result.put("result", "success");
     	} else {
@@ -87,7 +87,7 @@ public class UserRestContoller {
     		HttpServletRequest request
     		) {
 
-    	User user = userBO.getUser(loginId);
+    	Member user = userBO.getMember(loginId);
     	Boolean checkPassword = encoder.matches(password, user.getPassword());
     	
     	
@@ -100,17 +100,16 @@ public class UserRestContoller {
     		session.setAttribute("memberLoginId", user.getLoginId());
     		session.setAttribute("memberId", user.getId());
     		session.setAttribute("memberName", user.getName());
+
+    		int basketNumber = (int)session.getAttribute("basketNumber");
+    		result.put("basketNumber", basketNumber);
+    		result.put("memberId", user.getId());
     		
-    	} else if ( user != null && checkPassword == false) {
+    	} else if (user != null && checkPassword == false) {
     		result.put("result", "errorPassword");
     		result.put("errorPasswordMessage", "비밀번호를 다시 확인해주세요");
     	}
     	
-    	HttpSession session = request.getSession();
-    	Integer basketNumber = (Integer)session.getAttribute("basketNumber");
-    	if (basketNumber != null) {
-    		result.put("basketNumber", basketNumber);
-    	}
     	return result;
     }
     

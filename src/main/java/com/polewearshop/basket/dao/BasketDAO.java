@@ -1,5 +1,7 @@
 package com.polewearshop.basket.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,8 @@ import com.polewearshop.basket.model.Basket;
 public interface BasketDAO {
 
 	public void addBasket(Basket basket);
+	
+	public List<Basket> selectBasketListByBasketNumber(int basketNumber);
 	
 	public void updateBasketNumberById(
 			@Param("id") int basketId,

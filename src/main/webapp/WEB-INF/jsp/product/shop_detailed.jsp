@@ -13,21 +13,41 @@
 		<h4><fmt:formatNumber value="${product.product.price}" />원</h4>
 		<br>
 		
+
+		<%--etc는 사이즈와 색상을 선택하지 못한다. --%>
 		<h6><b>사이즈</b></h6>
-		 <select id="size" class="form-select">
+		<c:choose>
+		<c:when test="${type == 'etc'}">
+			 <select id="size" class="form-select" disabled>
+		 		<option>Free</option>
+			</select>
+		</c:when>
+		<c:otherwise>
+		<select id="size" class="form-select">
 		 	<option>[필수] 사이즈 선택</option>
 		 	<c:forEach var="size" items="${product.size}">
 		 	<option class="text-uppercase">${size.size}</option>
 		 	</c:forEach>
 		 </select>
+		 </c:otherwise>
+		 </c:choose>
 		 
 		<h6 class="mt-3"><b>색상</b></h6>
+		<c:choose>
+		<c:when test="${type == 'etc'}">
+			 <select id="size" class="form-select" disabled>
+		 		<option>Free</option>
+			</select>
+		</c:when>
+		<c:otherwise>
 		 <select id="color" class="form-select">
 		 	<option>[필수] 색상 선택</option>
 		 	<c:forEach var="color" items="${product.color}">
 		 	<option class="text-uppercase">${color.color}</option>
 		 	</c:forEach>
 		 </select>
+		 </c:otherwise>
+		 </c:choose>
 		 
 		 <h6 class="mt-3"><b>수량</b></h6>
 		 <select id="count">
@@ -41,7 +61,7 @@
 		 <hr>
 		 <div class="d-flex justify-content-between">
 		 	<button id="purchase" data-product-price="${product.product.price}" data-member-id="${memberId}" data-product-id="${product.product.id}" type="button" class="btn btn-primary">구매하기</button>
-		 	<button id="basket" data-product-id="${product.product.id}" type="button" class="btn btn-info mr-5">장바구니</button>
+		 	<button id="basket" data-product-price="${product.product.price}" data-member-id="${memberId}"  data-product-id="${product.product.id}" type="button" class="btn btn-info mr-5">장바구니</button>
 		 </div>
 	</div>
 </div>
@@ -102,7 +122,7 @@ $(document).ready(function(e) {
 				} else if(data.memberId == 0 && data.result == 'success') {
 					//비회원이 구매하기
 					let basketNumber = data.basketNumber;
-					location.href="/order/sign_in_view?";
+					location.href="/order/sign_in_view?basketNumber=" + basketNumber;
 				}
 				
 				else if (data.result == "fail") {
@@ -119,7 +139,13 @@ $(document).ready(function(e) {
 	
 	//장바구니 버튼을 누를 경우
 	$("#basket").on('click', function(e){
+		let size = $("#size").val();
+		let color = $("#color").val();
+		let count = $("#count").val();
 		let productId = $(this).data("product-id");
+		let memberId = $(this).data("member-id");
+		let price = $(this).data("product-price");
+		alert(memberId);
 	});
 });
 </script>

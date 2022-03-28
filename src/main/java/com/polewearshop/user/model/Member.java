@@ -2,7 +2,7 @@ package com.polewearshop.user.model;
 
 import java.util.Date;
 
-public class User {
+public class Member {
 	private int id; 
 	private String loginId;
 	private String password;

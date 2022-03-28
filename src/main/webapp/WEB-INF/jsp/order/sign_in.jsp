@@ -50,10 +50,11 @@ $(document).ready(function(e){
 			, data: {"loginId": loginId, "password":password}
 			, success: function(data) {
 				if (data.result == "success") {
+					let memberId = data.memberId;
 					let basketNumber = data.basketNumber;
 					alert(data.successMessage);
 					alert("멤버 전용의 주문하기 페이지로 넘어갑니다.");
-					location.href="/order/order_member_view?basketNumber=" + basketNumber;
+					location.href="/order/order_member_view?basketNumber=" + basketNumber + "&memberId" + memberId;
 				} else if (data.result == "errorPassword") {
 					alert(data.errorPasswordMessage);
 					location.reload();

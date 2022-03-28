@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.user.bo.UserBO;
-import com.polewearshop.user.model.User;
+import com.polewearshop.user.model.Member;
 
 @Controller
 @RequestMapping("/user")
@@ -62,7 +62,7 @@ public class UserController {
 			Model model,
 			@RequestParam("memberLoginId") String loginId) {
 		
-		User user = userBO.getUser(loginId);
+		Member user = userBO.getMember(loginId);
 		
 		model.addAttribute("user", user);
 		model.addAttribute("viewName", "user/member_page");

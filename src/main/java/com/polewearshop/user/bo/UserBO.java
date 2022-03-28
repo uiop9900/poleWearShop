@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.polewearshop.user.dao.UserDAO;
-import com.polewearshop.user.model.User;
+import com.polewearshop.user.model.Member;
 
 @Service
 public class UserBO {
@@ -12,19 +12,22 @@ public class UserBO {
 	@Autowired
 	private UserDAO userDAO;
 	
-	public User getUser(String loginId) {
-		return userDAO.selectUser(loginId);
+	public Member getMember(String loginId) {
+		return userDAO.selectMember(loginId);
+	}
+	
+	public Member getMembetById(int memberId) {
+		return userDAO.selectMembetById(memberId);
+	}
+	
+	public Member getMemberByLoginIdPassword(String loginId, String password) {
+		return userDAO.selectMemberByLoginIdPassword(loginId, password);
 	}
 	
 	
-	public User getUserByLoginIdPassword(String loginId, String password) {
-		return userDAO.selectUserByLoginIdPassword(loginId, password);
-	}
-	
-	
-	public int addUser(String loginId, String password, String name, String phoneNumber
+	public int addMember(String loginId, String password, String name, String phoneNumber
 			, String email, String sex, String address, String birth) {
-		return userDAO.insertUser(loginId, password, name, phoneNumber, email, sex, address, birth);
+		return userDAO.insertMember(loginId, password, name, phoneNumber, email, sex, address, birth);
 	}
 	
 	

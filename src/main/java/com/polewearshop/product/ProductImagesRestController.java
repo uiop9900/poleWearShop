@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.polewearshop.product.bo.ProductImagesBO;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/productImages")
-public class ProductImagesResController {
+public class ProductImagesRestController {
 
 	@Autowired
 	private ProductImagesBO productImagesBO;
-	
+   
+	@ApiOperation(
+            value = "사진 삭제"
+            , notes = "사진을 삭제한다.")
 	@DeleteMapping("/delete_productImages")
 	public Map<String, Object> deleteProductImages(
 			@RequestParam("productId") int productId,

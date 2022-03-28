@@ -30,6 +30,24 @@
  		
  	</insert>
  	
+ 	<select id="selectBasketListByBasketNumber" resultType="com.polewearshop.basket.model.Basket">
+ 		SELECT
+ 			`id`
+ 			,`basketNumber`
+			,`memberId`
+ 		 	,`productId`
+			,`count`
+			,`color`
+			,`size`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+ 		From `basket`
+ 		WHERE
+ 			`basketNumber` = #{basketNumber}
+ 	</select>
+ 	
+ 	
  	<update id="updateBasketNumberById" parameterType="map">
  		UPDATE `basket`
  		SET `basketNumber` = #{basketNumber}

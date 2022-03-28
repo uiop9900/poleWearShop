@@ -3,18 +3,20 @@ package com.polewearshop.user.dao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.polewearshop.user.model.User;
+import com.polewearshop.user.model.Member;
 
 @Repository
 public interface UserDAO {
 
-	public User selectUser(String loginId);
+	public Member selectMember(String loginId);
 	
-	public User selectUserByLoginIdPassword(
+	public Member selectMembetById(int memberId);
+	
+	public Member selectMemberByLoginIdPassword(
 			@Param("loginId") String loginId, 
 			@Param("password") String password);
 	
-	public int insertUser(
+	public int insertMember(
 			@Param("loginId") String loginId, 
 			@Param("password") String password, 
 			@Param("name") String name, 

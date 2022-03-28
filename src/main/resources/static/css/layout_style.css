@@ -43,6 +43,8 @@ select {width: 200px;}
 #passwordRule {padding-left: 102px; display: block;}
 #possibleId {padding-left: 150px; font-weight: bold;}
 
+/*member_order 페이지*/
+.member_order_box {width: 1000px; margin: auto;}
 
 /*footer영역*/
 .footerText{margin-top: 150px; margin-bottom: 100px; font-size: 13px; color: #999;}

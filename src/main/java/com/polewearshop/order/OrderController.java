@@ -1,5 +1,7 @@
 package com.polewearshop.order;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,15 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.basket.bo.BasketBO;
+import com.polewearshop.basket.model.Basket;
+import com.polewearshop.basket.model.BasketView;
+import com.polewearshop.user.bo.UserBO;
+import com.polewearshop.user.model.Member;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-
+	
+	@Autowired
+	private UserBO userBO;
 	
 	@Autowired
 	private BasketBO basketBO;
 	
+	// 구매하기버튼 - 로그인
 	@RequestMapping("/sign_in_view")
 	public String orderSignInView(Model model) {
 		model.addAttribute("viewName", "order/sign_in");
@@ -37,14 +46,28 @@ public class OrderController {
 		int memberId = (int)session.getAttribute("memberId");
 		
 		basketBO.updateMemberIdByBasketNumber(memberId, basketNumber);
+		int totalPrice = basketBO.getTotalPrice(basketNumber);
+
+		List<BasketView> basketViewList = basketBO.getBasketViewListByBasketNumber(basketNumber);
+		Member member = userBO.getMembetById(memberId);
 		
-		model.addAttribute("memberId", memberId);
+		model.addAttribute("basketViewList", basketViewList);
+		model.addAttribute("totalPrice", totalPrice);
+		if (totalPrice > 30000) {
+			model.addAttribute("deliveryFee", 0);
+		} else {
+			model.addAttribute("deliveryFee", 30000);
+			
+		}
+		model.addAttribute("member", member);
 		model.addAttribute("viewName", "order/order_member");
 		model.addAttribute("basketNumber", basketNumber);
 		
 		return "template/layout";
 	}
 	
+	
+	// 비회원으로 구매하기
 	@RequestMapping("/order_nonMember_view")
 	public String orderNonMemberView(
 			Model model,
@@ -54,7 +77,9 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		int basketNumber = (int)session.getAttribute("basketNumber");
 		
-		
+		List<Basket> basketList = basketBO.getBasketListByBasketNumber(basketNumber);
+
+		model.addAttribute("basketList", basketList);
 		model.addAttribute("basketNumber", basketNumber);
 		model.addAttribute("viewName", "order/order_nonMember");
 		return "template/layout";
