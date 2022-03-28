@@ -81,4 +81,8 @@ public class BasketBO {
 	public void updateMemeberIdBybasketNumber(int memberId, int baksetId) {
 		basketDAO.updateMemberIdByBasketNumber(memberId, baksetId);
 	}
+	
+	public void deleteBasketByBasketNumber(int basketNumber) {
+		basketDAO.deleteBasketByBasketNumber(basketNumber);
+	}
 }

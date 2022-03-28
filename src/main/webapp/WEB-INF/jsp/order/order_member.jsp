@@ -102,15 +102,15 @@
 		</tr>
 		<tr>
 			<th class="table-secondary">배송비</th>
-			<td>${deliveryFee}</td>
+			<td><fmt:formatNumber value="${deliveryFee}"/>원</td>
 		</tr>
 		<tr>
 			<th class="table-secondary">적립금</th>
-			<td>${basket.basket.price * basket.basket.count / 100}원</td>
+			<td>${totalPrice / 100}원</td>
 		</tr>
 		<tr>
 			<th class="table-secondary">최종 결제 금액</th>
-			<td>${totalPrice + deliveryFee}</td>
+			<td><fmt:formatNumber value="${totalPrice + deliveryFee}"/>원</td>
 		</tr>
 	</table>
 	<hr>
@@ -129,7 +129,7 @@
 	</div>
 	
 	<div class="mt-5">
-		<button id="payBtn" data-delivery-fee="${deliveryFee}" data-member-id="${member.id}" data-bakset-number="${basketNumber}" type="button" class="btn btn-primary w-100">결제하기</button>
+		<button id="payBtn" data-delivery-fee="${deliveryFee}" data-member-id="${member.id}" data-basket-number="${basketNumber}" type="button" class="btn btn-primary w-100">결제하기</button>
 	</div>
 </div>
 
@@ -190,11 +190,12 @@ $(document).ready(function(e) {
 		let email = $("#email").val();
 		let memberId = $(this).data('member-id');
 		let basketNumber = $(this).data('basket-number');
+		alert(memberId);
 		
 		$.ajax({
-			type: 'Get'
+			type: "GET"
 			,url: "/order/order_member"
-			,data: {"memberId":memberId, "basketNumber":basketNumber,"deliveryFee":deliveryFee, "deliveredName":deliveredName,
+			,data: {"type":"member", "orderUserId":memberId, "basketNumber":basketNumber,"deliveryFee":deliveryFee, "deliveredName":deliveredName,
 					"deliveredAddress":deliveredAddress, "deliveredPhoneNumber":deliveredPhoneNumber, "deliveredComment": deliveredComment}
 			, success: function(data) {
 				if (data.result == 'success') {

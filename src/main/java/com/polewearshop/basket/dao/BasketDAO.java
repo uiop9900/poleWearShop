@@ -21,4 +21,6 @@ public interface BasketDAO {
 	public void updateMemberIdByBasketNumber(
 			@Param("memberId") int memberId, 
 			@Param("basketNumber") int basketNumber);
+	
+	public void deleteBasketByBasketNumber(int basketNumber);
 }

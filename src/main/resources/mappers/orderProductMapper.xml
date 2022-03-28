@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.polewearshop.order.dao.OrderProductDAO">
+	
+	<insert id="insertOrderProductByBasketNumber" parameterType="map">
+		INSERT INTO `orderProduct`
+		(
+			`orderId`
+			,`productId`
+			,`count`
+			,`price`
+			,`color`
+			,`size`
+			,`createdAt`
+			,`updatedAt`
+		)
+		values
+		(
+			#{orderId}
+			,#{productId}
+			,#{count}
+			,#{price}
+			,#{color}
+			,#{size}
+			,NOW()
+			,NOW()
+		)
+	
+	</insert>
+
+</mapper>

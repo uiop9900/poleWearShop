@@ -63,4 +63,10 @@
  			`basketNumber` = #{basketNumber}
  	</update>
  	
+ 	<delete id="deleteBasketByBasketNumber">
+		DELETE FROM `basket`
+		WHERE
+			`basketNumber` = #{basketNumber} 	
+ 	</delete>
+ 	
  </mapper>

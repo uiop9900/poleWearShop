@@ -56,7 +56,7 @@ public class OrderController {
 		if (totalPrice > 30000) {
 			model.addAttribute("deliveryFee", 0);
 		} else {
-			model.addAttribute("deliveryFee", 30000);
+			model.addAttribute("deliveryFee", 3000);
 			
 		}
 		model.addAttribute("member", member);

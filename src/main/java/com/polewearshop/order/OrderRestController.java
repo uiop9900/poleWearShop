@@ -8,13 +8,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.basket.model.Basket;
+import com.polewearshop.order.bo.OrderBO;
+import com.polewearshop.order.model.Order;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -25,11 +25,14 @@ public class OrderRestController {
 	@Autowired
 	private BasketBO basketBO;
 	
+	@Autowired
+	private OrderBO orderBO;
+	
     @ApiOperation(
             value = "구매하기 버튼"
             , notes = "상품세부페이지에서 구매하기 버튼을 누르면 basket에 상품정보가 담기고 session에 basketNumber를 담는다.")
 	@RequestMapping("/order/basket_list")
-	public Map<String, Object> orderMember(
+	public Map<String, Object> orderBasketList(
 			HttpServletRequest request,
 			@ModelAttribute Basket basket
 			) {
@@ -59,17 +62,24 @@ public class OrderRestController {
     
     @RequestMapping("/order_member")
     public Map<String, Object> orderMember(
-    		@RequestParam("memberId") int memberId,
-    		@RequestParam("basketNumber") int basketNumber,
-    		@RequestParam("deliveryFee") int deliveryFee,
-    		@RequestParam("deliveredName") String deliveredName,
-    		@RequestParam("deliveredAddress") String deliveredAddress,
-    		@RequestParam("deliveredPhoneNumber") String deliveredPhoneNumber,
-    		@RequestParam(value="deliveredComment", required=false) String deliveredComment
+    		@ModelAttribute Order order,
+    		HttpServletRequest request
     		) {
     	
     	Map<String, Object> result = new HashMap<>();
     	result.put("result", "fail");
+
+    	//insert order
+    	orderBO.addOrder(order);
+    	
+    	//insert orderProduct
+    	int orderId = order.getId();
+    	HttpSession session = request.getSession();
+    	int basketNumber = (int)session.getAttribute("basketNumber");
+    	
+    	orderBO.generateOrderProductByBasketNumber(orderId, basketNumber);
+    	
+    	result.put("result", "success");
     	return result;
     	
     }
