@@ -77,4 +77,19 @@ public class UserController {
 		model.addAttribute("viewName", "user/member_page");
 		return "template/layout";
 	}
+	
+	//유저info update 화면
+	@RequestMapping("/member_update_page_view")
+	public String memberUpdatePageView(
+			Model model,
+			@RequestParam("memberId") int memberId
+			) {
+		
+		
+		Member user = userBO.getMembetById(memberId);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("viewName", "user/member_update_page");
+		return "template/layout";
+	}
 }

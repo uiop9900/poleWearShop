@@ -30,4 +30,11 @@ public interface UserDAO {
 			@Param("id") int memberId, 
 			@Param("mileage") int mileage);
 	
+	public void updateMemberInfoById(
+			@Param("id") int memberId, 
+			@Param("name") String name, 
+			@Param("address") String address, 
+			@Param("phoneNumber") String phoneNumber, 
+			@Param("email") String email);
+	
 }

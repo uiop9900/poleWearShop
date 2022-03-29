@@ -33,4 +33,8 @@ public class UserBO {
 	public void updateMileageById(int memberId, int mileage) {
 		userDAO.updateMileageById(memberId, mileage);
 	}
+	
+	public void updateMemberInfoById(int memberId, String name, String address, String phoneNumber, String email) {
+		userDAO.updateMemberInfoById(memberId, name, address, phoneNumber, email);
+	}
 }

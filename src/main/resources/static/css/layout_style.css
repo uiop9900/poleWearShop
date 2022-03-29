@@ -46,6 +46,8 @@ select {width: 200px;}
 /*member_order 페이지*/
 .member_order_box {width: 1000px; margin: auto;}
 
+.user_page_font {font-size: 25px; }
+
 /*footer영역*/
 .footerText{margin-top: 150px; margin-bottom: 100px; font-size: 13px; color: #999;}
 

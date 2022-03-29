@@ -105,4 +105,16 @@
  		`id` = #{id}
  </update>
  
+ <update id="updateMemberInfoById">
+  	UPDATE `member`
+ 	SET 
+ 		`name` = #{name}
+ 		,`address` = #{address}
+ 		,`email` = #{email}
+ 		,`phoneNumber` = #{phoneNumber}
+ 	WHERE
+ 		`id` = #{id}
+ 
+ </update>
+ 
  </mapper>

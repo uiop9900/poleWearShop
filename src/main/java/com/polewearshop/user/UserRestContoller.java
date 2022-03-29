@@ -114,4 +114,30 @@ public class UserRestContoller {
     	return result;
     }
     
+    @ApiOperation(
+            value = "개인정보 업데이트"
+            , notes = "입력받은 정보들로 개인정보를 수정한다.")
+    @RequestMapping("/member_update")
+    public Map<String, Object> memberUpdate(
+    		@RequestParam(value="address", required=false) String address,
+    		@RequestParam("name") String name,
+    		@RequestParam("email") String email,
+    		@RequestParam("phoneNumber") String phoneNumber,
+    		@RequestParam("memberId") int memberId,
+    		HttpServletRequest request
+    		){
+    	
+    	Map<String, Object> result = new HashMap<>();
+    	result.put("result", "fail");
+
+    	HttpSession session = request.getSession();
+    	String loginId = (String)session.getAttribute("memberLoginId");
+    	
+    	
+    	userBO.updateMemberInfoById(memberId, name, address, phoneNumber, email);
+    	
+    	result.put("loginId", loginId);
+    	result.put("result", "success");
+    	return result;
+    }
 }
