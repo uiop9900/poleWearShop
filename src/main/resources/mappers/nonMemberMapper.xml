@@ -36,6 +36,7 @@
 			,`email`
 			,`createdAt`
 			,`updatedAt`
+			,`basketNumber`
 		FROM
 			`nonMember`
 		WHERE
@@ -51,6 +52,7 @@
 			,`email`
 			,`createdAt`
 			,`updatedAt`
+			,`basketNumber`
 		FROM
 			`nonMember`
 		WHERE
