@@ -10,10 +10,10 @@
 		<div class="d-flex justify-content-between align-items-center">
 			<h1>${status.count}</h1>
 			<div class="basket_delete">
-				<button class="delete_basket btn btn-outline-dark" data-basket-number="${basketNumber}" data-basket-count="${status.count}">Delete</button>
+				<button class="delete_basket btn btn-outline-dark" data-basket-id="${basket.basket.id}">Delete</button>
 			</div>
 		</div>
-		<table class="table">
+		<table class="table text-center">
 		<thead class="thead-light">
 			<tr>
 				<th>상품 이름</th>
@@ -27,7 +27,9 @@
 				<td><a href="/product/shop_detailed_view?type=${basket.product.type}&productId=${basket.product.id}">${basket.product.productName}</a></td>
 				<td>${basket.basket.count}</td>
 				<td>${basket.basket.size}</td>
-				<td>${basket.basket.price}</td>
+				<td>
+					<fmt:formatNumber value="${basket.basket.price}" />원
+				</td>
 			</tr>
 		</tbody>
 	</table>	
@@ -36,7 +38,7 @@
 	
 	<div class="mt-4">
 		<div class="d-flex justify-content-center">
-		<button class="btn btn-primary col-6">전체 구매하기</button>
+		<button id="allOrder" data-basket-number="${basketNumber}" class="btn btn-primary col-6">전체 구매하기</button>
 		</div>
 	</div>
 </div>
@@ -44,9 +46,7 @@
 <script>
 $(document).ready(function(e){
 	$(".delete_basket").on('click', function(e){
-		let count = $(this).data("basket-count");
-		let basketNumber = $(this).data("basket-number");
-		let basketId = count + basketNumber - 1;
+		let basketId = $(this).data("basket-id");
 		
 		$.ajax({
 			type:"DELETE"
@@ -64,7 +64,12 @@ $(document).ready(function(e){
 				alert("error");
 			}
 		});
-	})
+	});
+	
+	$("#allOrder").on('click', function(e){
+		let basketNumber = $(this).data("basket-number");
+		location.href="/order/sign_in_view?basketNumber=" + basketNumber;	
+	});
 });
 
 </script>

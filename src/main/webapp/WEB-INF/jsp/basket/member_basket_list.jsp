@@ -13,7 +13,7 @@
 				<button class="delete_basket btn btn-outline-dark" data-basket-id="${basket.basket.id}">Delete</button>
 			</div>
 		</div>
-		<table class="table">
+		<table class="table text-center">
 		<thead class="thead-light">
 			<tr>
 				<th>상품 이름</th>
@@ -27,7 +27,9 @@
 				<td><a href="/product/shop_detailed_view?type=${basket.product.type}&productId=${basket.product.id}">${basket.product.productName}</a></td>
 				<td>${basket.basket.count}</td>
 				<td>${basket.basket.size}</td>
-				<td>${basket.basket.price}</td>
+				<td>
+					<fmt:formatNumber value="${basket.basket.price}" />원
+				</td>
 			</tr>
 		</tbody>
 	</table>	
