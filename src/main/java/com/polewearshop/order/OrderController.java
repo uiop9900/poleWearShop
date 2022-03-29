@@ -71,15 +71,21 @@ public class OrderController {
 	@RequestMapping("/order_nonMember_view")
 	public String orderNonMemberView(
 			Model model,
-			HttpServletRequest request
+			HttpServletRequest request,
+			@RequestParam("basketNumber") int basketNumber
 			) {
 		
-		HttpSession session = request.getSession();
-		int basketNumber = (int)session.getAttribute("basketNumber");
+		List<BasketView> basketViewList = basketBO.getBasketViewListByBasketNumber(basketNumber);
+		int totalPrice = basketBO.getTotalPrice(basketNumber);
 		
-		List<Basket> basketList = basketBO.getBasketListByBasketNumber(basketNumber);
-
-		model.addAttribute("basketList", basketList);
+		if (totalPrice > 30000) {
+			model.addAttribute("deliveryFee", 0);
+		} else {
+			model.addAttribute("deliveryFee", 3000);
+			
+		}
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("basketViewList", basketViewList);
 		model.addAttribute("basketNumber", basketNumber);
 		model.addAttribute("viewName", "order/order_nonMember");
 		return "template/layout";

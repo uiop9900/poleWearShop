@@ -19,7 +19,7 @@
 				<a href="/user/sign_up_view" class="text-primary font-weight-bold text-decoration-none">가입하기</a>
 			</div>
 			<div>
-				<a href="/order/order_nonMember_view" class="text-danger font-weight-bold text-decoration-none">비회원으로 주문하기</a>
+				<a href="/order/order_nonMember_view?basketNumber=${basketNumber}" class="text-danger font-weight-bold text-decoration-none">비회원으로 주문하기</a>
 			</div>
 		</div>
 </div>

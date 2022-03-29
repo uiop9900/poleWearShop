@@ -14,4 +14,40 @@
 		<button type="submit" id="checkOrederNumber" class="btn btn-primary w-100 mt-4 font-weight-bold">조회하기</button>
 		</form>
 </div>
-	
+
+<script>
+$(document).ready(function(e){
+	$("#checkOrederNumber").on('click', function(e){
+		let name = $("#name").val();
+		let orderNumber = $("#orderNumber").val();
+		
+		if (name == "") {
+			alert("이름을 입력하세요.");
+			return;
+		}
+		
+		if (orderNumber == "") {
+			alert("주문번호를 입력하세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "POST"
+			, url: "/nonMember/check_orderNumber"
+			, data: {"name":name, "orderNumber":orderNumber}
+			, success: function(data) {
+				if (data.result == 'success') {
+					let orderNumber = data.orderNumber;
+					location.href="/nonMember/orderNumber_check_result_view?orderNumber=" + orderNumber;
+				} else if (data.result == 'fail') {
+					alert("주문조회가 실패했습니다. 다시 시도해주세요.");
+					location.reload();
+				}
+			}
+			, error: function(e) {
+				alert("error");
+			}
+		});
+	});
+});
+</script>

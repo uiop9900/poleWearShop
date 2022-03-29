@@ -157,7 +157,6 @@ $(document).ready(function(e) {
 	//결제하기 버튼
 	$("#payBtn").on('click', function(e) {
 		let deliveredName = $("#deliveredName").val();
-		alert(deliveredName);
 		let deliveredAddress = $("#deliveredAddress").val();
 		let deliveredPhoneNumber = $("#deliveredPhoneNumber").val();
 		let deliveredComment = $("#deliveredComment").val();

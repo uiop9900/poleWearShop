@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.polewearshop.user.dao.NonMemberDAO">
+	<insert id="insertNonMember" parameterType="com.polewearshop.user.model.NonMember"
+	useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `nonMember`
+		(
+			`name`
+			,`orderNumber`
+			,`phoneNumber`
+			,`email`
+			,`basketNumber`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{name}
+			,#{orderNumber}
+			,#{phoneNumber}
+			,#{email}
+			,#{basketNumber}
+			,NOW()
+			,NOW()
+		)
+	</insert>
+	
+	<select id="selectNonMemberByOrderNumber" resultType="com.polewearshop.user.model.NonMember">
+		SELECT
+			`id`
+		 	,`name`
+			,`orderNumber`
+			,`phoneNumber`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`nonMember`
+		WHERE
+			`orderNumber` = #{orderNumber}
+	</select>
+	
+		<select id="selectNonMemberByNameOrderNumber" resultType="com.polewearshop.user.model.NonMember">
+		SELECT
+			`id`
+		 	,`name`
+			,`orderNumber`
+			,`phoneNumber`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`nonMember`
+		WHERE
+			`orderNumber` = #{orderNumber}
+			and `name` = #{name}
+	</select>
+</mapper>

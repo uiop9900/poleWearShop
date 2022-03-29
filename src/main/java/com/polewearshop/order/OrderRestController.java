@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.basket.model.Basket;
 import com.polewearshop.order.bo.OrderBO;
 import com.polewearshop.order.model.Order;
+import com.polewearshop.user.model.NonMember;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -77,12 +79,33 @@ public class OrderRestController {
     	HttpSession session = request.getSession();
     	int basketNumber = (int)session.getAttribute("basketNumber");
     	
-    	orderBO.generateOrderProductByBasketNumber(orderId, basketNumber);
+    	orderBO.generateMemberOrderProductByBasketNumber(orderId, basketNumber);
     	
     	result.put("result", "success");
     	return result;
     	
     }
 	
-	
+	@RequestMapping("/order_nonMember")
+	public Map<String, Object> orderNonMember(
+			@ModelAttribute NonMember nonMember,
+			@RequestParam("basketNumber") int basketNumber,
+			@RequestParam("deliveryFee") int deliveryFee,
+			@RequestParam("deliveredName") String deliveredName,
+			@RequestParam("deliveredAddress") String deliveredAddress,
+			@RequestParam("deliveredPhoneNumber") String deliveredPhoneNumber,
+			@RequestParam(value="deliveredComment", required=false ) String deliveredComment
+			){
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "fail");
+		
+		String type = "nonMember";
+		
+		orderBO.generateNonMemberOrderProductByBasketNumber(nonMember, type, deliveryFee, deliveredAddress, deliveredPhoneNumber, deliveredComment, deliveredName, basketNumber);
+		
+		result.put("result", "success");
+		return result;
+		
+	}
 }
