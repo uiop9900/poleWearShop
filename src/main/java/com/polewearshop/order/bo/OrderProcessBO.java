@@ -144,7 +144,7 @@ public class OrderProcessBO {
 				productList.add(product);
 			}
 			orderProductView.setProduct(productList);
-			
+			orderProductViewList.add(orderProductView);
 		}
 		return orderProductViewList;
 		

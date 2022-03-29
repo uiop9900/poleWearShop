@@ -14,15 +14,19 @@
 			</tr>
 		</thead>
 		<tbody>
-				<c:forEach items="${orderProductViewList}" var="basket">
-			<tr>
-					<td>${basket.product.productName}</td>
-					<td>${basket.basket.count}</td>
-					<td><fmt:formatNumber value="${basket.basket.price}"/>원</td>
+				<c:forEach items="${orderProductViewList}" var="order">
+				<c:forEach var="product" items="${order.product}">
+    			<c:forEach var="order" items="${order.orderProduct}">
+				<tr>
+					<td>${product.productName}</td>
+					<td>${order.count}</td>
+					<td><fmt:formatNumber value="${order.price}"/>원</td>
 					<td>
-						<fmt:formatDate value="${basket.basket.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초"  />
+						<fmt:formatDate value="${order.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초"  />
 					</td>
-			</tr>
+				</tr>
+				</c:forEach>
+				</c:forEach>
 				</c:forEach>
 		</tbody>
 	</table>

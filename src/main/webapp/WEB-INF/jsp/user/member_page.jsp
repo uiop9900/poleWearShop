@@ -25,18 +25,37 @@
     	<button id="updateUserInfo" data-member-id="${user.id}" type="button" class="btn btn-secondary">개인 정보 수정하기</button>
     </div>
     
-    <c:forEach var="memberOrder" items="${memberPageViewList}">
-		<h1>${memberOrder.order.id}</h1>
-		<c:forEach var="product" items="${memberOrder.product}">
-		<h1>${product.productName}</h1>
-		</c:forEach>
-		<c:forEach var="order" items="${memberOrder.orderProduct}">
-		<h1>${order.count}</h1>
-		</c:forEach>
-		
-	</c:forEach>
+    <h1 class="text-center mt-5">Order</h1>
+    <table class="table text-center mt-4">
+    	<thead class="thead-light">
+    		<tr>
+    			<th>상품이름</th>
+    			<th>수량</th>
+    			<th>가격</th>
+    			<th>구매일자</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<c:forEach var="memberPage" items="${memberPageViewList}">
+    		<c:forEach var="product" items="${memberPage.product}">
+    		<c:forEach var="order" items="${memberPage.orderProduct}">
+    		<tr>
+    			<td>${product.productName}</td>
+    			<td>${order.count}</td>
+    			<td><fmt:formatNumber value="${order.price}"/> 원</td>
+    			<td>
+    				<fmt:formatDate value="${order.createdAt}" pattern="yyyy년 MM월 dd일" />
+    			</td>
+    		</tr>
+    		</c:forEach>
+    		</c:forEach>
+    		</c:forEach>
+    	</tbody>
+    </table>
 
-	<div><a id="logOutBtn" class="btn btn-danger" href="/user/sign_out">로그아웃</a></div>
+	<div class="text-center mt-5">
+		<a id="logOutBtn" class="btn btn-danger" href="/user/sign_out">로그아웃</a>
+	</div>
 </div>
 
 <script>
