@@ -145,7 +145,56 @@ $(document).ready(function(e) {
 		let productId = $(this).data("product-id");
 		let memberId = $(this).data("member-id");
 		let price = $(this).data("product-price");
-		alert(memberId);
+		
+		//validation check
+		if (size == "") {
+			alert("사이즈를 선택하세요.");
+			return;
+		}
+		
+		if (color == "") {
+			alert("색상을 선택하세요.");
+			return;
+		}
+		
+		if (count == "") {
+			alert("수량을 선택하세요.");
+			return;
+		}
+		
+		if (memberId == "") {
+			memberId = 0;
+		}
+		
+		
+		// 로그인 유무에 따라 다른 화면으로 보낸다.
+		$.ajax({
+			type:"Get"
+			, url: "/basket/basket_list"
+			, data: {"productId":productId, "memberId":memberId, "size":size,
+					"color":color, "count":count, "price":price}
+			, success: function(data) {
+				if(data.memberId != 0 && data.result == "success") {
+					//로그인 회원이 구매하기
+					let basketNumber = data.basketNumber;
+					let memberId = data.memberId;
+					alert("로그인회원 + 장바구니");
+					location.href="/basket/basket/member_basket_list_view?basketNumber=" + basketNumber + "&memberId=" + memberId;
+				} else if(data.memberId == 0 && data.result == 'success') {
+					//비회원이 구매하기
+					let basketNumber = data.basketNumber;
+					location.href="/basket/basket/nonMember_basket_list_view?basketNumber=" + basketNumber;
+				}
+				else if (data.result == "fail") {
+					alert("구매하기에 실패했습니다. 다시 시도해주세요.");
+					location.reload();
+				}
+			}
+			, error: function(e){
+				alert("error");
+			}
+		});
+
 	});
 });
 </script>

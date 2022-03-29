@@ -16,7 +16,17 @@
 			</c:choose>
 		</div>
 		<div id="basket_logo">
-			<a href="#"><img src="/static/images/basket_logo.png" alt="basket_logo"></a>
+			<c:choose>
+				<c:when test="${empty basketNumber and empty memberLoginId}">
+					<a href="/basket/basket/nothing_view"><img src="/static/images/basket_logo.png" alt="basket_logo"></a>
+				</c:when>
+				<c:when test="${not empty basketNumber and not empty memberLoginId}" >
+					<a href="/basket/basket/member_basket_list_view?basketNumber=${basketNumber}&memberId=${memberId}"><img src="/static/images/basket_logo.png" alt="basket_logo"></a>
+				</c:when>
+				<c:when test="${not empty basketNumber and empty memberLoginId}">
+					<a href="/basket/basket/nonMember_basket_list_view?basketNumber=${basketNumber}"><img src="/static/images/basket_logo.png" alt="basket_logo"></a>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 	

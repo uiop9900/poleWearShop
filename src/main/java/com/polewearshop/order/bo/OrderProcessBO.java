@@ -89,6 +89,7 @@ public class OrderProcessBO {
 					basket.getPrice(), basket.getColor(), basket.getSize());
 			//stock update
 			productBO.updateCountById(basket.getProductId(), basket.getCount());
+			basketBO.deleteBasketByBasketNumber(basketNumber);
 		}
 	}
 	

@@ -47,6 +47,22 @@
  			`basketNumber` = #{basketNumber}
  	</select>
  	
+ 	<select id="selectBasketListByMemberId" resultType="com.polewearshop.basket.model.Basket">
+ 		SELECT
+ 			`id`
+ 			,`basketNumber`
+			,`memberId`
+ 		 	,`productId`
+			,`count`
+			,`color`
+			,`size`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+ 		From `basket`
+ 		WHERE
+ 			`memberId` = #{memberId}
+ 	</select>
  	
  	<update id="updateBasketNumberById" parameterType="map">
  		UPDATE `basket`
@@ -68,5 +84,12 @@
 		WHERE
 			`basketNumber` = #{basketNumber} 	
  	</delete>
+ 	
+ 	 <delete id="deleteBasketById">
+		DELETE FROM `basket`
+		WHERE
+			`id` = #{id} 	
+ 	</delete>
+ 	
  	
  </mapper>

@@ -31,6 +31,26 @@ public class BasketBO {
 		return basketDAO.selectBasketListByBasketNumber(basketNumber);
 	}
 	
+	public List<Basket> getBasketListByMemberId(int memberId) {
+		return basketDAO.selectBasketListByMemberId(memberId);
+	}
+	
+	public List<BasketView> getBasketViewListByMemberId(int memberId) {
+		List<BasketView> basketViewList = new ArrayList<>();
+		
+		List<Basket> basketList = getBasketListByMemberId(memberId);
+		for (Basket basket : basketList) {
+			BasketView basketView = new BasketView();
+			basketView.setBasket(basket);
+			
+			Product product = productBO.getProductById(basket.getProductId());
+			basketView.setProduct(product);
+
+			basketViewList.add(basketView);
+		}
+		return basketViewList;
+	}
+	
 	
 	public List<BasketView> getBasketViewListByBasketNumber(int basketNumber) {
 		List<BasketView> basketViewList = new ArrayList<>();
@@ -84,5 +104,9 @@ public class BasketBO {
 	
 	public void deleteBasketByBasketNumber(int basketNumber) {
 		basketDAO.deleteBasketByBasketNumber(basketNumber);
+	}
+	
+	public void deleteBasketById(int basketId) {
+		basketDAO.deleteBasketById(basketId);
 	}
 }

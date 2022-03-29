@@ -31,11 +31,8 @@ public class OrderRestController {
 	@Autowired
 	private BasketBO basketBO;
 	
-	@Autowired
-	private OrderBO orderBO;
-	
     @ApiOperation(
-            value = "구매하기 버튼"
+            value = "상품페이지에서 구매하기 버튼"
             , notes = "상품세부페이지에서 구매하기 버튼을 누르면 basket에 상품정보가 담기고 session에 basketNumber를 담는다.")
 	@RequestMapping("/order/basket_list")
 	public Map<String, Object> orderBasketList(
@@ -66,6 +63,9 @@ public class OrderRestController {
 		
 	}
     
+    @ApiOperation(
+            value = "회원ver의 order창"
+            , notes = "order창에서 입력받은 정보를 저장한다.")
     @RequestMapping("/order_member")
     public Map<String, Object> orderMember(
     		@ModelAttribute Order order,
@@ -84,7 +84,10 @@ public class OrderRestController {
     	return result;
     	
     }
-	
+    
+    @ApiOperation(
+            value = "비회원ver의 order창"
+            , notes = "order창에서 입력받은 정보를 저장한다.")
 	@RequestMapping("/order_nonMember")
 	public Map<String, Object> orderNonMember(
 			@ModelAttribute NonMember nonMember,
@@ -107,4 +110,5 @@ public class OrderRestController {
 		return result;
 		
 	}
+    
 }
