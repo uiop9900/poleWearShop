@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.product.bo.ProductBO;
 import com.polewearshop.product.bo.ProductImagesBO;
+import com.polewearshop.product.model.Product;
 import com.polewearshop.product.model.ProductView;
 import com.polewearshop.product.model.ProductViewCompact;
 
@@ -28,6 +29,9 @@ public class ProductController {
 	@RequestMapping("/main_view")
 	public String main(Model model) {
 		model.addAttribute("viewName", "product/main");
+		
+		List<ProductViewCompact> productList = productBO.generateProductViewCompactList();
+		model.addAttribute("productList", productList);
 		return "template/layout";
 	}
 	

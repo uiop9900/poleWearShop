@@ -30,4 +30,23 @@
 	
 	</insert>
 
+
+	<select id="selectOrderListByTypeOrderUserId" parameterType="map" resultType="com.polewearshop.order.model.Order">
+		SELECT
+		 	`id`
+			,`type`
+			,`orderUserId`
+			,`deliveryFee`
+			,`deliveredAddress`
+			,`deliveredPhoneNumber`
+			,`deliveredComment`
+			,`deliveredName`
+			,`createdAt`
+		FROM	
+			`order`
+		WHERE
+			`type` = #{type}
+		AND
+			`orderUserId` = #{orderUserId}
+	</select>
 </mapper>

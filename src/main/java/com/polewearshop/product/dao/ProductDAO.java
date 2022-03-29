@@ -16,6 +16,8 @@ public interface ProductDAO {
 	
 	public List<Product> selectProductListByType(String type);
 	
+	public List<Product> selectProductList();
+	
 	public void updateProductById(
 			@Param("id") int productId, 
 			@Param("productNumber") String productNumber, 
@@ -26,4 +28,8 @@ public interface ProductDAO {
 			@Param("stock") int stock); 
 	
 	public void deleteProductById(int productId);
+	
+	public void updateCountById(
+			@Param("id") int productId, 
+			@Param("stock") int stock);
 }

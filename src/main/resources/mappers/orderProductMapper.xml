@@ -29,5 +29,22 @@
 		)
 	
 	</insert>
-
+	
+	
+	<select id="selectOrderProductById" resultType="com.polewearshop.order.model.OrderProduct">
+		SELECT 
+			`id`
+			,`orderId`
+			,`productId`
+			,`count`
+			,`price`
+			,`color`
+			,`size`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+		 	`orderProduct`
+		 WHERE
+		 	`orderId` = #{orderId}
+	</select>
 </mapper>

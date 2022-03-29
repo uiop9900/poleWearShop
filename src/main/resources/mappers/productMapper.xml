@@ -45,6 +45,24 @@
 			`id`= #{productId}
  	</select>
  	
+ 	 	<select id="selectProductList" resultType="com.polewearshop.product.model.Product">
+ 		SELECT
+	 		`id`
+	 		,`productNumber`
+			,`type`
+			,`productName`
+			,`content`
+			,`price`
+			,`stock`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product`
+		ORDER BY
+			`createdAt` DESC
+		limit
+			6
+ 	</select>
  	
  
  	<select id="selectProductListByType" resultType="com.polewearshop.product.model.Product">
@@ -82,6 +100,15 @@
 			`id` = #{id}
  	
  	</update>
+ 	
+ 	<update id="updateCountById" parameterType="map">
+ 		UPDATE `product`
+ 		SET
+ 			`stock` = #{stock}
+ 		WHERE
+ 		 	`id` = #{id}
+ 	</update>
+ 	
  	
  	<delete id="deleteProductById">
 	 	DELETE FROM `product`

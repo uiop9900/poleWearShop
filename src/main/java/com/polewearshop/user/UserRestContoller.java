@@ -100,9 +100,10 @@ public class UserRestContoller {
     		session.setAttribute("memberLoginId", user.getLoginId());
     		session.setAttribute("memberId", user.getId());
     		session.setAttribute("memberName", user.getName());
-
-    		int basketNumber = (int)session.getAttribute("basketNumber");
-    		result.put("basketNumber", basketNumber);
+    		if (session.getAttribute("basketNumber") != null) {
+    			int basketNumber = (int)session.getAttribute("basketNumber");
+    			result.put("basketNumber", basketNumber);
+    		}
     		result.put("memberId", user.getId());
     		
     	} else if (user != null && checkPassword == false) {

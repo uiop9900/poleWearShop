@@ -1,27 +1,36 @@
 package com.polewearshop.order.model;
 
-import com.polewearshop.basket.model.Basket;
+import java.util.List;
+
 import com.polewearshop.product.model.Product;
 
 public class OrderProductView {
 	//비회원 조회시 필요
-	private Product product;
-	private Basket basket;
+	private Order order;
+	private List<Product> product;
+	private List<OrderProduct> orderProduct;
 	
-	public Product getProduct() {
+	
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	public List<Product> getProduct() {
 		return product;
 	}
-	public void setProduct(Product product) {
+	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
-	public Basket getBasket() {
-		return basket;
+	public List<OrderProduct> getOrderProduct() {
+		return orderProduct;
 	}
-	public void setBasket(Basket basket) {
-		this.basket = basket;
+	public void setOrderProduct(List<OrderProduct> orderProduct) {
+		this.orderProduct = orderProduct;
 	}
+	
 	
 
-	
-	
+
 }

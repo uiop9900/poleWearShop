@@ -97,4 +97,12 @@
  	
  </insert>
  
+ <update id="updateMileageById" parameterType="map">
+ 	UPDATE `member`
+ 	SET 
+ 		`mileage` = #{mileage}
+ 	WHERE
+ 		`id` = #{id}
+ </update>
+ 
  </mapper>

@@ -26,4 +26,8 @@ public interface UserDAO {
 			@Param("address") String address, 
 			@Param("birth") String birth);
 	
+	public void updateMileageById(
+			@Param("id") int memberId, 
+			@Param("mileage") int mileage);
+	
 }

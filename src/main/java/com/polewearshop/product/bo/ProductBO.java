@@ -38,6 +38,10 @@ public class ProductBO {
 		return productDAO.selectProductById(productId);
 	}
 	
+	public List<Product> getProductList() {
+		return productDAO.selectProductList();
+	}
+	
 	
 	public List<Product> getProductListByType(String type) {
 		if (type == null || type.equals("all")) {
@@ -52,6 +56,25 @@ public class ProductBO {
 		
 		
 		List<Product> productList = getProductListByType(type);
+		for (Product product: productList) {
+			// 반복마다 새롭게 new로 객체 생성
+			ProductViewCompact productViewCompact = new ProductViewCompact();
+			// 하나의 상품 정보 저장
+			productViewCompact.setProduct(product);
+			// 사진리스트 중 하나만 메인 사진으로 저장
+			List<ProductImages> productImgaesList = productImagesBO.getProductImagesListByProductId(product.getId());
+			productViewCompact.setProductImagePath(productImgaesList.get(0).getProductImagePath());
+			//list에 append
+			productViewCompactList.add(productViewCompact);
+		}
+		return productViewCompactList;
+	}
+	
+	
+	public List<ProductViewCompact> generateProductViewCompactList() {
+		List<ProductViewCompact> productViewCompactList = new ArrayList<>();
+		
+		List<Product> productList = getProductList();
 		for (Product product: productList) {
 			// 반복마다 새롭게 new로 객체 생성
 			ProductViewCompact productViewCompact = new ProductViewCompact();
@@ -117,4 +140,10 @@ public class ProductBO {
 		
 	}
 		
+	//stock수 반영
+	public void updateCountById(int productId, int count) {
+		Product product = getProductById(productId);
+		int stock = product.getStock() - count;
+		productDAO.updateCountById(productId, stock);
+	}
 }

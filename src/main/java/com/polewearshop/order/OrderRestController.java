@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.basket.model.Basket;
 import com.polewearshop.order.bo.OrderBO;
+import com.polewearshop.order.bo.OrderProcessBO;
 import com.polewearshop.order.model.Order;
 import com.polewearshop.user.model.NonMember;
 
@@ -24,6 +25,9 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/order")
 public class OrderRestController {
 
+	@Autowired
+	private OrderProcessBO orderProcessBO;
+	
 	@Autowired
 	private BasketBO basketBO;
 	
@@ -71,16 +75,11 @@ public class OrderRestController {
     	Map<String, Object> result = new HashMap<>();
     	result.put("result", "fail");
 
-    	//insert order
-    	orderBO.addOrder(order);
-    	
-    	//insert orderProduct
-    	int orderId = order.getId();
-    	HttpSession session = request.getSession();
-    	int basketNumber = (int)session.getAttribute("basketNumber");
-    	
-    	orderBO.generateMemberOrderProductByBasketNumber(orderId, basketNumber);
-    	
+		HttpSession session = request.getSession();
+		int basketNumber = (int)session.getAttribute("basketNumber");
+		
+		orderProcessBO.addMemberOrderAndOrderProduct(order, basketNumber);
+		
     	result.put("result", "success");
     	return result;
     	
@@ -102,7 +101,7 @@ public class OrderRestController {
 		
 		String type = "nonMember";
 		
-		orderBO.generateNonMemberOrderProductByBasketNumber(nonMember, type, deliveryFee, deliveredAddress, deliveredPhoneNumber, deliveredComment, deliveredName, basketNumber);
+		orderProcessBO.addNonMemberOrderProductByBasketNumber(nonMember, type, deliveryFee, deliveredAddress, deliveredPhoneNumber, deliveredComment, deliveredName, basketNumber);
 		
 		result.put("result", "success");
 		return result;

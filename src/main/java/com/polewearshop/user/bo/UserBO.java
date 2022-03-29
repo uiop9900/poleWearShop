@@ -30,5 +30,7 @@ public class UserBO {
 		return userDAO.insertMember(loginId, password, name, phoneNumber, email, sex, address, birth);
 	}
 	
-	
+	public void updateMileageById(int memberId, int mileage) {
+		userDAO.updateMileageById(memberId, mileage);
+	}
 }
