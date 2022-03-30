@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.polewearshop.review.dao.ReviewDAO">
+
+	<insert id="insertReview" parameterType="map">
+		INSERT INTO `review`
+		(
+			`productId`
+			,`productName`
+			,`loginId`
+			,`subject`
+			,`content`
+			,`reviewImage`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{productId}
+			,#{productName}
+			,#{loginId}
+			,#{subject}
+			,#{content}
+			,#{reviewImage}
+			,NOW()
+			,NOW()
+		)
+	</insert>
+	
+	<select id="selectReviewListByLoginId" resultType="com.polewearshop.review.model.Review">
+		SELECT
+			`id`
+			,`productId`
+			,`productName`
+			,`loginId`
+			,`subject`
+			,`content`
+			,`reviewImage`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`review`
+		WHERE
+		 	`loginId` = #{loginId}
+	</select>
+
+</mapper>

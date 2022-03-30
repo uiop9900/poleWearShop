@@ -15,7 +15,6 @@ import com.polewearshop.product.bo.ProductBO;
 import com.polewearshop.product.model.Product;
 import com.polewearshop.user.bo.NonMemberBO;
 import com.polewearshop.user.bo.UserBO;
-import com.polewearshop.user.model.Member;
 import com.polewearshop.user.model.MemberOrderView;
 import com.polewearshop.user.model.NonMember;
 

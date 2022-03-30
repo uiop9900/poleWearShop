@@ -14,6 +14,8 @@ import com.polewearshop.basket.model.Basket;
 import com.polewearshop.user.bo.NonMemberBO;
 import com.polewearshop.user.model.NonMember;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/nonMember")
 public class NonMemberRestController {
@@ -21,6 +23,9 @@ public class NonMemberRestController {
 	@Autowired
 	private NonMemberBO nonMemberBO;
 	
+    @ApiOperation(
+            value = "비회원의 orderNumber 확인"
+            , notes = "정보를 입력받아 실제 주문정보와 일치하는 지 확인한다.")
 	@PostMapping("/check_orderNumber")
 	public Map<String, Object> checkOrderNumber(
 			@RequestParam("name") String name,

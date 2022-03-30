@@ -48,6 +48,12 @@ select {width: 200px;}
 
 .user_page_font {font-size: 25px; }
 .basket_delete a {font-size: 25px; font-weight: bold; color: black;}
+.file-upload { padding: 6px 25px;
+  background-color:#000;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;}
+
 
 /*footer영역*/
 .footerText{margin-top: 150px; margin-bottom: 100px; font-size: 13px; color: #999;}

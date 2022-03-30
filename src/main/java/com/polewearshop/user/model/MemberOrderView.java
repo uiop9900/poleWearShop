@@ -5,13 +5,13 @@ import java.util.List;
 import com.polewearshop.order.model.Order;
 import com.polewearshop.order.model.OrderProduct;
 import com.polewearshop.product.model.Product;
+import com.polewearshop.review.model.Review;
 
 public class MemberOrderView {
 	private Order order;
 	private List<OrderProduct> orderProduct;
 	private List<Product> product;
-	//review, qna
-	
+
 	public List<OrderProduct> getOrderProduct() {
 		return orderProduct;
 	}

@@ -42,6 +42,7 @@
     			<th>수량</th>
     			<th>가격</th>
     			<th>구매일자</th>
+    			<th></th>
     		</tr>
     	</thead>
     	<tbody>
@@ -55,6 +56,7 @@
     			<td>
     				<fmt:formatDate value="${order.createdAt}" pattern="yyyy년 MM월 dd일" />
     			</td>
+    			<td><button class="goToReview btn btn-secondary" data-product-id="${product.id}" >리뷰 남기기</button></td>
     		</tr>
     		</c:forEach>
     		</c:forEach>
@@ -62,10 +64,45 @@
     	</tbody>
     </table>
 
+
+	 <%--리뷰정보 --%>
+    <h1 class="text-center mt-5">Review</h1>
+    <table class="table text-center mt-4">
+    	<thead class="thead-light">
+    		<tr>
+    			<th>No.</th>
+    			<th>상품명</th>
+    			<th>제목</th>
+    			<th>작성자</th>
+    			<th>작성일</th>
+    		</tr>
+    	</thead>
+		<tbody>
+			<c:forEach var="review" items="${reviewList}" varStatus="status">
+			<tr>
+				<td>${status.count}</td>
+				<td>${review.productName}</td>
+				<td>${review.subject}</td>
+				<td>${review.loginId}</td>
+				<td>
+					<fmt:formatDate value="${review.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
+				</td>
+			</tr>
+			</c:forEach>
+		</tbody>    
+    </table>
+
+
+
+	<%--로그아웃 --%>
 	<div class="text-center mt-5">
 		<button data-toggle="modal" data-target="#moreModal" class="btn btn-danger">로그아웃</button>
 	</div>
+
+
 </div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,12 +128,21 @@
 
 <script>
 $(document).ready(function(e){
+	//개인정보 수정
 	$("#updateUserInfo").on('click', function(e){
 		let memberId = $(this).data("member-id");
 		location.href="/user/member_update_page_view?memberId=" + memberId;
 	});
 	
-
+	//리뷰버튼
+	$(".goToReview").on('click', function(e){
+		let productId = $(this).data("product-id");
+		alert(productId);
+		//"/customer/review_create_view?productId=
+	});
+	
+	
+	// 로그아웃
 	$("#moreModal #logOutBtn").on('click', function(e){
 		let basketNumber = $(this).data("basket-number");
 		alert(basketNumber);

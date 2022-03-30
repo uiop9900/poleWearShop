@@ -2,17 +2,15 @@ package com.polewearshop.user;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.order.bo.OrderProcessBO;
+import com.polewearshop.review.bo.ReviewBO;
+import com.polewearshop.review.model.Review;
 import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
 import com.polewearshop.user.model.MemberOrderView;
@@ -21,7 +19,8 @@ import com.polewearshop.user.model.MemberOrderView;
 @RequestMapping("/user")
 public class UserController {
 
-	
+	@Autowired
+	private ReviewBO reviewBO;
 	
 	@Autowired
 	private UserBO userBO;
@@ -59,6 +58,9 @@ public class UserController {
 		Member user = userBO.getMember(loginId);
 		List<MemberOrderView> memberPageViewList = orderProcessBO.getMemberPageViewById(user.getId());
 		
+		List<Review> reviewList = reviewBO.getReviewListByLoginId(loginId);
+		
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("memberPageViewList", memberPageViewList);
 		model.addAttribute("user", user);
 		model.addAttribute("viewName", "user/member_page");
