@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <div class="member_order_box">
 	<%--회원 정보 --%>
@@ -56,7 +57,9 @@
     			<td>
     				<fmt:formatDate value="${order.createdAt}" pattern="yyyy년 MM월 dd일" />
     			</td>
-    			<td><button class="goToReview btn btn-secondary" data-product-id="${product.id}" >리뷰 남기기</button></td>
+    			<td>
+    				<button class="goToReview btn btn-secondary" data-login-id="${memberLoginId}" data-product-id="${product.id}" >리뷰 남기기</button>
+    			</td>
     		</tr>
     		</c:forEach>
     		</c:forEach>
@@ -80,9 +83,11 @@
 		<tbody>
 			<c:forEach var="review" items="${reviewList}" varStatus="status">
 			<tr>
-				<td>${status.count}</td>
+				<td>${fn:length(reviewList) -status.index}</td>
 				<td>${review.productName}</td>
-				<td>${review.subject}</td>
+				<td>
+					<a href="/customer/review_detailed_view?reviewId=${review.id}">${review.subject}</a>
+				</td>
 				<td>${review.loginId}</td>
 				<td>
 					<fmt:formatDate value="${review.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
@@ -128,6 +133,7 @@
 
 <script>
 $(document).ready(function(e){
+	
 	//개인정보 수정
 	$("#updateUserInfo").on('click', function(e){
 		let memberId = $(this).data("member-id");
@@ -137,8 +143,24 @@ $(document).ready(function(e){
 	//리뷰버튼
 	$(".goToReview").on('click', function(e){
 		let productId = $(this).data("product-id");
-		alert(productId);
-		//"/customer/review_create_view?productId=
+		let logindId = $(this).data("login-id");
+		
+		$.ajax({
+			type:"GET"
+			, url: "/customer/review_is_duplicate"
+			, data: {"productId": productId, "logindId":logindId}
+			, success: function(data){
+				if(data.result == "success"){
+					alert("이미 리뷰를 작성했습니다. 다른 상품의 리뷰를 작성해주세요.");
+					location.reload();
+				} else if (data.result == "fail") {
+					location.href="/customer/review_create_view?productId=" + productId;
+				}
+			}
+			, error: function(e){
+				alert("error");
+			}
+		});
 	});
 	
 	

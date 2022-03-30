@@ -116,6 +116,17 @@ public class ProductBO {
 		return productView;
 		}
 
+	public ProductViewCompact getProductViewCompactById(int productId) {
+		ProductViewCompact productCompact = new ProductViewCompact();
+		
+		Product product = getProductById(productId);
+		productCompact.setProduct(product);
+		
+		List<ProductImages> productImgaesList = productImagesBO.getProductImagesListByProductId(product.getId());
+		productCompact.setProductImagePath(productImgaesList.get(0).getProductImagePath());
+		
+		return productCompact;
+	}
 	
 	
 	public void updateProductById(int productId, String productNumber, String type, String productName,

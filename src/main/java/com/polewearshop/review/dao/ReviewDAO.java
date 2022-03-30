@@ -18,5 +18,15 @@ public interface ReviewDAO {
 			@Param("content") String content, 
 			@Param("reviewImage") String reviewImage);
 	
+	public List<Review> selectReviewList();
+	
 	public List<Review> selectReviewListByLoginId(String loginId);
+	
+	public Review selectReviewByProductIdAndLoginId(
+			@Param("productId") int productId, 
+			@Param("loginId") String loginId);
+
+	public Review selectReviewById(int reviewId);
+	
+	public void deleteReviewById(int reviewId);
 }

@@ -54,7 +54,7 @@ $(document).ready(function(e){
 		$("#fileName").text(fileName);
 	});
 	
-	
+	//리뷰 업로드
 	$("#uploadReviewBtn").on('click', function(e){
 		let productId = $("#productId").data("product-id");
 		let productName = $("#productId").val();

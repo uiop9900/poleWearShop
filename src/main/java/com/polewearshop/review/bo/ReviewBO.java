@@ -30,8 +30,23 @@ public class ReviewBO {
 		reviewDAO.insertReview(productId, productName, loginId, subject, content, reviewImage);
 	}
 	
+	public List<Review> getReviewList() {
+		return reviewDAO.selectReviewList();
+	}
+	
 	public List<Review> getReviewListByLoginId(String loginId) {
 		return reviewDAO.selectReviewListByLoginId(loginId);
 	}
 	
+	public Review getReviewByProductIdAndLoginId(int productId, String loginId) {
+		return reviewDAO.selectReviewByProductIdAndLoginId(productId, loginId);
+	}
+	
+	public Review getReviewById(int reviewId) {
+		return reviewDAO.selectReviewById(reviewId);
+	}
+	
+	public void deleteReviewById(int reviewId) {
+		reviewDAO.deleteReviewById(reviewId);
+	}
 }

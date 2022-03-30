@@ -22,7 +22,7 @@
 #mainImage {margin: auto; display: block; width: 1000px; height: 400px;}
 
 .random_product {margin:auto; width: 1000px;}
-.random_product img {width: 300px; height: 350px; background-color: yellow;}
+.random_product img {width: 300px; height: 350px; }
 .product_box img{width: 300px; height: 400px;}
 
 /*shop_list페이지*/
@@ -54,6 +54,8 @@ select {width: 200px;}
   color: white;
   cursor: pointer;}
 
+/*review_datiled 페이지*/
+.review_detailed img {width: 150px; height: 200px;}
 
 /*footer영역*/
 .footerText{margin-top: 150px; margin-bottom: 100px; font-size: 13px; color: #999;}

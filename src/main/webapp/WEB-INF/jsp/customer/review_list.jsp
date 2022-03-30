@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <div class="member_order_box">
     <h1 class="text-center">Customer | Review</h1>
@@ -17,18 +18,23 @@
     		</tr>
     	</thead>
 		<tbody>
+			<c:forEach var="review" items="${reviewList}" varStatus="status">
 			<tr>
-				<td>1</td>
-				<td>a라인 원피스</td>
-				<td>예뻐요</td>
-				<td>이*아</td>
-				<td>2022.03.30</td>
+				<td>
+					${fn:length(reviewList) -status.index}
+				</td>
+				<td>${review.productName}</td>
+				<td><a href="/customer/review_detailed_view?reviewId=${review.id}">
+					${review.subject}
+				</a></td>
+				<td>${review.loginId}</td>
+				<td>
+					<fmt:formatDate value="${review.createdAt}" pattern="yyyy-MM-dd" />
+				</td>
 			</tr>
+			</c:forEach>
 		</tbody>    
     </table>
-    
-    <div>
-    	<a href="/customer/review_create_view" class="btn btn-primary">글쓰기</a>
-    </div>
+
 </div>
 
