@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.common.CommonEncoder;
 import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
@@ -27,6 +29,37 @@ public class UserRestContoller {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	
+	@Autowired
+	private BasketBO basketBO;
+	
+    @ApiOperation(
+            value = "로그아웃"
+            , notes = "로그아웃시, 장바구니의 목록을 비운다.")
+	@RequestMapping("/sign_out")
+	public Map<String, Object> signOut(
+			HttpServletRequest request,
+			@RequestParam(value="basketNumber",required=false) Integer basketNumber ){
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "fail");
+    	
+    	if (basketNumber != null) {
+			basketBO.deleteBasketByBasketNumber(basketNumber);
+		}
+		
+    	//세션의 값들 다 제거
+		HttpSession session = request.getSession();
+		session.removeAttribute("memberLoginId");
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
+		session.removeAttribute("basketNumber");
+		
+		result.put("result", "success");
+		return result;
+	}
+	
 	
     @ApiOperation(
             value = "중복 아이디 조회"

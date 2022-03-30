@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.order.bo.OrderProcessBO;
 import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
@@ -20,27 +21,13 @@ import com.polewearshop.user.model.MemberOrderView;
 @RequestMapping("/user")
 public class UserController {
 
+	
+	
 	@Autowired
 	private UserBO userBO;
 	
 	@Autowired
 	private OrderProcessBO orderProcessBO;
-	
-	// 로그아웃
-	@RequestMapping("/sign_out")
-	public String signOut(Model model,
-			HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		session.removeAttribute("memberLoginId");
-		session.removeAttribute("memberId");
-		session.removeAttribute("memberName");
-		session.removeAttribute("basketNumber");
-
-		model.addAttribute("viewName", "product/main");
-		return "template/layout";
-	}
-	
 	
 	// 로그인화면
 	@RequestMapping("/sign_in_view")
