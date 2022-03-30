@@ -5,6 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <div class="member_order_box">
+	<%--admin은 로그아웃만 보여진다.--%>
+	<c:if test="${memberId != 951011}">
+	
 	<%--회원 정보 --%>
     <h1 class="text-center">My Page</h1>
     <div class="d-flex justify-content-center align-items-center mt-5">
@@ -98,7 +101,7 @@
     </table>
 
 
-
+	</c:if>
 	<%--로그아웃 --%>
 	<div class="text-center mt-5">
 		<button data-toggle="modal" data-target="#moreModal" class="btn btn-danger">로그아웃</button>

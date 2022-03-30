@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.polewearshop.comment.bo.CommentBO;
+import com.polewearshop.comment.model.Comment;
 import com.polewearshop.product.bo.ProductBO;
 import com.polewearshop.product.model.Product;
 import com.polewearshop.product.model.ProductViewCompact;
@@ -18,6 +20,9 @@ import com.polewearshop.review.model.Review;
 @RequestMapping("/customer")
 public class ReviewController {
 
+	@Autowired
+	private CommentBO commentBO;
+	
 	@Autowired
 	private ProductBO productBO;
 	
@@ -58,8 +63,10 @@ public class ReviewController {
 		
 		Review review = reviewBO.getReviewById(reviewId);
 		ProductViewCompact product = productBO.getProductViewCompactById(review.getProductId());
+		String type = "review";
+		List<Comment> commentList = commentBO.getCommentListByTypeAndBoardId(type, reviewId);
 		
-		
+		model.addAttribute("commentList", commentList);
 		model.addAttribute("review", review);
 		model.addAttribute("product", product);
 		model.addAttribute("viewName", "customer/review_detailed");

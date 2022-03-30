@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.polewearshop.comment.dao.CommentDAO">
+	<insert id="insertComment" parameterType="map">
+		INSERT INTO `comment`
+		(
+			`type`
+			,`boardId`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{type}
+			,#{boardId}
+			,#{content}
+			,NOW()
+			,NOW()
+		)
+	</insert>
+
+	<select id="selectCommentListByTypeAndBoardId" resultType="com.polewearshop.comment.model.Comment">
+		SELECT 
+			`id`
+			,`type`
+			,`boardId`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`comment`
+		WHERE
+			`type` = #{type}
+			AND `boardId` = #{boardId}
+	</select>
+	
+	<delete id="deleteCommentById">
+		DELETE FROM `comment`
+	 	WHERE
+	 		`id` = #{id}
+	</delete>
+</mapper>
