@@ -69,4 +69,16 @@ public class ProductController {
 		model.addAttribute("viewName", "product/shop_detailed");
 		return "template/layout";
 	}
+	
+	// 쇼핑몰 베스트화면
+	@RequestMapping("/best_list_view")
+	public String bestView(Model model) {
+		
+		List<ProductViewCompact> productList = productBO.generateProductViewCompactListforBest();
+		
+		
+		model.addAttribute("productList", productList);
+		model.addAttribute("viewName", "product/best_list");
+		return "template/layout";
+	}
 }

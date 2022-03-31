@@ -86,6 +86,23 @@
 			`id` DESC;
  	</select>
  	
+ 	<select id="selectProductListForBest" resultType="com.polewearshop.product.model.Product">
+ 		SELECT
+	 		`id`
+	 		,`productNumber`
+			,`type`
+			,`productName`
+			,`content`
+			,`price`
+			,`stock`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`product`
+		ORDER BY 
+			`stock`;
+ 	</select>
+ 	
  	<update id="updateProductById" parameterType="map">
  		UPDATE `product`
  		SET

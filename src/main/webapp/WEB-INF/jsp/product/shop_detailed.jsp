@@ -178,7 +178,7 @@ $(document).ready(function(e) {
 					//로그인 회원이 구매하기
 					let basketNumber = data.basketNumber;
 					let memberId = data.memberId;
-					alert("로그인회원 + 장바구니");
+					alert("장바구니로 이동합니다.");
 					location.href="/basket/basket/member_basket_list_view?basketNumber=" + basketNumber + "&memberId=" + memberId;
 				} else if(data.memberId == 0 && data.result == 'success') {
 					//비회원이 구매하기

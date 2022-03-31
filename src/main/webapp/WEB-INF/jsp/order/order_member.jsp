@@ -24,7 +24,9 @@
 				<td>
 					<fmt:formatNumber value="${basket.basket.price * basket.basket.count}"/> 
 				원</td>
-				<td>${basket.basket.price * basket.basket.count / 100}원</td>
+				<td>
+					<fmt:formatNumber value="${basket.basket.price * basket.basket.count / 100}" /> 원
+				</td>
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -106,7 +108,9 @@
 		</tr>
 		<tr>
 			<th class="table-secondary">적립금</th>
-			<td>${totalPrice / 100}원</td>
+			<td>
+				<fmt:formatNumber value="${totalPrice / 100}" /> 원
+			</td>
 		</tr>
 		<tr>
 			<th class="table-secondary">최종 결제 금액</th>
@@ -189,7 +193,6 @@ $(document).ready(function(e) {
 		let email = $("#email").val();
 		let memberId = $(this).data('member-id');
 		let basketNumber = $(this).data('basket-number');
-		alert(memberId);
 		
 		$.ajax({
 			type: "GET"

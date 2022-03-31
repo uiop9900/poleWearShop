@@ -5,22 +5,25 @@
 
 <%--메인페이지의 배너 --%>
 <div>
-	<img id="mainImage" src="#" alt="main_images">
+	<img id="mainImage" src="/static/images/pole_main2.jpg" alt="main_images">
 </div>
+
 
 <%--랜덤 상품 6개 출력 --%>
-<div class="mt-5 d-flex flex-wrap align-content-center justify-content-between product-box">
-	<c:forEach var="product" items="${productList}">
-		<div class="border mt-5">
-			<a href="/product/shop_detailed_view?type=${type}&productId=${product.product.id}">
-				<img src="${product.productImagePath}" alt="product_images">
-			</a><br>
-			<span class="product-text1">${product.product.productName}</span><br>
-			<span class="product-text2"><fmt:formatNumber value="${product.product.price}" />원</span>
-		</div>
-	</c:forEach>
+<div class="product-box mt-5">
+	<h1 class="display-4">New Arrival</h1>
+	<div class="mt-1 d-flex flex-wrap align-content-center justify-content-between">
+		<c:forEach var="product" items="${productList}">
+			<div class="border mt-5">
+				<a href="/product/shop_detailed_view?type=${type}&productId=${product.product.id}">
+					<img src="${product.productImagePath}" alt="product_images">
+				</a><br>
+				<span class="product-text1">${product.product.productName}</span><br>
+				<span class="product-text2"><fmt:formatNumber value="${product.product.price}" />원</span>
+			</div>
+		</c:forEach>
+	</div>
 </div>
-
 <script>
 $(document).ready(function(e){
 	

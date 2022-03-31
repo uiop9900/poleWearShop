@@ -42,6 +42,9 @@ public class ProductBO {
 		return productDAO.selectProductList();
 	}
 	
+	public List<Product> getProductListForBest() {
+		return productDAO.selectProductListForBest();
+	}
 	
 	public List<Product> getProductListByType(String type) {
 		if (type == null || type.equals("all")) {
@@ -70,7 +73,7 @@ public class ProductBO {
 		return productViewCompactList;
 	}
 	
-	
+	//main화면의 최신 상품 6개의 정보만
 	public List<ProductViewCompact> generateProductViewCompactList() {
 		List<ProductViewCompact> productViewCompactList = new ArrayList<>();
 		
@@ -89,8 +92,25 @@ public class ProductBO {
 		return productViewCompactList;
 	}
 	
-	public void deleteProductById(int productId) {
-		productDAO.deleteProductById(productId);
+
+	
+	//best화면의 stock정렬로
+	public List<ProductViewCompact> generateProductViewCompactListforBest() {
+		List<ProductViewCompact> productViewCompactList = new ArrayList<>();
+		
+		List<Product> productList = getProductListForBest();
+		for (Product product: productList) {
+			// 반복마다 새롭게 new로 객체 생성
+			ProductViewCompact productViewCompact = new ProductViewCompact();
+			// 하나의 상품 정보 저장
+			productViewCompact.setProduct(product);
+			// 사진리스트 중 하나만 메인 사진으로 저장
+			List<ProductImages> productImgaesList = productImagesBO.getProductImagesListByProductId(product.getId());
+			productViewCompact.setProductImagePath(productImgaesList.get(0).getProductImagePath());
+			//list에 append
+			productViewCompactList.add(productViewCompact);
+		}
+		return productViewCompactList;
 	}
 	
 	public ProductView generateProductViewById(int productId) {
@@ -134,6 +154,9 @@ public class ProductBO {
 		productDAO.updateProductById(productId, productNumber, type, productName, content, price, stock);
 	}
 
+	public void deleteProductById(int productId) {
+		productDAO.deleteProductById(productId);
+	}
 	
 	public void generateDeleteProductById(int productId) {
 		//product
@@ -150,7 +173,9 @@ public class ProductBO {
 		productImagesBO.deleteProductImagesdbByProductId(productId);
 		
 	}
-		
+	
+
+	
 	//stock수 반영
 	public void updateCountById(int productId, int count) {
 		Product product = getProductById(productId);

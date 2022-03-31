@@ -35,7 +35,7 @@
 	
 	<nav class="dropdown mt-3">
 		<ul class="nav nav-fill">
-			<li class="nav-item"><a class="nav-link nav-font" href="#">best</a></li>
+			<li class="nav-item"><a class="nav-link nav-font" href="/product/best_list_view">best</a></li>
 			<li class="nav-item shop-main"><a class="nav-link nav-font">shop</a>
 				 <ul class="shop-sub nav flex-column">
 					<li class="nav-item"><a class="nav-link" href="/product/shop_view?type=top">top</a></li>

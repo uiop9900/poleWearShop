@@ -18,6 +18,8 @@ public interface ProductDAO {
 	
 	public List<Product> selectProductList();
 	
+	public List<Product> selectProductListForBest();
+	
 	public void updateProductById(
 			@Param("id") int productId, 
 			@Param("productNumber") String productNumber, 

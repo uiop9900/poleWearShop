@@ -115,8 +115,8 @@ public class OrderProcessBO {
 			for (OrderProduct orderProduct : orderProductList) {
 				Product product = productBO.getProductById(orderProduct.getProductId());
 				productList.add(product);
-		}
 			memberOrderView.setProduct(productList);
+		}
 			memberPageViewList.add(memberOrderView);
 		}
 		return memberPageViewList;

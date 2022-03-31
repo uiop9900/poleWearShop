@@ -51,21 +51,19 @@
     	</thead>
     	<tbody>
     		<c:forEach var="memberPage" items="${memberPageViewList}">
-    		<c:forEach var="product" items="${memberPage.product}">
-    		<c:forEach var="order" items="${memberPage.orderProduct}">
+    		<c:forEach var="order" items="${memberPage.orderProduct}" varStatus="status" >
     		<tr>
-    			<td>${product.productName}</td>
+    			<td>${memberPage.product[status.index].productName}</td>
     			<td>${order.count}</td>
     			<td><fmt:formatNumber value="${order.price}"/> 원</td>
     			<td>
-    				<fmt:formatDate value="${order.createdAt}" pattern="yyyy년 MM월 dd일" />
+    				<fmt:formatDate value="${order.createdAt}" pattern="yyyy-MM-dd" />
     			</td>
     			<td>
     				<button class="goToReview btn btn-secondary" data-login-id="${memberLoginId}" data-product-id="${product.id}" >리뷰 남기기</button>
     			</td>
     		</tr>
-    		</c:forEach>
-    		</c:forEach>
+    		</c:forEach> 
     		</c:forEach>
     	</tbody>
     </table>
@@ -93,7 +91,7 @@
 				</td>
 				<td>${review.loginId}</td>
 				<td>
-					<fmt:formatDate value="${review.createdAt}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
+					<fmt:formatDate value="${review.createdAt}" pattern="yyyy-MM-dd" />
 				</td>
 			</tr>
 			</c:forEach>

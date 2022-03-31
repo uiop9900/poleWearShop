@@ -38,7 +38,7 @@
 	
 	<div class="mt-4">
 		<div class="d-flex justify-content-center">
-		<button class="btn btn-primary col-6">전체 구매하기</button>
+		<button id="allOrder" class="btn btn-primary col-6" data-basket-number="${basketNumber}">전체 구매하기</button>
 		</div>
 	</div>
 </div>
@@ -67,6 +67,10 @@ $(document).ready(function(e){
 		});
 	});
 
+	$("#allOrder").on('click', function(e){
+		let basketNumber = $(this).data("basket-number");
+		location.href="/order/order_member_view?basketNumber=" + basketNumber;	
+	});
 });
 
 </script>
