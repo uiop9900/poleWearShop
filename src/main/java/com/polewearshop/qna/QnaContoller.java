@@ -24,10 +24,19 @@ public class QnaContoller {
 	private CommentBO commentBO;
 	
 	@RequestMapping("/qna_list_view")
-	public String qnaListView(Model model) {
+	public String qnaListView(Model model,
+			@RequestParam(value="vpage", required=false) Integer page) {
 
-		List<Qna> qnaList =	qnaBO.getQnaList();
+		if (page == null) {
+			page = 1;
+		}
 		
+		List<Qna> qnaList =	qnaBO.getQnaList(page);
+		int qnaNumber = qnaBO.getQnaListNumber();
+		int first = (page - 1) * 10;
+		
+		model.addAttribute("first", first);
+		model.addAttribute("qnaNumber", qnaNumber);
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("viewName", "customer/qna_list");
 		return "template/layout";

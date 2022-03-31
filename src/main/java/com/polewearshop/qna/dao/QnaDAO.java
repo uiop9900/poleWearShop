@@ -20,7 +20,12 @@ public interface QnaDAO {
 			@Param("content") String content,
 			@Param("password") String password); 
 	
-	public List<Qna> selectQnaList();
+	public int selectQnaNumber();
+		
+	
+	public List<Qna> selectQnaList(
+			@Param("first") int first, 
+			@Param("number") int number);
 	
 	public Qna selectQnaById(int qnaId);
 	

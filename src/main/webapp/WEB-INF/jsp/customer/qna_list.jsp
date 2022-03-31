@@ -21,7 +21,7 @@
 			<c:forEach var="qna" items="${qnaList}" varStatus="status">
 			<tr>
 				<td>
-					${fn:length(qnaList) -status.index}
+					${qnaNumber - first - status.index}
 				</td>
 				<td>${qna.category}</td>
 				
@@ -44,6 +44,14 @@
 			</c:forEach>
 		</tbody>    
     </table>
+	
+	<%--number 페이징 --%>
+	<c:set var="lastPage" value="${Math.ceil(qnaNumber / 10)}"/>
+	<div class="mt-5 text-center">
+		<c:forEach var="page" begin="1" end="${lastPage}" step="1">
+				<a href="/customer/qna_list_view?vpage=${page}" class="page_number bold" >${page}</a>
+		</c:forEach>
+	</div>
 	
 	<div class="mt-4">
 		<a href="/customer/qna_create_view" class="btn btn-primary">글쓰기</a>
@@ -101,6 +109,10 @@ $(document).ready(function(e){
 				alert("error");
 			}
 		});
+	});
+	
+	$(".page_number").on('click', function(e){
+		$(this).attr('style',"font-weight: bold");
 	});
 	
 });

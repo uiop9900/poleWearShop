@@ -135,6 +135,11 @@ $(document).ready(function(e){
 			return;
 		}
 		
+		if (password.length != 4) {
+			alert("비밀번호는 숫자 4자리로 입력하세요.");
+			return;
+		}
+		
 		$.ajax({
 			type: "GET"
 			, url: "/customer/qna_create"

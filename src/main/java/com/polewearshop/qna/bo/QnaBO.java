@@ -14,13 +14,20 @@ public class QnaBO {
 	@Autowired
 	private QnaDAO qnaDAO;
 	
+	private static final int QNA_MAX_SIZE = 10;
+	
 	public void addQna(String category, String subject, String name, String type, 
 			String userNumber, String productName,String content, String password) {
 		qnaDAO.insertQna(category, subject, name, type, userNumber, productName, content, password);
 	}
 	
-	public List<Qna> getQnaList() {
-		return qnaDAO.selectQnaList();
+	public int getQnaListNumber() {
+		return qnaDAO.selectQnaNumber();
+	}
+	
+	public List<Qna> getQnaList(int page) {
+		int first = (page - 1) * 10;
+		return qnaDAO.selectQnaList(first, QNA_MAX_SIZE);
 	}
 	
 	public Qna getQnaById(int qnaId) {

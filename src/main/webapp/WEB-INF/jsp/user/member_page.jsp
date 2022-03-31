@@ -60,7 +60,7 @@
     				<fmt:formatDate value="${order.createdAt}" pattern="yyyy-MM-dd" />
     			</td>
     			<td>
-    				<button class="goToReview btn btn-secondary" data-login-id="${memberLoginId}" data-product-id="${product.id}" >리뷰 남기기</button>
+    				<button class="goToReview btn btn-secondary" data-login-id="${memberLoginId}" data-product-id="${memberPage.product[status.index].id}" >리뷰 남기기</button>
     			</td>
     		</tr>
     		</c:forEach> 
@@ -168,7 +168,6 @@ $(document).ready(function(e){
 	// 로그아웃
 	$("#moreModal #logOutBtn").on('click', function(e){
 		let basketNumber = $(this).data("basket-number");
-		alert(basketNumber);
 		
 		$.ajax({
 			type: "GET"

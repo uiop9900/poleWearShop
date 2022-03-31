@@ -34,6 +34,13 @@
 		
 	</insert>
 
+	<select id="selectQnaNumber" resultType="int">
+		SELECT
+		 	COUNT(1)
+		 FROM
+		 	`qna`
+	</select>
+
 	<select id="selectQnaList" resultType="com.polewearshop.qna.model.Qna">
 		SELECT
 			`id`
@@ -51,6 +58,8 @@
 			`qna`
 		ORDER BY
 			`id` DESC
+		LIMIT
+			${first}, ${number}
 	</select>
 	
 	<select id="selectQnaById"  resultType="com.polewearshop.qna.model.Qna">

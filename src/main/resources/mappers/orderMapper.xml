@@ -48,5 +48,7 @@
 			`type` = #{type}
 		AND
 			`orderUserId` = #{orderUserId}
+		ORDER BY `id`
+			DESC
 	</select>
 </mapper>
