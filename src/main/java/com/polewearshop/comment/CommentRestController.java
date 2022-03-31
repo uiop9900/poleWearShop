@@ -23,7 +23,7 @@ public class CommentRestController {
 	@ApiOperation(
             value = "리뷰 코멘트 저장"
             , notes = "admin이 작성한 comment를 작성한다.")
-	@RequestMapping("/review_comment")
+	@RequestMapping("/comment_list")
 	public Map<String, Object> reviewComment(
 			@RequestParam("type") String type,
 			@RequestParam("boardId") int boardId,
@@ -52,4 +52,5 @@ public class CommentRestController {
 		result.put("result", "success");
 		return result;
 	}
+	
 }

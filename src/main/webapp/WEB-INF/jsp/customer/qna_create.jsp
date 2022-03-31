@@ -5,10 +5,10 @@
 	<div class="d-flex justify-content-begin align-items-center w-50">
 		<div class="font-weight-bold col-3">카테고리</div>
 		<select id="category" class="form-control">
-			<option value="product">상품문의</option>
-			<option value="delivery">배송문의</option>
-			<option value="afterBuy">교환/환불문의</option>
-			<option value="etc">기타</option>
+			<option>상품문의</option>
+			<option>배송문의</option>
+			<option>교환/환불문의</option>
+			<option>기타</option>
 		</select>
 	</div>
 	

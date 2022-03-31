@@ -34,5 +34,48 @@
 		
 	</insert>
 
+	<select id="selectQnaList" resultType="com.polewearshop.qna.model.Qna">
+		SELECT
+			`id`
+			,`category`
+			,`subject`
+			,`name`
+			,`type`
+			,`userNumber`
+			,`productName`
+			,`content`
+			,`password`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`qna`
+		ORDER BY
+			`id` DESC
+	</select>
+	
+	<select id="selectQnaById"  resultType="com.polewearshop.qna.model.Qna">
+		SELECT
+			`id`
+			,`category`
+			,`subject`
+			,`name`
+			,`type`
+			,`userNumber`
+			,`productName`
+			,`content`
+			,`password`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`qna`
+		WHERE
+			`id` = #{id}
+	</select>
+	
+	<delete id="deleteQnaById">
+		DELETE FROM `qna`
+		WHERE
+			`id` = #{id}
+	</delete>
 
 </mapper>

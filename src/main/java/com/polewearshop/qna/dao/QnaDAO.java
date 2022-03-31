@@ -1,7 +1,11 @@
 package com.polewearshop.qna.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.polewearshop.qna.model.Qna;
 
 @Repository
 public interface QnaDAO {
@@ -15,4 +19,10 @@ public interface QnaDAO {
 			@Param("productName") String productName,
 			@Param("content") String content,
 			@Param("password") String password); 
+	
+	public List<Qna> selectQnaList();
+	
+	public Qna selectQnaById(int qnaId);
+	
+	public void deleteQnaById(int qnaId);
 }

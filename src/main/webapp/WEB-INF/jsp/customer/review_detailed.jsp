@@ -81,7 +81,7 @@ $(document).ready(function(e){
 		
 		$.ajax({
 			type: "GET"
-			, url: "/comment/review_comment"
+			, url: "/comment/comment_list"
 			, data: {"type":"review", "boardId":reviewId, "content":content}
 			, success: function(data) {
 				if (data.result == "success") {
