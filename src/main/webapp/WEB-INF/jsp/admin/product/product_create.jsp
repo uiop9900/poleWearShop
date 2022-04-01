@@ -105,7 +105,7 @@ $(document).ready(function(e){
 			let ext = fileName.split('.').pop().toLowerCase(); 
 			if ($.inArray(ext, ['jpg', 'gif', 'png', 'jpeg']) == -1) {
 				alert("gif, png, jpg, jepg 파일만 업로드 할 수 있습니다.");
-				$("#file").val(""); 
+				$(".file").val(""); 
 				return;
 			}
 		}

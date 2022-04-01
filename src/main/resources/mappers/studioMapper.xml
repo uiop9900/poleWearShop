@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.polewearshop.studio.dao.StudioDAO">
+	<select id="selectStudioById" resultType="com.polewearshop.studio.model.Studio">
+		SELECT
+			`id`
+			,`title`
+			,`address`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`studio`
+		WHERE
+			`id` = #{id}
+	</select>
+
+</mapper>

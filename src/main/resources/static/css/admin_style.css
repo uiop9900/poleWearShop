@@ -1,7 +1,12 @@
 @charset "UTF-8";
 
+/* product */
 .box {width: 600px; height: 200px; margin:auto; padding-top:200px; }
 .box2 {margin:auto;}
 
  #content {width: 800px; height: 100px; resize: vertical;}
  .border {border: 1px solid;}
+ 
+/* studio */
+.studio_image_box {width: 260px; height: 310px;}
+.studio_image_box img {width: 250px; height: 250px;}

@@ -44,7 +44,7 @@
 					<li class="nav-item"><a class="nav-link" href="/product/shop_view?type=etc">etc</a></li>
 				</ul> 
 			</li>
-			<li class="nav-item"><a class="nav-link nav-font" href="#">studio</a></li>
+			<li class="nav-item"><a class="nav-link nav-font" href="/studio/main_view">studio</a></li>
 			<li class="nav-item"><a class="nav-link nav-font">customer</a>
 				<ul class="shop-sub nav flex-column">
 					<li class="nav-item"><a class="nav-link" href="#">Notice</a></li>

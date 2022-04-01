@@ -71,6 +71,15 @@ public class AdminController {
 		return "admin/product/product_detailed";
 	}
 	
+	//admin studio_main화면
+	@RequestMapping("/studio/main_view")
+	public String adminStudioMainView(Model model) {
+		return "admin/studio/main";
+	}
+	
+	
+	
+	//로그아웃
 	@RequestMapping("/sign_out")
 	public String signOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();
