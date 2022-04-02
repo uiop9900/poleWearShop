@@ -24,6 +24,7 @@ import com.polewearshop.product.bo.ProductBO;
 import com.polewearshop.product.bo.ProductImagesBO;
 import com.polewearshop.product.bo.SizeBO;
 import com.polewearshop.product.model.Product;
+import com.polewearshop.studio.bo.StudioReserveBO;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -31,6 +32,9 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/admin")
 public class AdminRestController {
 
+	@Autowired
+	private StudioReserveBO studioReserveBO;
+	
 	@Autowired
 	private ProductImagesBO productImagesBO;
 	
@@ -174,4 +178,26 @@ public class AdminRestController {
 		
 		return result;
 	}
+	
+    @ApiOperation(
+            value = "스튜디오 예약 확정하기"
+            , notes = "유저가 남긴 예약사항을 보고 udate해서 확정시킨다." )
+    @PutMapping("/studio/update_studio_reserve")
+    public Map<String, Object> updateSturioReserve(
+    		@RequestParam("studioReserveId") int id,
+			@RequestParam("studioId") int studioId,
+			@RequestParam("visitorName") String visitorName,
+			@RequestParam("visitorPhoneNumber") String visitorPhoneNumber,
+			@RequestParam("visitorDate") String visitorDate,
+			@RequestParam("visitorTime") String visitorTime,
+			@RequestParam("price") int price
+    		) {
+    	Map<String, Object> result = new HashMap<>();
+    	result.put("result", "fail");
+    	
+    	studioReserveBO.updateNonFixReserve(id, studioId, visitorName, visitorPhoneNumber, visitorDate, visitorTime, price);
+    	
+    	result.put("result", "success");
+    	return result;
+    }
 }

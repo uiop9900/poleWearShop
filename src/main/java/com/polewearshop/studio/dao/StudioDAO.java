@@ -8,4 +8,6 @@ import com.polewearshop.studio.model.Studio;
 public interface StudioDAO {
 
 	public Studio selectStudioById(int id);
+	
+
 }

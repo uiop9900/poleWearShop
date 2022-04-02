@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.polewearshop.studio.dao.StudioReserveDAO">
+	<insert id="insertStudioReserve" parameterType="map">
+		INSERT INTO `studioreserve`
+		(
+			`studioId`
+			,`visitorName`
+			,`visitorPhoneNumber`
+			,`visitorDate`
+			,`visitorTime`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{studioId}
+			,#{visitorName}
+			,#{visitorPhoneNumber}
+			,#{visitorDate}
+			,#{visitorTime}
+			,NOW()
+			,NOW()
+		)
+	</insert>
+	
+	<select id="selectStudioReserveById" resultType="com.polewearshop.studio.model.StudioReserve">
+		SELECT
+			`id`
+			,`studioId`
+			,`visitorName`
+			,`visitorPhoneNumber`
+			,`visitorDate`
+			,`visitorTime`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`studioreserve`
+		WHERE
+			`id` = ${id}
+	</select>
+	
+	<select id="selectFixStudioReserveListByDate" resultType="com.polewearshop.studio.model.StudioReserve">
+		SELECT
+			`id`
+			,`studioId`
+			,`visitorName`
+			,`visitorPhoneNumber`
+			,`visitorDate`
+			,`visitorTime`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`studioreserve`
+		Where
+		<if test="date != null">
+		 	`visitorDate` = #{date}
+		 AND
+		</if>
+			`createdAt` != `updatedAt`
+		ORDER BY
+			`id` DESC
+	</select>
+	
+	<select id="selectNonFixStudioReserveList" resultType="com.polewearshop.studio.model.StudioReserve">
+		SELECT
+			`id`
+			,`studioId`
+			,`visitorName`
+			,`visitorPhoneNumber`
+			,`visitorDate`
+			,`visitorTime`
+			,`price`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`studioreserve`
+		Where
+			`createdAt` = `updatedAt`
+		ORDER BY
+			`id` DESC
+	</select>
+	
+	<update id="updateNonFixReserve" parameterType="map">
+		UPDATE	`studioreserve`
+		SET 
+			`studioId` = #{studioId}
+			,`visitorName` = #{visitorName}
+			,`visitorPhoneNumber` = #{visitorPhoneNumber}
+			,`visitorDate` = #{visitorDate}
+			,`visitorTime` = #{visitorTime}
+			,`price` = #{price}
+			,`updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+	</update>
+	
+	
+	
+</mapper>

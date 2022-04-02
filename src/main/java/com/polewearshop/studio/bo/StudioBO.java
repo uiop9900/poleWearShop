@@ -15,4 +15,6 @@ public class StudioBO {
 	public Studio getStudioById(int id) {
 		return studioDAO.selectStudioById(id);
 	}
+	
+
 }

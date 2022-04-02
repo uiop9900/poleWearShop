@@ -1,5 +1,6 @@
 package com.polewearshop.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,14 +12,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mysql.cj.util.StringUtils;
 import com.polewearshop.product.bo.ProductBO;
 import com.polewearshop.product.model.Product;
 import com.polewearshop.product.model.ProductView;
+import com.polewearshop.studio.bo.StudioReserveBO;
+import com.polewearshop.studio.model.StudioReserve;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	@Autowired
+	private StudioReserveBO studioReserveBO;
+	
 	@Autowired
 	private ProductBO productBO;
 	
@@ -73,10 +80,40 @@ public class AdminController {
 	
 	//admin studio_main화면
 	@RequestMapping("/studio/main_view")
-	public String adminStudioMainView(Model model) {
+	public String adminStudioMainView(Model model,
+			@RequestParam(value="visitorDate", required=false) String date,
+			@RequestParam(value="btnType", required=false) String btnType
+			) {
+		
+		List<StudioReserve> reserveList = new ArrayList<>();
+		if (StringUtils.isNullOrEmpty(date) && (StringUtils.isNullOrEmpty(btnType) || btnType.equals("notFix"))) {
+			//미확정예약
+			date = null;
+			reserveList = studioReserveBO.getNonFixStudioReserveList();
+		} else if (StringUtils.isNullOrEmpty(date) && btnType.equals("fix")) {
+			//확정예약
+			date = null;
+			reserveList = studioReserveBO.getFixStudioReserveListByDate(date);
+ 		} else if (date != null && btnType.equals("fixDate")) {
+ 			reserveList = studioReserveBO.getFixStudioReserveListByDate(date);
+ 		}
+		
+		
+		
+		model.addAttribute("reserveList", reserveList);
 		return "admin/studio/main";
 	}
 	
+	//admin-update-view
+	@RequestMapping("/studio/update_reserve_list_view")
+	public String adminStudioUpdateReserveListView(Model model,
+			@RequestParam("reserveId") int reserveId ) {
+		
+		StudioReserve reserve = studioReserveBO.getStudioReserveById(reserveId);
+		
+		model.addAttribute("reserve", reserve);
+		return "admin/studio/update_reserve_list";
+	}
 	
 	
 	//로그아웃

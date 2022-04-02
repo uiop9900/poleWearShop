@@ -62,7 +62,7 @@
 			</div>
 			<div class="d-flex align-items-center mt-2">
 				<div class="font-weight-bold col-2">전화번호</div>
-				<input type="text" id="visitorPhoneNumber" class="form-control col-6" placeholder="전화번호를 입력하세요.">
+				<input type="text" id="visitorPhoneNumber" class="form-control col-6" placeholder="예) 01012341234">
 			</div>
 			<div class="d-flex align-items-center mt-2">
 				<div class="font-weight-bold col-2">지점</div>
@@ -70,11 +70,11 @@
 			</div>
 			<div class="d-flex align-items-center mt-2">
 				<div class="font-weight-bold col-2">예약날짜</div>
-				<input type="text" id="datepicker" class="form-control col-6" placeholder="예약날짜를 선택하세요.">
+				<input type="text" id="visitorDate" class="datepicker form-control col-6" placeholder="예약날짜를 선택하세요.">
 			</div>
 			<div class="d-flex align-items-center mt-2">
 				<div class="font-weight-bold col-2">예약시간</div>
-				<input type="text" id="visitorTime" class="form-control col-6" placeholder="원하는 이용시간을 입력하세요.">
+				<input type="text" id="visitorTime" class="form-control col-6" placeholder="예) 14:00 - 16:00">
 			</div>
 			
 			<div class="mt-4 d-flex justify-content-begin w-50">
@@ -85,7 +85,9 @@
 </div>
 <script>
 $(document).ready(function(e){
-	$("#datepicker").datepicker({
+	
+	//datepicker
+	$(".datepicker").datepicker({
 		changeMonth: true
 		, dateFormat: "yy-mm-dd"
 		, monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
@@ -93,9 +95,54 @@ $(document).ready(function(e){
 		, minDate: 0
 	});
 	
+	
+	//예약버튼
 	$("#reserveBtn").on("click", function(e){
 		let studioId= $(this).data("studio-id");
-		alert(studioId);
+		let visitorName = $("#visitorName").val();
+		let visitorPhoneNumber = $("#visitorPhoneNumber").val();
+		let visitorDate = $("#visitorDate").val();
+		let visitorTime = $("#visitorTime").val();
+		
+		//validation
+		if (visitorName == "") {
+			alert("이름을 입력하세요.");
+			return;
+		}
+		
+		if (visitorPhoneNumber == "") {
+			alert("전화번호를 입력하세요.");
+			return;
+		}
+		
+		if (visitorDate == "") {
+			alert("예약날짜를 선택하세요.");
+			return;
+		}
+		
+		if (visitorTime == "") {
+			alert("예약시간을 입력하세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "GET"
+			, url: "/studio/studio_reserve"
+			, data: {"studioId":studioId, "visitorName":visitorName, "visitorPhoneNumber":visitorPhoneNumber, 
+					"visitorDate":visitorDate, "visitorTime":visitorTime}
+			, success: function(data) {
+				if (data.result == "success") {
+					alert("성공적으로 예약되었습니다. 추후에 담당자가 연락할 예정이니 확인 부탁드립니다.");
+					location.reload();
+				} else if (data.result == "fail") {
+					alert("예약이 실패했습니다. 다시 시도해주세요.");
+					location.reload();
+				}
+			}
+			, error: function(e){
+				alert("error");
+			}
+		});
 	});
 });
 
