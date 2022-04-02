@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.polewearshop.studio.dao.StudioImagesDAO">
+	
+	<insert id="insertStudioImages">
+		INSERT INTO `studioImages`
+		(
+			`studioId`
+			,`type`
+			,`studioImagePath`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{studioId}
+			,#{type}
+			,#{studioImagePath}
+			,NOW()
+			,NOW()
+		)
+	</insert>
+	
+	<select id="selectStudioImagesByStudioId" resultType="com.polewearshop.studio.model.StudioImages">
+		SELECT
+			`studioId`
+			,`type`
+			,`studioImagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`studioImages`
+		WHERE
+			`studioId` = #{studioId}
+	</select>
+	
+	<delete id="deleteStudioImage">
+		DELETE 
+		FROM	`studioImages`
+		WHERE
+			`studioImagePath` = #{studioImagePath}
+	</delete>
+
+
+</mapper>

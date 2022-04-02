@@ -24,6 +24,7 @@ import com.polewearshop.product.bo.ProductBO;
 import com.polewearshop.product.bo.ProductImagesBO;
 import com.polewearshop.product.bo.SizeBO;
 import com.polewearshop.product.model.Product;
+import com.polewearshop.studio.bo.StudioImagesBO;
 import com.polewearshop.studio.bo.StudioReserveBO;
 
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +33,9 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/admin")
 public class AdminRestController {
 
+	@Autowired
+	private StudioImagesBO studioImagesBO;
+	
 	@Autowired
 	private StudioReserveBO studioReserveBO;
 	
@@ -200,4 +204,59 @@ public class AdminRestController {
     	result.put("result", "success");
     	return result;
     }
+    
+    @ApiOperation(
+            value = "스튜디오 예약 삭제"
+            , notes = "스튜디오의 예약을 삭제한다." )
+    @DeleteMapping("/studio/delete_studio_reserve")
+    public Map<String, Object> deleteStuidioReserve(
+    		@RequestParam("reserveId") int reserveId ) {
+    	Map<String, Object> result = new HashMap<>();
+    	result.put("result", "fail");
+    	
+    	//예약을 삭제한다.
+    	studioReserveBO.deleteStudioReserveById(reserveId);
+    	result.put("result", "success");
+    	return result;
+    }
+    
+    
+    @ApiOperation(
+            value = "스튜디오 시설 사진 저장"
+            , notes = "admin에서 스튜디오의 시설 사진을 저장한다." )
+    @PostMapping("/studio/studio_images_list")
+    public Map<String, Object> stuidioImagesList(
+    		@RequestParam("studioId") int studioId,
+    		@RequestParam("type") String type,
+    		@RequestParam("file") MultipartFile file,
+    		HttpSession session
+    		) {
+    	Map<String, Object> result = new HashMap<>();
+    	result.put("result", "fail");
+    	
+    	String admin = (String)session.getAttribute("adminId");
+    	
+    	//사진을 저장한다.
+    	studioImagesBO.addStudioImages(admin, studioId, type, file);
+    	
+    	result.put("result", "success");
+    	return result;
+    }
+    
+    @ApiOperation(
+            value = "스튜디오 시설 사진 삭제"
+            , notes = "스튜디오의 시설 사진을 삭제한다." )
+    @DeleteMapping("/studio/delete_studio_image")
+    public Map<String, Object> deleteStuidioImages(
+    		@RequestParam("imagePath") String imagePath ) {
+    	Map<String, Object> result = new HashMap<>();
+    	result.put("result", "fail");
+    	
+    	//사진을 삭제한다.
+    	studioImagesBO.deleteStudioImage(imagePath);
+    	result.put("result", "success");
+    	return result;
+    }
+    
+
 }

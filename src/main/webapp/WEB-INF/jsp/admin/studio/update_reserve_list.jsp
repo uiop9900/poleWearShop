@@ -62,7 +62,7 @@
 		
 		<div class="mt-4">
 			<a href="/admin/studio/main_view" class="btn btn-dark">목록</a>
-			<button class="btn btn-secondary ml-4" data-stdio-reserve-id="${reserve.id}">예약 삭제하기</button>
+			<button id="deleteReserveBtn" class="btn btn-secondary ml-4" data-stdio-reserve-id="${reserve.id}">예약 삭제하기</button>
 			<button id="updateReserveBtn" class="btn btn-primary ml-4" data-stdio-reserve-id="${reserve.id}">예약 확정하기</button>
 		</div>
 	</section>
@@ -134,6 +134,28 @@ $(document).ready(function(e){
 		});
 	});
 	
+	
+	$("#deleteReserveBtn").on('click', function(e){
+		let reserveId = $(this).data("stdio-reserve-id");
+
+		$.ajax({
+			type: "DELETE"
+			,url: "/admin/studio/delete_studio_reserve"
+			, data: {"reserveId":reserveId}
+			, success: function(data){
+				if (data.result == "success") {
+					alert("삭제되었습니다.");
+					location.href="/admin/studio/main_view";
+				} else if (data.result == "fail") {
+					alert("삭제실패, 다시 시도해주세요.");
+					location.reload();
+				}
+			}
+			, error: function(e) {
+				alert("error");
+			}
+		});
+	});
 });
 
 </script>

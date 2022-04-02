@@ -98,6 +98,11 @@
 			`id` = #{id}
 	</update>
 	
+	<delete id="deleteStudioReserveById">
+		DELETE FROM `studioreserve`
+		WHERE
+			`id` = #{id}
+	</delete>
 	
 	
 </mapper>

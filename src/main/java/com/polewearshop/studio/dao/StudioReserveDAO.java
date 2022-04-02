@@ -32,4 +32,6 @@ public interface StudioReserveDAO {
 			@Param("visitorTime") String visitorTime, 
 			@Param("price") int	price);
 	
+	public void deleteStudioReserveById(int id);
+	
 }

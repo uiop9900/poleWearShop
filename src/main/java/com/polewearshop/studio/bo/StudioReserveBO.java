@@ -1,10 +1,12 @@
 package com.polewearshop.studio.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mysql.cj.util.StringUtils;
 import com.polewearshop.studio.dao.StudioReserveDAO;
 import com.polewearshop.studio.model.StudioReserve;
 
@@ -17,6 +19,22 @@ public class StudioReserveBO {
 	public void addStudioReserve(int studioId, String visitorName, String visitorPhoneNumber, 
 			String visitorDate, String visitorTime) {
 		studioReserveDAO.insertStudioReserve(studioId, visitorName, visitorPhoneNumber, visitorDate, visitorTime);
+	}
+	
+	public List<StudioReserve> generateStudioReserveList(String btnType, String date) {
+		List<StudioReserve> reserveList = new ArrayList<>();
+		if (StringUtils.isNullOrEmpty(date) && (StringUtils.isNullOrEmpty(btnType) || btnType.equals("notFix"))) {
+			//미확정예약
+			date = null;
+			reserveList = getNonFixStudioReserveList();
+		} else if (StringUtils.isNullOrEmpty(date) && btnType.equals("fix")) {
+			//확정예약
+			date = null;
+			reserveList = getFixStudioReserveListByDate(date);
+ 		} else if (date != null && btnType.equals("fixDate")) {
+ 			reserveList = getFixStudioReserveListByDate(date);
+ 		}
+		return reserveList;
 	}
 	
 	//확정예약-날짜있으면 날짜별로, 없으면 다 가지고 온다.
@@ -39,4 +57,10 @@ public class StudioReserveBO {
 	public StudioReserve getStudioReserveById(int reserveId) {
 		return studioReserveDAO.selectStudioReserveById(reserveId);
 	}
+	
+	//예약삭제
+	public void deleteStudioReserveById(int id) {
+		studioReserveDAO.deleteStudioReserveById(id);
+	}
+
 }
