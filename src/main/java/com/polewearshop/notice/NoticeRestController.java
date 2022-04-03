@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,6 +56,17 @@ public class NoticeRestController {
 		
 		noticeBO.updateNoticeById(noticeId, loginId, subject, content, file);
 		
+		result.put("result", "success");
+		return result;
+	}
+	
+	@DeleteMapping("/notice_delete")
+	public Map<String, Object> noticeDelete(
+			@RequestParam("noticeId") int noticeId) {
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "fail");
+		
+		noticeBO.deleteNoticeById(noticeId);
 		result.put("result", "success");
 		return result;
 	}

@@ -57,8 +57,15 @@
 			`subject` = #{subject}
 			,`content` = #{content}
 			,`noticeImage` = #{noticeImage}
+			, `updatedAt` = NOW()
 		WHERE
 			`id` = #{id}
 	</update>
+	
+	<delete id="deleteNoticeById">
+		DELETE FROM `notice`
+		WHERE
+			`id` = #{id}
+	</delete>
 
 </mapper>

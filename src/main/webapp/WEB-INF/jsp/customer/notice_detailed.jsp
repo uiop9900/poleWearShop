@@ -24,7 +24,7 @@
 	
 	<c:if test="${memberId == 951011}">
 	<div class="mt-4 d-flex justify-content-around">
-		<button id="deleteBtn" class="btn btn-secondary col-5" >삭제하기</button>
+		<button id="deleteBtn" class="btn btn-secondary col-5" data-notice-id="${notice.id}" >삭제하기</button>
 		<button id="modifyBtn" class="btn btn-primary col-5" data-notice-id="${notice.id}">수정하기</button>
  	</div>
  	</c:if>
@@ -90,6 +90,29 @@ $(document).ready(function(e){
 			}
 		});
 	});
+	
+	$("#deleteBtn").on('click', function(e){
+		let noticeId = $(this).data("notice-id");
+		
+		$.ajax({
+			type : "DELETE"
+			, url : "/customer/notice_delete"
+			, data : {"noticeId":noticeId}
+			, success: function(data) {
+				if (data.result == "success"){
+					alert("삭제 성공");
+					location.href="/customer/notice_list_view"
+				}else if( data.result == "fail") {
+					alert("삭제에 실패했습니다. 다시 시도해주세요.");
+					location.reload();
+				}
+				
+			}
+			, error: function(e){
+				alert("error");	
+				}
+			});
+	});
+			
 });
-
 </script>

@@ -45,11 +45,9 @@ public class NoticeBO {
 	public void updateNoticeById(int id, String loginId, String subject, String content, MultipartFile file) {
 		Notice notice = getNoticeById(id);
 		String noticeImage = notice.getNoticeImage();
-		//기존파일이 없음 -> 그냥 새로운 파일 저장
-		// 기존파일 없음 -> 새로운 파일도 없음 그냥 null
-		// 기존파일 있음 새 파일 없음
 		
-		if (noticeImage == null) {
+		//기존사진이 없을경우
+		if (noticeImage == null) { 
 			if (file == null) {
 				noticeImage = null;
 			} else if (file != null) {
@@ -57,19 +55,20 @@ public class NoticeBO {
 			}
 		} 
 		
+		//기존사진이 존재할 경우
 		if (noticeImage != null) {
 			if (file == null) {
 				try {
 					fileManager.deleteFile(noticeImage);
 				} catch (IOException e) {
-					logger.error("[delete notice Image] 삭제할 기존의 notice image가 존재하지 않습니다. noticeId:" + id);
+					logger.error("[delete noticeImage] 삭제할 기존의 notice image가 존재하지 않습니다. noticeId:" + id);
 				}
 				noticeImage = null;
 			} else if (file != null) {
 				try {
 					fileManager.deleteFile(noticeImage);
 				} catch (IOException e) {
-					logger.error("[delete notice Image] 삭제할 기존의 notice image가 존재하지 않습니다. noticeId:" + id);
+					logger.error("[delete noticeImage] 삭제할 기존의 notice image가 존재하지 않습니다. noticeId:" + id);
 				}
 				noticeImage = fileManager.savefile(loginId, file);
 			}
@@ -77,4 +76,17 @@ public class NoticeBO {
 		
 		noticeDAO.updateNoticeById(id, subject, content, noticeImage);
 	}
+	
+	public void deleteNoticeById(int id) {
+		Notice notice = getNoticeById(id);
+		if (notice.getNoticeImage() != null) {
+			try {
+				fileManager.deleteFile(notice.getNoticeImage());
+			} catch (IOException e) {
+				logger.error("[delete noticeImage] 삭제할 기존의 notice image가 존재하지 않습니다. noticeId:" + id);
+			}
+		}
+		noticeDAO.deleteNoticeById(id);
+	}
+	
 }

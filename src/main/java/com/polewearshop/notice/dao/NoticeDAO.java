@@ -24,4 +24,6 @@ public interface NoticeDAO {
 			@Param("subject") String subject, 
 			@Param("content") String content, 
 			@Param("noticeImage") String noticeImage);
+	
+	public void deleteNoticeById(int id);
 }
