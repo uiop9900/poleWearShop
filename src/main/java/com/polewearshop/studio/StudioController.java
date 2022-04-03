@@ -1,5 +1,7 @@
 package com.polewearshop.studio;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.studio.bo.StudioBO;
+import com.polewearshop.studio.bo.StudioImagesBO;
 import com.polewearshop.studio.model.Studio;
+import com.polewearshop.studio.model.StudioImages;
 
 @Controller
 @RequestMapping("/studio")
 public class StudioController {
 
+	@Autowired
+	private StudioImagesBO studioImagesBO;
+	
 	@Autowired
 	private StudioBO studioBO;
 	
@@ -30,7 +37,9 @@ public class StudioController {
 			@RequestParam("studioId") int studioId)
 					{
 		Studio studio = studioBO.getStudioById(studioId);
+		List<StudioImages> studioImages =  studioImagesBO.getStudioImagesByStudioId(studio.getId());
 		
+		model.addAttribute("studioImages", studioImages);
 		model.addAttribute("studio", studio);
 		model.addAttribute("viewName", "studio/facility_info");
 		return "template/layout";
