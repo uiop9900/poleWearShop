@@ -53,11 +53,11 @@
 		
 		<div class="mt-2"><b>예약 시간</b>
 			<input id="visitorTime" class="ml-4" type="text" value="${reserve.visitorTime}">
+			<div class="text-danger font-weight-bold">!!시간양식 엄수해서 기입!! 예) 09:00 ~ 12:00 / 14:30 ~ 16:00</div>
 		</div>
 		
 		<div class="mt-2"><b>가격</b>
 			<input id="price" class="ml-4" type="text" value="${reserve.price}">
-			<div class="text-danger">예) 12:00~ 15:00와 같이 시간양식 엄수해서 기입</div>
 		</div>
 		
 		<div class="mt-4">
@@ -110,6 +110,7 @@ $(document).ready(function(e){
 		}
 		
 		if (price == "") {
+			alert(visitorTime.length);
 			alert("금액을 기입하세요.");
 			return;
 		}

@@ -1,5 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <meta charset='utf-8' />
+    <link href='/static/fullcalendar/main.css' rel='stylesheet' />
+    <script src='/static/fullcalendar/main.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+    	  
+    	  $(function () {
+              var request = $.ajax({ 
+        		  type:"get"
+            		  , url:"/studio/reserve_calendar"
+            		  , dataType:"json"
+              });
+              
+              request.done(function(data){
+            	  console.log(data);
+            	  
+            	  var calendarEl = document.getElementById('calendar');
+                  var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth'
+                   , selectable: true //날짜 드래그해서 지정가능
+                   , selectMirror: true
+                   , displayEventEnd: {//시작시간, 끝나는 시간 다 보이게 하기
+                        month: false
+                       , basicWeek: true
+                       , "default": true
+                    }
+                   , dayMaxEventRows: true //일정이 너무 많으면 more버튼으로 일정확인
+                   , views: {
+                      timeGrid: {
+                        dayMaxEventRows: 6 // adjust to 6 only for timeGridWeek/timeGridDay
+                      }
+                    }
+                    , events: data,
+
+                  });
+            	  
+        calendar.render();
+       	       });
+      });
+     });
+
+    </script>
+    
  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>    
  
@@ -79,9 +123,13 @@
 			
 			<div class="mt-4 d-flex justify-content-begin w-50">
 				<button id="reserveBtn" class="btn btn-primary col-6" data-studio-id="${studio.id}">예약 신청하기</button>
-			</div>
+			</div><br><br><hr>
 	</div>
 	
+	<div class="mt-5">
+		<h3 class="font-weight-bold text-center text-success">예약 현황</h3>
+		<div id='calendar' ></div>
+	</div>
 </div>
 <script>
 $(document).ready(function(e){
@@ -144,6 +192,14 @@ $(document).ready(function(e){
 			}
 		});
 	});
+	
+	document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
 });
 
 </script>

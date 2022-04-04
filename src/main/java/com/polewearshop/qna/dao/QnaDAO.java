@@ -3,13 +3,10 @@ package com.polewearshop.qna.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import com.polewearshop.qna.model.Qna;
 
-@Repository
 public interface QnaDAO {
-
 	public void insertQna(
 			@Param("category") String category, 
 			@Param("subject") String subject, 
