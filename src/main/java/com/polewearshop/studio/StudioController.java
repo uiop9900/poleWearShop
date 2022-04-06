@@ -80,10 +80,21 @@ public class StudioController {
 			@RequestParam("studioId") int studioId)
 					{
 		
-		Studio studio = studioBO.getStudioById(studioId);
+		//지점별 페이지가 다르다 - map API때문
+		if (studioId == 1) {
+			Studio studio = studioBO.getStudioById(studioId);
+			model.addAttribute("studio", studio);
+			model.addAttribute("viewName", "studio/directions_1");
+		} else if (studioId == 2) {
+			Studio studio = studioBO.getStudioById(studioId);
+			model.addAttribute("studio", studio);
+			model.addAttribute("viewName", "studio/directions_2");
+		} else if (studioId == 3) {
+			Studio studio = studioBO.getStudioById(studioId);
+			model.addAttribute("studio", studio);
+			model.addAttribute("viewName", "studio/directions_3");
+		}
 		
-		model.addAttribute("studio", studio);
-		model.addAttribute("viewName", "studio/directions");
 		return "template/layout";
 	}
 }
