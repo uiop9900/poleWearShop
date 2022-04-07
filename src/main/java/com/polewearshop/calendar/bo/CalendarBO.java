@@ -16,12 +16,12 @@ public class CalendarBO {
 	
 	private static final String CALENDAR_BACKGROUND_COLOR = "green";
 	
-	public void addCalendar(String title, String start, String end) {
+	public void addCalendar(String title, String start, String end, int studioId) {
 		String backgroundColor = CALENDAR_BACKGROUND_COLOR;
-		calendarDAO.insertCalendar(title, start, end, backgroundColor);
+		calendarDAO.insertCalendar(title, start, end, backgroundColor, studioId);
 	}
 	
-	public List<Calendar> getCalendarList() {
-		return calendarDAO.selectCalendarList();
+	public List<Calendar> getCalendarList(int studioId) {
+		return calendarDAO.selectCalendarList(studioId);
 	}
 }

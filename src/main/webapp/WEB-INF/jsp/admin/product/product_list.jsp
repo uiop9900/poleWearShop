@@ -31,7 +31,8 @@
 	<div class="d-flex justify-content-around">
 		<h1 class="mt-4 ml-4">${type}</h1>
 		<div>
-			<a href="/admin/sign_out" class="btn btn-secondary" >로그아웃</a>
+			<a href="/admin/studio/main_view" class="btn btn-secondary">studio 전환</a>
+			<a href="/admin/sign_out" class="btn btn-primary" >로그아웃</a>
 		</div>
 	</div>
 	

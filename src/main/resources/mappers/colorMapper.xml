@@ -38,6 +38,7 @@
 		UPDATE `color`
 		SET
 			`color` = #{color}
+			, `updatedAt` = NOW()
 		WHERE
 		 	`productId` = #{productId}	
 	

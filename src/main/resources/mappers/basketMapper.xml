@@ -66,7 +66,9 @@
  	
  	<update id="updateBasketNumberById" parameterType="map">
  		UPDATE `basket`
- 		SET `basketNumber` = #{basketNumber}
+ 		SET 
+ 			`basketNumber` = #{basketNumber}
+ 			, `updatedAt` = NOW()
  		WHERE
  			`id` = #{id}
  	
@@ -74,7 +76,9 @@
  	
  	<update id="updateMemberIdByBasketNumber" parameterType="map">
  	 	UPDATE `basket`
- 		SET `memberId` = #{memberId}
+ 		SET
+ 			 `memberId` = #{memberId}
+ 			 , `updatedAt` = NOW()
  		WHERE
  			`basketNumber` = #{basketNumber}
  	</update>

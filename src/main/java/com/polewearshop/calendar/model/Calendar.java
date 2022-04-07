@@ -5,7 +5,14 @@ public class Calendar {
 	private String start;
 	private String end;
 	private String backgroundColor;
+	private int studioId;
 	
+	public int getStudioId() {
+		return studioId;
+	}
+	public void setStudioId(int studioId) {
+		this.studioId = studioId;
+	}
 	public String getTitle() {
 		return title;
 	}

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="com.polewearshop.calendar.dao.CalendarDAO">
+<mapper namespace="com.polewearshop.calendar.dao.CalendarDAO" >
 	<insert id="insertCalendar">
 		INSERT INTO `calendar`
 		(
@@ -10,6 +10,7 @@
 			,`start`
 			,`end`
 			,`backgroundColor`
+			,`studioId`
 		)
 		VALUES
 		(
@@ -17,19 +18,23 @@
 			,#{start}
 			,#{end}
 			,#{backgroundColor}
+			,#{studioId}
 		)
 	
 	</insert>
 
-	<select id="selectCalendarList" resultType="com.polewearshop.calendar.model.Calendar">
+	<select id="selectCalendarList" parameterType="int" resultType="com.polewearshop.calendar.model.Calendar">
 		SELECT
 			`id`
 		 	,`title`
 			,`start`
 			,`end`
 			,`backgroundColor`
+			,`studioId`
 		FROM
 			`calendar`
+		WHERE
+			`studioId` = #{studioId}
 	</select>
 
 

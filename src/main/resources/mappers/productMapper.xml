@@ -122,6 +122,7 @@
  		UPDATE `product`
  		SET
  			`stock` = #{stock}
+ 			, `updatedAt` = NOW()
  		WHERE
  		 	`id` = #{id}
  	</update>

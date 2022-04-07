@@ -59,7 +59,7 @@ public class StudioReserveBO {
 		String date = visitorDate;
 		String start =  date + " " +visitorTime.split("~")[0];	
 		String end =  date + " " + visitorTime.split("~")[1];	
-		calendarBO.addCalendar(visitorName, start, end);
+		calendarBO.addCalendar(visitorName, start, end, studioId);
 		
 		studioReserveDAO.updateNonFixReserve(id, studioId, visitorName, visitorPhoneNumber, visitorDate, visitorTime, price);
 	}

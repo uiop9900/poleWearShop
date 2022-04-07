@@ -3,15 +3,18 @@
  <meta charset='utf-8' />
     <link href='/static/fullcalendar/main.css' rel='stylesheet' />
     <script src='/static/fullcalendar/main.js'></script>
-    <script>
+<script>
 
-      document.addEventListener('DOMContentLoaded', function() {
-    	  
+document.addEventListener('DOMContentLoaded', function() {
+	let studioId = $("#studioId").data("studio-id");
+	
+    	  alert(studioId);    	  
     	  $(function () {
               var request = $.ajax({ 
         		  type:"get"
-            		  , url:"/studio/reserve_calendar"
-            		  , dataType:"json"
+           		  , url:"/studio/reserve_calendar"
+           		  , data: {"studioId":studioId}
+           		  , dataType:"json"
               });
               
               request.done(function(data){
@@ -48,7 +51,7 @@
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>    
  
 <div class="product-box">
-	<h1 class="text-center">Studio | ${studio.title}점</h1>
+	<h1 id="studioId" class="text-center" data-studio-id="${studio.id}">Studio | ${studio.title}점</h1>
 
 	<%--nav --%>
 	<div class="studio_box">
@@ -128,8 +131,9 @@
 	
 	<div class="mt-5">
 		<h3 class="font-weight-bold text-center text-success">예약 현황</h3>
-		<div id='calendar' ></div>
+		<div id='calendar'></div>
 	</div>
+
 </div>
 <script>
 $(document).ready(function(e){

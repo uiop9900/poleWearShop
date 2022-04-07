@@ -23,11 +23,19 @@
 	<%--상단의 지점 select --%>
 	<div class="mt-5 ml-5">
 		<div><small class='text-danger font-weight-bold'>지점을 선택하면 예약내용과 사진이 화면에 나타납니다.</small></div>
-		<select id="titleSelectBtn"> 
-			<option value="1" <c:if test="${studioId == 1 or empty studioId}">selected</c:if> >강남점</option>
-			<option value="2" <c:if test="${studioId == 2}">selected</c:if>>개봉점</option>
-			<option value="3" <c:if test="${studioId == 3}">selected</c:if>>부천점</option>
-		</select>
+		<div class="d-flex justify-content-between ">
+			<div>
+			<select id="titleSelectBtn"> 
+				<option value="1" <c:if test="${studioId == 1 or empty studioId}">selected</c:if> >강남점</option>
+				<option value="2" <c:if test="${studioId == 2}">selected</c:if>>개봉점</option>
+				<option value="3" <c:if test="${studioId == 3}">selected</c:if>>부천점</option>
+			</select>
+			</div>	
+			<div class="mr-5">
+				<a href="/admin/product/product_list_view" class="btn btn-secondary mr-3">product 전환</a>
+				<a href="/admin/sign_out" class="btn btn-primary" >로그아웃</a>
+			</div>
+		</div>
 	</div>
 	
 	<%--지점별 사진--%>

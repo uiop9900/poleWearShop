@@ -40,7 +40,7 @@ $(document).ready(function(e){
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 			center: new kakao.maps.LatLng(37.504011, 126.766129),
-			level: 3 //지도의 레벨(확대, 축소 정도)37.494699439966254 이고, 경도는 126.86028203020335 입니다
+			level: 3 //지도의 레벨(확대, 축소 정도)
 	};
 
 	//지도에 마커 표시

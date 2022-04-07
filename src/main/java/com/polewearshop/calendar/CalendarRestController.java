@@ -8,10 +8,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.polewearshop.calendar.bo.CalendarBO;
 import com.polewearshop.calendar.model.Calendar;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class CalendarRestController {
@@ -19,11 +22,17 @@ public class CalendarRestController {
 	@Autowired
 	private CalendarBO calendarBO;
 	
+	
+    @ApiOperation(
+            value = "studioReserve calendar"
+            , notes = "확정된 예약만이 캘린더에 보여지게 한다.")
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/studio/reserve_calendar")
-	public JSONArray studioCalendar() {
+	public JSONArray studioCalendar(
+			@RequestParam("studioId") int studioId
+			) {
 		
-		List<Calendar> calendarList = calendarBO.getCalendarList();
+		List<Calendar> calendarList = calendarBO.getCalendarList(studioId);
         
 		JSONArray jsonArray = new JSONArray();
 		 for (Calendar calendar : calendarList) {

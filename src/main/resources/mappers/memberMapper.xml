@@ -101,6 +101,7 @@
  	UPDATE `member`
  	SET 
  		`mileage` = #{mileage}
+ 		,`updatedAt` = NOW()
  	WHERE
  		`id` = #{id}
  </update>
@@ -112,6 +113,7 @@
  		,`address` = #{address}
  		,`email` = #{email}
  		,`phoneNumber` = #{phoneNumber}
+ 		,`updatedAt` = NOW()
  	WHERE
  		`id` = #{id}
  

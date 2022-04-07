@@ -18,6 +18,7 @@ public class NonMemberController {
 	@Autowired
 	private OrderProcessBO orderProcessBO;
 	
+	//주문번호로 조회하기
 	@RequestMapping("/orderNumber_check_result_view")
 	public String checkOrderNumberView(Model model,
 			@RequestParam("orderNumber") String orderNumber) {

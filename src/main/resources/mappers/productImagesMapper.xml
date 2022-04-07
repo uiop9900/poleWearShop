@@ -39,6 +39,7 @@
  		UPDATE `productImages`
  		SET
  			`productImagePath` = null
+ 			, `updatedAt` = NOW()
  		WHERE
  			`productId` = #{productId}
  		AND `productImagePath` = #{productImagePath}

@@ -37,6 +37,7 @@
 		UPDATE `size`
 		SET
 			`size` = #{size}
+			, `updatedAt` = NOW()
 		WHERE
 		 	`productId` = #{productId}	
 	

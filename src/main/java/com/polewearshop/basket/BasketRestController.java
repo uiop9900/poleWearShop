@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.basket.model.Basket;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/basket")
 public class BasketRestController {
@@ -23,6 +25,9 @@ public class BasketRestController {
 	@Autowired
 	private BasketBO basketBO;
 	
+    @ApiOperation(
+            value = "장바구니 목록"
+            , notes = "유저가 장바구니에 담으면 상품이 목록에 들어간다.")
 	@RequestMapping("/basket_list")
 	public Map<String, Object> basketList(
 			@ModelAttribute Basket basket,
@@ -49,6 +54,10 @@ public class BasketRestController {
 	
 	}
 	
+    
+    @ApiOperation(
+            value = "장바구니 비우기"
+            , notes = "비회원이 장바구니를 비운다.")
 	@DeleteMapping("/nonMember_delete_basket")
 	public Map<String, Object> nonMemberDeleteBasket(
 			@RequestParam("basketId") int basketId){
