@@ -11,7 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan(basePackages="com.polewearshop.*")  
+@MapperScan(basePackages="com.polewearshop.*") 
 public class DataConfig {
 	
 	@Bean

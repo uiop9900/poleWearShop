@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.polewearshop.product.dao.ProductDAO;
 import com.polewearshop.product.model.Color;
@@ -54,9 +55,9 @@ public class ProductBO {
 	}
 	
 	
+	
 	public List<ProductViewCompact> generateProductViewCompactListByType(String type) {
 		List<ProductViewCompact> productViewCompactList = new ArrayList<>();
-		
 		
 		List<Product> productList = getProductListByType(type);
 		for (Product product: productList) {
@@ -72,6 +73,7 @@ public class ProductBO {
 		}
 		return productViewCompactList;
 	}
+	
 	
 	//main화면의 최신 상품 6개의 정보만
 	public List<ProductViewCompact> generateProductViewCompactList() {
@@ -113,6 +115,7 @@ public class ProductBO {
 		return productViewCompactList;
 	}
 	
+	@Transactional
 	public ProductView generateProductViewById(int productId) {
 		ProductView productView = new ProductView();
 		
@@ -136,6 +139,7 @@ public class ProductBO {
 		return productView;
 		}
 
+	@Transactional
 	public ProductViewCompact getProductViewCompactById(int productId) {
 		ProductViewCompact productCompact = new ProductViewCompact();
 		
@@ -158,6 +162,7 @@ public class ProductBO {
 		productDAO.deleteProductById(productId);
 	}
 	
+	@Transactional
 	public void generateDeleteProductById(int productId) {
 		//product
 		deleteProductById(productId);
@@ -175,8 +180,8 @@ public class ProductBO {
 	}
 	
 
-	
 	//stock수 반영
+	@Transactional
 	public void updateCountById(int productId, int count) {
 		Product product = getProductById(productId);
 		int stock = product.getStock() - count;
