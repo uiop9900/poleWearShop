@@ -8,7 +8,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 	let studioId = $("#studioId").data("studio-id");
 	
-    	  alert(studioId);    	  
     	  $(function () {
               var request = $.ajax({ 
         		  type:"get"

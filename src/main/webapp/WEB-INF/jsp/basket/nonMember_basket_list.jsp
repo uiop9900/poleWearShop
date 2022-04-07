@@ -6,6 +6,16 @@
 <div class="member_order_box">
 	
 	<h1 class="text-center mb-5">cart</h1>
+	<%--장바구니가 비었을때 --%>
+	<c:if test="${empty basketList}">
+	<h1 class="text-center">장바구니가 비어있습니다.</h1>
+		<div class="d-flex justify-content-center mt-5">
+			<a href="/product/main_view" class="btn btn-outline-primary col-4">쇼핑하러 가기</a>
+		</div>
+	</c:if>
+	
+	<%--장바구니가 있을때 --%>
+	<c:if test="${not empty basketList}">
 	<c:forEach items="${basketViewList}" var="basket" varStatus="status">
 		<div class="d-flex justify-content-between align-items-center">
 			<h1>${status.count}</h1>
@@ -41,6 +51,7 @@
 		<button id="allOrder" data-basket-number="${basketNumber}" class="btn btn-primary col-6">전체 구매하기</button>
 		</div>
 	</div>
+	</c:if>
 </div>
 
 <script>
