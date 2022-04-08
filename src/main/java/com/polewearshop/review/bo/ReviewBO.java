@@ -51,7 +51,6 @@ public class ReviewBO {
 	public List<Review> getReviewListByLoginId(String loginId) {
 		return reviewDAO.selectReviewListByLoginId(loginId);
 	}
-	
 
 	
 	public void deleteReviewById(int reviewId) {

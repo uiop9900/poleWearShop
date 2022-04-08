@@ -50,6 +50,7 @@ public class ProductController {
 		return "template/layout";
 	}
 	
+	//상품세부화면
 	@RequestMapping("/shop_detailed_view")
 	public String shopDetailedView(
 			Model model,
@@ -60,6 +61,7 @@ public class ProductController {
 		
 		ProductView product = productBO.generateProductViewById(productId);
 		String mainImagePath = productImagesBO.getOneProductImagePathByProductId(productId);
+		//productId를 통해 reviewList를 가져오고자 함
 		
 		model.addAttribute("mainImagePath", mainImagePath);
 		model.addAttribute("product", product);

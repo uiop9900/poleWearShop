@@ -68,13 +68,15 @@
 
 <%--상품 디테일 설명 --%>
 <div>
-	<c:forEach var="images" items="${product.productImages}">
+	<c:forEach var="images" items="${product.productImages}" varStatus="status">
 		<div class="d-flex justify-content-center detailed-product-box">
-			<img src="${images.productImagePath}" alt="product-images">
+			<img src="${images.productImagePath}" alt="product-images"><br>
 		</div>
+			<div class="text-center">제품 상세 사진${status.count}</div>
 	</c:forEach>
-	<div class="text-center mt-5">${product.product.content}</div>
+	<div class="text-center mt-5 user_page_font">${product.product.content}</div>
 </div>
+
 
 <script>
 $(document).ready(function(e) {
