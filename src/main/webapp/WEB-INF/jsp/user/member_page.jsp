@@ -42,6 +42,7 @@
     <table class="table text-center mt-4">
     	<thead class="thead-light">
     		<tr>
+    			<th>상품이미지</th>
     			<th>상품이름</th>
     			<th>수량</th>
     			<th>가격</th>
@@ -53,6 +54,7 @@
     		<c:forEach var="memberPage" items="${memberPageViewList}">
     		<c:forEach var="order" items="${memberPage.orderProduct}" varStatus="status" >
     		<tr>
+    			<td><img src="${memberPage.productImage[status.index]}" alt="product-image" width="50"></td>
     			<td>${memberPage.product[status.index].productName}</td>
     			<td>${order.count}</td>
     			<td><fmt:formatNumber value="${order.price}"/> 원</td>
@@ -60,7 +62,8 @@
     				<fmt:formatDate value="${order.createdAt}" pattern="yyyy-MM-dd" />
     			</td>
     			<td>
-    				<button class="goToReview btn btn-secondary" data-login-id="${memberLoginId}" data-product-id="${memberPage.product[status.index].id}" >리뷰 남기기</button>
+    				<a class="goToReview btn btn-primary text-white"  data-product-name="${memberPage.product[status.index].productName}" data-product-image="${memberPage.productImage[status.index]}" 
+    				data-product-price="${order.price}" data-product-id="${memberPage.product[status.index].id}" data-login-id="${memberLoginId}">리뷰 작성하기</a>
     			</td>
     		</tr>
     		</c:forEach> 
@@ -68,10 +71,10 @@
     	</tbody>
     </table>
 
-
-	 <%--리뷰정보 --%>
-    <h1 class="text-center mt-5">Review</h1>
-    <table class="table text-center mt-4">
+<%--상품의 리뷰 --%>
+<div class="member_order_box mt-5">
+ <h1 class="text-center">Review</h1>
+ <table class="table text-center mt-5">
     	<thead class="thead-light">
     		<tr>
     			<th>No.</th>
@@ -84,10 +87,12 @@
 		<tbody>
 			<c:forEach var="review" items="${reviewList}" varStatus="status">
 			<tr>
-				<td>${fn:length(reviewList) -status.index}</td>
+				<td>
+					${fn:length(reviewList) -status.index}
+				</td>
 				<td>${review.productName}</td>
 				<td>
-					<a href="/customer/review_detailed_view?reviewId=${review.id}">${review.subject}</a>
+					${review.subject}
 				</td>
 				<td>${review.loginId}</td>
 				<td>
@@ -97,6 +102,7 @@
 			</c:forEach>
 		</tbody>    
     </table>
+</div>
 
 
 	</c:if>
@@ -145,6 +151,9 @@ $(document).ready(function(e){
 	$(".goToReview").on('click', function(e){
 		let productId = $(this).data("product-id");
 		let logindId = $(this).data("login-id");
+		let productName = $(this).data("product-name");
+		let productImage = $(this).data("product-image");
+		let productPrice = $(this).data("product-price");
 		
 		$.ajax({
 			type:"GET"
@@ -155,7 +164,10 @@ $(document).ready(function(e){
 					alert("이미 리뷰를 작성했습니다. 다른 상품의 리뷰를 작성해주세요.");
 					location.reload();
 				} else if (data.result == "fail") {
-					location.href="/customer/review_create_view?productId=" + productId;
+					location.href="/customer/review_create_view?productId=" + productId + 
+							"&productName=" + productName + 
+							"&productImage=" + productImage + 
+							"&productPrice=" + productPrice;
 				}
 			}
 			, error: function(e){
@@ -163,7 +175,6 @@ $(document).ready(function(e){
 			}
 		});
 	});
-	
 	
 	// 로그아웃
 	$("#moreModal #logOutBtn").on('click', function(e){

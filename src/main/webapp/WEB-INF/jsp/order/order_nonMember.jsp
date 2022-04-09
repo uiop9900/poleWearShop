@@ -187,7 +187,7 @@ $(document).ready(function(e) {
 				"deliveryFee":deliveryFee, "deliveredName":deliveredName, "deliveredAddress":deliveredAddress, "deliveredPhoneNumber":deliveredPhoneNumber, "deliveredComment": deliveredComment}
 			, success: function(data){
 				if (data.result == 'success') {
-					alert("결제가 완료되었습니다. 고객님의 상품번호는 " + orderNumber + "입니다.");
+					alert("결제가 완료되었습니다. 고객님의 주문번호는 " + orderNumber + "입니다.");
 					location.href="/product/main_view"
 				} else if (data.result == 'fail') {
 					alert("결제가 실패했습니다. 관리자에게 문의하세요.");

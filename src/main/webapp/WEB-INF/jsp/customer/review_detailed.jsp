@@ -6,10 +6,10 @@
 <div class="member_order_box">
 	<%--상품 정보 --%>
 	<div class="d-flex justify-content-begin align-items-center review_detailed">
-		<img src="${product.productImagePath}" alt="product_image" class="border">
+		<img src="${productImage}" alt="product_image" class="border">
 		<div class="ml-4 mt-3">
-			<h1>${product.product.productName}</h1>
-			<h4 class="mt-2"><fmt:formatNumber value="${product.product.price}" type="number"/>원</h4>
+			<h1>${productName}</h1>
+			<h4 class="mt-2"><fmt:formatNumber value="${productPrice}" type="number"/>원</h4>
 		</div>
 	</div>
 	<hr>
@@ -19,7 +19,9 @@
 	<c:if test="${not empty review.reviewImage}" >
 		<img src="${review.reviewImage}" alt="product_image" class="border mt-3">
 	</c:if>
+	<c:if test="${empty review.reviewImage}" >
 		<img src="/static/images/prepare.png" alt="product_image" class="border mt-3" width="300">
+	</c:if>
 	<div class="mt-5 d-flex justify-content-begin align-items-center">
 		<h4><b>솔직 리뷰:</b></h4>
 		<h4 class="ml-4">${review.content}</h4>

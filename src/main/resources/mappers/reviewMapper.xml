@@ -104,6 +104,36 @@
 		 	`id` = #{id}
 	</select>
 	
+	<select id="selectReviewListNumber" resultType="int">
+		SELECT
+		 	COUNT(1)
+		 FROM
+			`review`
+		WHERE
+			`productId` = #{productId}
+	</select>
+	
+	<select id="selectReviewListByProductId" parameterType="map" resultType="com.polewearshop.review.model.Review">
+		SELECT
+			`id`
+			,`productId`
+			,`productName`
+			,`loginId`
+			,`subject`
+			,`content`
+			,`reviewImage`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`review`
+		WHERE
+		 	`productId` = #{productId}
+		ORDER BY
+		 		`id` DESC
+		LIMIT
+			${first}, ${number}
+	</select>
+	
 	<delete id="deleteReviewById">
 		DELETE FROM `review`
 	 	WHERE

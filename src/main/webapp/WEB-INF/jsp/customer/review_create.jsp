@@ -3,12 +3,15 @@
 <div class="member_order_box">
 	<div class="d-flex justify-content-begin align-items-center w-50">
 		<div class="font-weight-bold col-3">상품명</div>
-		<input type="text" id="productId" data-product-id="${product.id}" class="form-control col-8" value="${product.productName}" disabled>
+		<input type="text" id="productId" data-product-id="${productId}" class="form-control col-8" value="${productName}" disabled>
 	</div>
 
 	<div class="d-flex justify-content-begin align-items-center w-50 mt-3">
 		<div class="font-weight-bold col-3">작성자</div>
-		<input type="text" id="memberLoginId" class="form-control col-8" value="${memberLoginId}" disabled>
+		<input type="text" id="memberLoginId" class="form-control col-8" value="${memberLoginId}">
+	</div>
+	<div class="ml-3">
+		<small class="text-primary font-weight-bold">아이디 혹은 닉네임을 넣어주세요. (회원은 아이디 기입시, 내 페이지에서 확인가능합니다.)</small>
 	</div>
 	
 	<div class="d-flex justify-content-begin align-items-center w-50 mt-3">
@@ -91,7 +94,7 @@ $(document).ready(function(e){
 				if (data.result == "success"){
 					let memberLoginId = data.loginId;
 					alert("리뷰를 작성해주셔서 감사합니다.");
-					location.href="/user/member_page_view?memberLoginId=" + memberLoginId;
+					location.href="/product/main_view";
 				} else if (data.result == "fail") {
 					alert("리뷰 업로드에 실패했습니다. 다시 시도해주세요.");
 					location.reload();

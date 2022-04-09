@@ -75,8 +75,50 @@
 			<div class="text-center">제품 상세 사진${status.count}</div>
 	</c:forEach>
 	<div class="text-center mt-5 user_page_font">${product.product.content}</div>
-</div>
+</div><hr>
 
+
+<%--상품의 리뷰 --%>
+<div class="member_order_box mt-5">
+ <h1 class="text-center">Review</h1>
+ <table class="table text-center mt-5">
+    	<thead class="thead-light">
+    		<tr>
+    			<th>No.</th>
+    			<th>상품명</th>
+    			<th>제목</th>
+    			<th>작성자</th>
+    			<th>작성일</th>
+    		</tr>
+    	</thead>
+		<tbody>
+			<c:forEach var="review" items="${reviewList}" varStatus="status">
+			<tr>
+				<td>
+					${reviewNumber - first - status.index}
+				</td>
+				<td>${review.productName}</td>
+				<td><a href="/customer/review_detailed_view?reviewId=${review.id}&productId=${product.product.id}&productName=${product.product.productName}&image=${mainImagePath}&price=${product.product.price}">
+					${review.subject}
+				</a></td>
+				<td>${review.loginId}</td>
+				<td>
+					<fmt:formatDate value="${review.createdAt}" pattern="yyyy-MM-dd" />
+				</td>
+			</tr>
+			</c:forEach>
+		</tbody>    
+    </table>
+    
+    <%--number 페이징 --%>
+	<c:set var="lastPage" value="${Math.ceil(reviewNumber / 5)}"/>
+	<div class="mt-5 text-center paging">
+		<c:forEach var="page" begin="1" end="${lastPage}" step="1">
+				<a class="page" data-current-page="${page}" href="/product/shop_detailed_view?type=${type}&productId=${product.product.id}&vpage=${page}">${page}</a>
+		</c:forEach>
+	</div>
+</div>
+    
 
 <script>
 $(document).ready(function(e) {

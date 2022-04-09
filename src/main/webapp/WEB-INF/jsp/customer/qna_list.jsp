@@ -47,9 +47,9 @@
 	
 	<%--number 페이징 --%>
 	<c:set var="lastPage" value="${Math.ceil(qnaNumber / 10)}"/>
-	<div class="mt-5 text-center">
+	<div class="mt-5 text-center paging">
 		<c:forEach var="page" begin="1" end="${lastPage}" step="1">
-				<a href="/customer/qna_list_view?vpage=${page}" class="page_number bold" >${page}</a>
+				<a class="page" data-current-page="${page}" href="/customer/qna_list_view?vpage=${page}">${page}</a>
 		</c:forEach>
 	</div>
 	
@@ -83,11 +83,14 @@
 
 <script>
 $(document).ready(function(e){
+	
+	//qna선택시 modal에 값 넣기
 	$(".qna").on('click', function(e){
 		let qnaId = $(this).data("qna-id");
 		$("#checkPasswordBtn").data('qna-id', qnaId);
 	});
 	
+	//비밀번호 기입해야 열람 가능
 	$("#checkPasswordBtn").on('click', function(e){
 		let password = $("#password").val();
 		let qnaId = $(this).data("qna-id");
@@ -111,8 +114,9 @@ $(document).ready(function(e){
 		});
 	});
 	
-	$(".page_number").on('click', function(e){
-		$(this).attr('style',"font-weight: bold");
+	$(".page").on('click', function(e){
+		let val = $(this).data("current-page");
+		$(this).addClass("font-weight: bold");
 	});
 	
 });

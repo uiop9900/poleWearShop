@@ -72,7 +72,7 @@ public class BasketBO {
 		int total = 0;
 		List<Basket> basketList = getBasketListByBasketNumber(basketNumber);
 		for (Basket basket : basketList) {
-			int price = basket.getPrice();
+			int price = basket.getPrice() * basket.getCount();
 			total += price;
 		}
 		return total;

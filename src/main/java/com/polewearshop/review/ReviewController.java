@@ -22,54 +22,48 @@ public class ReviewController {
 
 	@Autowired
 	private CommentBO commentBO;
-	
-	@Autowired
-	private ProductBO productBO;
-	
+
 	@Autowired
 	private ReviewBO reviewBO;
-	
-	
-	//리뷰 리스트 화면
-	@RequestMapping("/review_list_view")
-	public String reviewListView(Model model) {
-		
-		List<Review> reviewList = reviewBO.getReviewList();
-		
-		model.addAttribute("reviewList", reviewList);
-		model.addAttribute("viewName", "customer/review_list");
-		return "template/layout";
-	}
-	
-	//리뷰 쓰기 화면
+
+	// 리뷰 쓰기 화면
 	@RequestMapping("/review_create_view")
-	public String reviewCreateView(
-			Model model,
-			@RequestParam("productId") int productId) {
-		
-		Product product = productBO.getProductById(productId);
-		
-		
-		model.addAttribute("product", product);
+	public String reviewCreateView(Model model, 
+			@RequestParam("productId") int productId,
+			@RequestParam("productName") String productName, 
+			@RequestParam("productImage") String productImage,
+			@RequestParam("productPrice") int productPrice) {
+
+		model.addAttribute("productId", productId);
+		model.addAttribute("productName", productName);
+		model.addAttribute("productPrice", productImage);
+		model.addAttribute("productPrice", productPrice);
 		model.addAttribute("viewName", "customer/review_create");
 		return "template/layout";
 	}
-	
+
+
 	//리뷰 디테일 화면
-	@RequestMapping("/review_detailed_view")
-	public String reviewDetailedView(
-			Model model,
-			@RequestParam("reviewId") int reviewId) {
-		
-		Review review = reviewBO.getReviewById(reviewId);
-		ProductViewCompact product = productBO.getProductViewCompactById(review.getProductId());
-		String type = "review";
-		List<Comment> commentList = commentBO.getCommentListByTypeAndBoardId(type, reviewId);
-		
-		model.addAttribute("commentList", commentList);
-		model.addAttribute("review", review);
-		model.addAttribute("product", product);
-		model.addAttribute("viewName", "customer/review_detailed");
-		return "template/layout";
-	}
+	 @RequestMapping("/review_detailed_view") public String reviewDetailedView(
+			 Model model,
+			 @RequestParam("reviewId") int reviewId,
+			 @RequestParam("productId") int productId,
+			 @RequestParam("productName") String productName, 
+			 @RequestParam("image") String productImage,
+			 @RequestParam("price") int productPrice) {
+	 
+		 Review review = reviewBO.getReviewById(reviewId); 
+		 //comment
+		 String type = "review";
+		 List<Comment> commentList = commentBO.getCommentListByTypeAndBoardId(type, reviewId);
+	 
+		 model.addAttribute("commentList", commentList);
+		 model.addAttribute("productId", productId);
+		 model.addAttribute("productName", productName);
+		 model.addAttribute("productImage", productImage);
+		 model.addAttribute("productPrice", productPrice);
+		 model.addAttribute("review", review); 
+		 model.addAttribute("viewName", "customer/review_detailed");
+	 return	 "template/layout"; }
+	
 }

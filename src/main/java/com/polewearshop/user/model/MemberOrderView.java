@@ -11,6 +11,16 @@ public class MemberOrderView {
 	private Order order;
 	private List<OrderProduct> orderProduct;
 	private List<Product> product;
+	private List<String> productImage;
+
+
+	public List<String> getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(List<String> productImage) {
+		this.productImage = productImage;
+	}
 
 	public List<OrderProduct> getOrderProduct() {
 		return orderProduct;

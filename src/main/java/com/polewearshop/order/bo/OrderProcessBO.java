@@ -12,6 +12,7 @@ import com.polewearshop.order.model.Order;
 import com.polewearshop.order.model.OrderProduct;
 import com.polewearshop.order.model.OrderProductView;
 import com.polewearshop.product.bo.ProductBO;
+import com.polewearshop.product.bo.ProductImagesBO;
 import com.polewearshop.product.model.Product;
 import com.polewearshop.user.bo.NonMemberBO;
 import com.polewearshop.user.bo.UserBO;
@@ -20,6 +21,9 @@ import com.polewearshop.user.model.NonMember;
 
 @Service
 public class OrderProcessBO {
+	
+	@Autowired
+	private ProductImagesBO productImagesBO;
 	
 	@Autowired
 	private NonMemberBO nonMemberBO;
@@ -112,10 +116,15 @@ public class OrderProcessBO {
 			
 			//orderProduct의 productId로 productList담기
 			List<Product> productList = new ArrayList<>();
+			List<String> productImageList = new ArrayList<>();
 			for (OrderProduct orderProduct : orderProductList) {
 				Product product = productBO.getProductById(orderProduct.getProductId());
+				String productImage = productImagesBO.getOneProductImagePathByProductId(product.getId());
+				productImageList.add(productImage);
 				productList.add(product);
 			memberOrderView.setProduct(productList);
+			memberOrderView.setProductImage(productImageList);
+			
 		}
 			memberPageViewList.add(memberOrderView);
 		}
@@ -139,11 +148,16 @@ public class OrderProcessBO {
 			List<OrderProduct> orderProductList = orderProductBO.getOrderProductById(order.getId());
 			orderProductView.setOrderProduct(orderProductList);
 			List<Product> productList = new ArrayList<>();
+			List<String> productImageList = new ArrayList<>();
 			for(OrderProduct orderProduct : orderProductList) {
 				Product product = productBO.getProductById(orderProduct.getProductId());
+				String productImage = productImagesBO.getOneProductImagePathByProductId(product.getId());
 				productList.add(product);
+				productImageList.add(productImage);
 			}
 			orderProductView.setProduct(productList);
+			orderProductView.setProductImage(productImageList);
+			
 			orderProductViewList.add(orderProductView);
 		}
 		return orderProductViewList;

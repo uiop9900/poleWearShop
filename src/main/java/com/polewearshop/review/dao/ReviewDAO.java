@@ -28,5 +28,12 @@ public interface ReviewDAO {
 
 	public Review selectReviewById(int reviewId);
 	
+	public int selectReviewListNumber(int productId);
+	
+	public List<Review> selectReviewListByProductId(
+			@Param("productId") int productId,
+			@Param("first") int first,
+			@Param("number") int number);
+	
 	public void deleteReviewById(int reviewId);
 }

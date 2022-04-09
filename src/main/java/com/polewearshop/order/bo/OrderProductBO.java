@@ -16,6 +16,7 @@ public class OrderProductBO {
 	
 	public void addOrderProductByBasketNumber(int orderId, int productId, int count, int price, String color
 			,String size) {
+		price = price * count;
 		orderProductDAO.insertOrderProductByBasketNumber(orderId, productId, count, price, color, size);
 	}
 	

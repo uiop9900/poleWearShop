@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.product.bo.ProductBO;
 import com.polewearshop.product.bo.ProductImagesBO;
-import com.polewearshop.product.model.Product;
 import com.polewearshop.product.model.ProductView;
 import com.polewearshop.product.model.ProductViewCompact;
+import com.polewearshop.review.bo.ReviewBO;
+import com.polewearshop.review.model.Review;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+	
+	@Autowired
+	private ReviewBO reviewBO;
 	
 	@Autowired
 	private ProductBO productBO;
@@ -55,14 +59,26 @@ public class ProductController {
 	public String shopDetailedView(
 			Model model,
 			@RequestParam("type") String type,
-			@RequestParam("productId") int productId
+			@RequestParam("productId") int productId,
+			@RequestParam(value="vpage", required=false) Integer page
 			) {
-		
-		
+
+		//상품 화면
 		ProductView product = productBO.generateProductViewById(productId);
 		String mainImagePath = productImagesBO.getOneProductImagePathByProductId(productId);
-		//productId를 통해 reviewList를 가져오고자 함
 		
+		int reviewNumber = reviewBO.getReviewListNumber(productId);
+		//페이징
+		if (page == null) {
+			page = 1;
+		}
+		
+		List<Review> reviewList = reviewBO.getReviewListByProductId(productId, page);
+		int first = (page - 1) * 5;
+		
+		model.addAttribute("first", first);
+		model.addAttribute("reviewNumber", reviewNumber);
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("mainImagePath", mainImagePath);
 		model.addAttribute("product", product);
 		model.addAttribute("type", type);

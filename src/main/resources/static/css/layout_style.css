@@ -58,8 +58,10 @@ select {width: 200px;}
 .review_detailed img {width: 150px; height: 200px;}
 
 /*페이징 넘버*/
-.page_number {width: 20px;}
-.bold {font-weight: bold; color: #000;}
+.paging a:link {width: 20px; text-decoration: none;}
+.paging a:visited {color: #000; font-weight: bold; }
+.paging a:hover {color: blue;}
+.paging a:active {color: #000; font-weight: bold; }
 
 /*studio*/
 .studio_box{width: 800px; margin:auto;}

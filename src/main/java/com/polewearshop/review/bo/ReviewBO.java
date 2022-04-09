@@ -21,6 +21,8 @@ public class ReviewBO {
 	
 	@Autowired
 	private ReviewDAO reviewDAO;
+	
+	private static final int REVIEW_MAX_SIZE = 5;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -52,6 +54,16 @@ public class ReviewBO {
 		return reviewDAO.selectReviewListByLoginId(loginId);
 	}
 
+	
+	public int getReviewListNumber(int productId) {
+		return reviewDAO.selectReviewListNumber(productId);
+	}
+	
+	public List<Review> getReviewListByProductId(int productId, int page) {
+		int first = (page - 1) * REVIEW_MAX_SIZE;
+		return reviewDAO.selectReviewListByProductId(productId, first, REVIEW_MAX_SIZE);
+	}
+	
 	
 	public void deleteReviewById(int reviewId) {
 		Review review = getReviewById(reviewId);

@@ -9,8 +9,14 @@ public class OrderProductView {
 	private Order order;
 	private List<Product> product;
 	private List<OrderProduct> orderProduct;
+	private List<String> productImage;
 	
-	
+	public List<String> getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(List<String> productImage) {
+		this.productImage = productImage;
+	}
 	public Order getOrder() {
 		return order;
 	}
