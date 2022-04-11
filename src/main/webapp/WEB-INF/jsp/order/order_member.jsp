@@ -96,6 +96,22 @@
 	</div>
 	<hr>
 	
+	<%--마일리지 --%>
+	<h1>마일리지</h1>
+	<div class="input-group d-flex justify-content-begin align-items-center">
+	  	<input id="mileage" type="text" class="form-control col-3" data-mileage="${member.mileage}" value="${member.mileage}" <c:if test="${member.mileage < 5000}">disabled</c:if>>
+ 	 	<div class="input-group-append">
+	   		<span class="input-group-text">원</span>
+  		</div>
+  		
+  		<div class="d-flex justify-content-begin align-items-center w-50">
+			<input id="useMileage" type="checkbox" class="form-control col-1" name="mileage" value="use">
+			<div class="mt-2"><label for="useMileage" class="font-weight-bold">마일리지 사용하기</label></div>
+		</div>
+	</div>
+	<small class="text-danger">5,000점 이상부터 사용가능합니다.</small>
+	<br><hr>
+	
 	<h1 class="pt-3">결제 정보</h1>
 	<table class="table border text-center mt-4">
 		<tr>
@@ -158,6 +174,27 @@ $(document).ready(function(e) {
 		}
 	});
 	
+	//마일리지
+	$("input[name=mileage]").on('click', function(e){
+		let value = $("input[name=mileage]:checked").val();
+		alert(value);
+		let mileage = $("#mileage").val();
+		let memberMileage = $("#mileage").data("mileage");
+		if (mileage > memberMileage) {
+			alert("적립금이 잘못 기재되었습니다.");
+			location.reload();
+			return;
+		}
+		
+		//사용하기 누르면 disabled 속성 추가
+		if (value == "use") {
+			$("#mileage").attr('disabled', true);
+			return;
+		}
+	
+	});
+	
+	
 	//결제하기 버튼
 	$("#payBtn").on('click', function(e) {
 		let deliveredName = $("#deliveredName").val();
@@ -166,7 +203,8 @@ $(document).ready(function(e) {
 		let deliveredComment = $("#deliveredComment").val();
 		let checkedPay = $('input:radio[name=pay]').is(':checked');
 		let deliveryFee = $(this).data("delivery-fee");
-		
+		let mileage = $("#mileage").val();
+
 		//validation
 		if (deliveredName == "") {
 			alert("받으실 분의 성함을 입력하세요.");
@@ -197,7 +235,7 @@ $(document).ready(function(e) {
 		$.ajax({
 			type: "GET"
 			,url: "/order/order_member"
-			,data: {"type":"member", "orderUserId":memberId, "basketNumber":basketNumber,"deliveryFee":deliveryFee, "deliveredName":deliveredName,
+			,data: {"mileage":mileage, "type":"member", "orderUserId":memberId, "basketNumber":basketNumber,"deliveryFee":deliveryFee, "deliveredName":deliveredName,
 					"deliveredAddress":deliveredAddress, "deliveredPhoneNumber":deliveredPhoneNumber, "deliveredComment": deliveredComment}
 			, success: function(data) {
 				if (data.result == 'success') {

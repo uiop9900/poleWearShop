@@ -33,7 +33,7 @@
     <div>
 	    <h1 class="text-center mt-4">My Mileage</h1>
 	    <h3 class="text-center mt-2"><fmt:formatNumber value="${user.mileage}"/> 점</h3>
-	    <div class="text-center"><small class="text-center text-danger">10,000점 이상부터 사용가능합니다.</small></div>
+	    <div class="text-center"><small class="text-center text-danger">5,000점 이상부터 사용가능합니다.</small></div>
     </div><hr>
     
     

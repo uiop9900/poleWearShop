@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.basket.model.Basket;
-import com.polewearshop.order.bo.OrderBO;
 import com.polewearshop.order.bo.OrderProcessBO;
 import com.polewearshop.order.model.Order;
 import com.polewearshop.user.model.NonMember;
@@ -69,6 +68,7 @@ public class OrderRestController {
     @RequestMapping("/order_member")
     public Map<String, Object> orderMember(
     		@ModelAttribute Order order,
+    		@RequestParam("mileage") int mileage, 
     		HttpServletRequest request
     		) {
     	
@@ -78,7 +78,7 @@ public class OrderRestController {
 		HttpSession session = request.getSession();
 		int basketNumber = (int)session.getAttribute("basketNumber");
 		
-		orderProcessBO.addMemberOrderAndOrderProduct(order, basketNumber);
+		orderProcessBO.addMemberOrderAndOrderProduct(order, basketNumber, mileage);
 		
     	result.put("result", "success");
     	return result;

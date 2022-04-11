@@ -44,21 +44,21 @@ public class OrderProcessBO {
 	private OrderBO orderBO;
 	
 	//회원의 order를 저장하고 orderProduct메소드를 부른다.
-	public void addMemberOrderAndOrderProduct(Order order, int basketNumber) {
+	public void addMemberOrderAndOrderProduct(Order order, int basketNumber, int mileage) {
 		//insert order - orderBO에서 order객체 자체 추가함
 		orderBO.addOrder(order);
 		
 		//insert orderProduct
 		int orderId = order.getId();
-		addMemberOrderProductByBasketNumber(orderId, basketNumber);
+		addMemberOrderProductByBasketNumber(orderId, basketNumber, mileage);
 	}
 	
 	
 	//회원의 productOrder 
-	public void addMemberOrderProductByBasketNumber(int orderId, int basketNumber) {
+	public void addMemberOrderProductByBasketNumber(int orderId, int basketNumber, int mileage) {
 		//basket 리스트대로 Order를 추가하고 추가가 성공하면 basket에서 삭제한다.
 		List<Basket> basketList = basketBO.getBasketListByBasketNumber(basketNumber);
-		int mileage = 0;
+		int temMileage = 0;
 		int memberId = 0;
 		for (Basket basket : basketList) {
 			orderProductBO.addOrderProductByBasketNumber(orderId, basket.getProductId(), basket.getCount(), 
@@ -67,9 +67,9 @@ public class OrderProcessBO {
 			//stock, mileage update
 			productBO.updateCountById(basket.getProductId(), basket.getCount());
 			memberId = basket.getMemberId();
-			mileage += basket.getPrice();
+			temMileage += basket.getPrice() * basket.getCount();
 		}
-		userBO.updateMileageById(memberId, mileage / 10);
+		userBO.updateMileageById(memberId, temMileage / 100, mileage);
 		basketBO.deleteBasketByBasketNumber(basketNumber);
 	}
 	

@@ -30,7 +30,10 @@ public class UserBO {
 		return userDAO.insertMember(loginId, password, name, phoneNumber, email, sex, address, birth);
 	}
 	
-	public void updateMileageById(int memberId, int mileage) {
+	//기존의 마일리지와 사용된 마일리지 계산
+	public void updateMileageById(int memberId, int temMileage, int mileage) {
+		Member member = getMembetById(memberId);
+		mileage = member.getMileage() - mileage + temMileage;
 		userDAO.updateMileageById(memberId, mileage);
 	}
 	

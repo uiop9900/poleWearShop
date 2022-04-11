@@ -78,6 +78,7 @@
 			,`address`
 			,`sex`
 			,`birth`
+			,`mileage`
 			,`createdAt`
 			,`updatedAt`
 			)
@@ -91,6 +92,7 @@
  			,#{address}
  			,#{sex}
  			,#{birth}
+ 			, 0
  			,NOW()
  			,NOW()
  			)
