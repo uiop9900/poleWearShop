@@ -27,7 +27,7 @@
 				
 				<%--admin은 비밀번호 하지않고 qna에 들어간다. --%>
 				<c:choose>
-					<c:when test="${memberId == 951011}">
+					<c:when test="${memberId == 0}">
 						<td><a class="qna" href="/customer/qna_detailed_view?qnaId=${qna.id}">${qna.subject}</a></td>
 					</c:when>
 					<c:otherwise>

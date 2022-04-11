@@ -26,6 +26,7 @@
 .product_box img{width: 300px; height: 400px;}
 
 /*shop_list페이지*/
+.product-detailed-content-box{margin: auto; width: 800px; font-size: 20px;}
 .product-box {margin:auto; width: 1000px;}
 .product-box a{text-decoration: none;} 
 .product-box img {width: 300px; height: 350px;}

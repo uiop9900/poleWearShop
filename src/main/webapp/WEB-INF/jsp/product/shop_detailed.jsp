@@ -74,7 +74,7 @@
 		</div>
 			<div class="text-center">제품 상세 사진${status.count}</div>
 	</c:forEach>
-	<div class="text-center mt-5 user_page_font">${product.product.content}</div>
+	<div class="text-center mt-5 product-detailed-content-box">${product.product.content}</div>
 </div><hr>
 
 

@@ -44,7 +44,7 @@
 		</div>
 	</c:if>
 	
-	<c:if test="${memberId == 951011}">
+	<c:if test="${memberId == 0}">
 	<hr>
 		<h5 class="mt-4">관리자 댓글</h5>
 		<div class="mt-3 d-flex justify-content-begin">

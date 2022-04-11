@@ -168,7 +168,6 @@ $(document).ready(function(e){
 	$(".imageDeleteBtn").on('click', function(e){
 		let imagePath = $(this).data('image-path');
 		let productId = $(this).data('product-id');
-		alert(productId);
 		
 		$.ajax({
 			type: "DELETE"
@@ -191,7 +190,6 @@ $(document).ready(function(e){
 	// 수정하기 버튼을 누를때
 	$("#updateBtn").on('click', function(e){
 		let productId = $(this).data('product-id');
-		alert(productId);
 		
 		// validation
 		let type = $("#type").val();
@@ -229,7 +227,6 @@ $(document).ready(function(e){
 			alert("가격을 입력하세요.");
 			return;
 		}
-		alert(price);
 		
 		let stock = $("#stock").val();
 		if (stock == "") {
