@@ -167,7 +167,7 @@ $(document).ready(function(e) {
 				if(data.memberId != 0 && data.result == "success") {
 					//로그인 회원이 구매하기
 					let basketNumber = data.basketNumber;
-					alert("구매 성공");
+					alert("member의 order창으로 넘어갑니다.");
 					location.href="/order/order_member_view?basketNumber=" + basketNumber;
 				} else if(data.memberId == 0 && data.result == 'success') {
 					//비회원이 구매하기

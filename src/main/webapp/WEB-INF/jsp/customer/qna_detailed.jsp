@@ -49,7 +49,7 @@
 	<h4 class="text-success">관리자 - ${comment.content}</h4>
 	
 	<%--admin의 댓글삭제버튼--%>
-	<c:if test="${memberId == 0}">
+	<c:if test="${memberId == 1}">
 		<button class="delete_comment_btn btn btn-danger" data-comment-id="${comment.id}">댓글 삭제</button>
 	</c:if>
 	</c:forEach>	
@@ -59,7 +59,7 @@
 		<button id="qnaDeleteBtn" class="btn btn-secondary col-3" data-qna-id="${qna.id}">삭제하기</button>
 	</div>
 	
-	<c:if test="${memberId == 0}">
+	<c:if test="${memberId == 1}">
 	<hr>
 		<h5 class="mt-4">관리자 댓글</h5>
 		<div class="mt-3 d-flex justify-content-begin">

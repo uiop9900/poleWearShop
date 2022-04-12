@@ -105,7 +105,7 @@
   		</div>
   		
   		<div class="d-flex justify-content-begin align-items-center w-50">
-			<input id="useMileage" type="checkbox" class="form-control col-1" name="mileage" value="use">
+			<input id="useMileage" type="checkbox" class="form-control col-1" name="mileage" value="use" <c:if test="${member.mileage < 5000}">disabled</c:if>>
 			<div class="mt-2"><label for="useMileage" class="font-weight-bold">마일리지 사용하기</label></div>
 		</div>
 	</div>
@@ -177,7 +177,6 @@ $(document).ready(function(e) {
 	//마일리지
 	$("input[name=mileage]").on('click', function(e){
 		let value = $("input[name=mileage]:checked").val();
-		alert(value);
 		let mileage = $("#mileage").val();
 		let memberMileage = $("#mileage").data("mileage");
 		if (mileage > memberMileage) {

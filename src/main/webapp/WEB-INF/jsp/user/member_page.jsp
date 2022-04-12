@@ -29,10 +29,11 @@
 	    	</c:if>
 	    </div>
     </div>
-
+	<%--회원정보 수정버튼 --%>
     <div class="d-flex justify-content-center mt-5">
     	<button id="updateUserInfo" data-member-id="${user.id}" type="button" class="btn btn-secondary">개인 정보 수정하기</button>
     </div><hr>
+    
     
     <%--마일리지 --%>
     <div>
@@ -80,15 +81,17 @@
     	</tbody>
     </table>
 	</c:if>
-<%--상품의 리뷰 --%>
-<div class="member_order_box mt-5">
- <h1 class="text-center">Review</h1>
- <c:if test="${empty reviewList}">
- 	<h5 class="text-center">작성한 리뷰가 없습니다.</h5>
- </c:if>
- <c:if test="${not empty reviewList}">
-
- <table class="table text-center mt-5">
+	<br><hr>
+	
+	<%--상품의 리뷰 --%>
+	<div class="member_order_box mt-5">
+	 <h1 class="text-center">Review</h1>
+	 <c:if test="${empty reviewList}">
+	 	<h5 class="text-center">작성한 리뷰가 없습니다.</h5>
+	 </c:if>
+	 <c:if test="${not empty reviewList}">
+	
+	 <table class="table text-center mt-5">
     	<thead class="thead-light">
     		<tr>
     			<th>No.</th>

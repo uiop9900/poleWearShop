@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<h1 class="text-center">shop | BEST</h1>
+<h1 class="text-center">shop | ${type}</h1>
 
 <div class="mt-5 d-flex flex-wrap align-content-center justify-content-between product-box">
 	<c:forEach var="product" items="${productList}">

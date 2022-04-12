@@ -78,17 +78,17 @@ document.addEventListener('DOMContentLoaded', function() {
 			<tbody>
 				<tr>
 					<td>06:00 ~ 12:00</td>				
-					<td>25,000 원</td>				
+					<td>15,000 원</td>				
 					<td>5,000 원</td>				
 				</tr>
 				<tr>
 					<td>12:00 ~24:00</td>				
-					<td>30,000 원</td>				
+					<td>20,000 원</td>				
 					<td>5,000 원</td>				
 				</tr>
 				<tr>
 					<td>24:00 ~ 06:00</td>				
-					<td>20,000 원</td>				
+					<td>10,000 원</td>				
 					<td>5,000 원</td>				
 				</tr>
 			</tbody>
