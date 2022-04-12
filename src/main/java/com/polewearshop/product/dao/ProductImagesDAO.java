@@ -18,7 +18,7 @@ public interface ProductImagesDAO {
 	
 	public void deleteProductImagesdbByProductId(int productId);
 	
-	public void updateProductImagestoNullByimagePath(
+	public void deleteProductImageByimagePath(
 			@Param("productId") int productId,
 			@Param("productImagePath") String productImagePath);
 }

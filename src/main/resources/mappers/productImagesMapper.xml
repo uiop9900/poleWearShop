@@ -46,6 +46,14 @@
  	</update>
  	
  	
+ 	 <delete id="deleteProductImageByimagePath" parameterType="map">
+ 		DELETE FROM `productImages`
+ 		WHERE
+ 			`productId` = #{productId}
+ 		AND
+ 			`productImagePath` = #{productImagePath}
+ 	</delete>
+ 	
  	<delete id="deleteProductImagesdbByProductId">
  		DELETE FROM `productImages`
  		WHERE

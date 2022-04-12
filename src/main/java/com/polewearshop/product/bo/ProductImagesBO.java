@@ -40,7 +40,7 @@ public class ProductImagesBO {
 		productImagesDAO.deleteProductImagesdbByProductId(productId);
 	}
 	
-	public void updateProductImagestoNullByimagePath(int productId, String productImagePath) {
+	public void deleteProductImageByimagePath(int productId, String productImagePath) {
 		//실제 이미지 삭제 후 db는 null로 변환
 		try {
 			fileManager.deleteFile(productImagePath);
@@ -48,7 +48,7 @@ public class ProductImagesBO {
 			logger.error("[delete productImage] 삭제할 이미지가 없습니다. productId: {}, productImagePath: {}", productId, productImagePath);
 		}
 	
-		productImagesDAO.updateProductImagestoNullByimagePath(productId, productImagePath);;
+		productImagesDAO.deleteProductImageByimagePath(productId, productImagePath);;
 	}
 	
 	public void updateProductImagesByProductId (int productId, String loginId, MultipartFile file1, MultipartFile file2,

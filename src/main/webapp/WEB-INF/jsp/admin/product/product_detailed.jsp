@@ -93,20 +93,20 @@
 		</div>
 	
 		<div class="mt-5"><b>상품 추가 사진</b></div>
-		<div>1. 메인사진
+		<div>1. 상세사진
 			<input class="file" id="file1" type="file" multiple accept=".jpg,.gif,.jpeg,.png">
 		</div>
 		
-		<div>2. 추가사진
+		<div>2. 상세사진
 			<input class="file" id="file2" type="file" accept=".jpg,.gif,.jpeg,.png">
 		</div>
-		<div>3. 추가사진
+		<div>3. 상세사진
 			<input class="file" id="file3" type="file" accept=".jpg,.gif,.jpeg,.png">
 		</div>
-		<div>4. 추가사진
+		<div>4. 상세사진
 			<input class="file" id="file4" type="file" accept=".jpg,.gif,.jpeg,.png">
 		</div>
-		<div>5. 추가사진
+		<div>5. 상세사진
 			<input class="file" id="file5" type="file" accept=".jpg,.gif,.jpeg,.png">
 		</div>
 		

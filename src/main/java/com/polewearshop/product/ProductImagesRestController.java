@@ -33,7 +33,7 @@ public class ProductImagesRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		productImagesBO.updateProductImagestoNullByimagePath(productId, productImagePath);
+		productImagesBO.deleteProductImageByimagePath(productId, productImagePath);
 		
 		return result;
 	}
