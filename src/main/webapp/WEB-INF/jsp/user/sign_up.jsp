@@ -32,7 +32,7 @@
 		
 		<div class="d-flex justify-content-begin  align-items-center mt-3">
 			<div class="font-weight-bold col-2">전화번호*</div>
-			<input type="text" id="phoneNumber" class="form-control col-6" placeholder="전화번호를 입력하세요.">
+			<input type="text" id="phoneNumber" class="form-control col-6" placeholder="예) 01011112222">
 		</div>
 		
 		<div class="d-flex justify-content-begin  align-items-center mt-3">

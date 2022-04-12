@@ -61,7 +61,7 @@ public class StudioReserveBO {
 		String date = visitorDate;
 		String start =  date + " " +visitorTime.split("~")[0];	
 		String end =  date + " " + visitorTime.split("~")[1];	
-		calendarBO.addCalendar(visitorName, start, end, studioId);
+		calendarBO.addCalendar(visitorName, start, end, studioId, id);
 		
 		studioReserveDAO.updateNonFixReserve(id, studioId, visitorName, visitorPhoneNumber, visitorDate, visitorTime, price);
 	}
@@ -73,6 +73,7 @@ public class StudioReserveBO {
 	
 	//예약삭제
 	public void deleteStudioReserveById(int id) {
+		calendarBO.deleteCalendar(id);
 		studioReserveDAO.deleteStudioReserveById(id);
 	}
 	

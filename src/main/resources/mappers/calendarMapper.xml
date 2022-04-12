@@ -11,6 +11,7 @@
 			,`end`
 			,`backgroundColor`
 			,`studioId`
+			,`reserveId`
 		)
 		VALUES
 		(
@@ -19,6 +20,7 @@
 			,#{end}
 			,#{backgroundColor}
 			,#{studioId}
+			,#{reserveId}
 		)
 	
 	</insert>
@@ -31,11 +33,17 @@
 			,`end`
 			,`backgroundColor`
 			,`studioId`
+			,`reserveId`
 		FROM
 			`calendar`
 		WHERE
 			`studioId` = #{studioId}
 	</select>
 
-
+	<delete id="deleteCalendar">
+		DELETE FROM
+			`calendar`
+		WHERE
+		 	`reserveId` = #{reserveId}
+	</delete>
 </mapper>

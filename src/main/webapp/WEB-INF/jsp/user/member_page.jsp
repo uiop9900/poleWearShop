@@ -6,7 +6,7 @@
     
 <div class="member_order_box">
 	<%--admin은 로그아웃만 보여진다.--%>
-	<c:if test="${memberId != 0}">
+	<c:if test="${memberId != 1}">
 	
 	<%--회원 정보 --%>
     <h1 class="text-center">My Page</h1>
@@ -21,7 +21,12 @@
 	    	${user.name}<br>
 	    	${user.phoneNumber}<br>
 	    	${user.email}<br>
-	    	${user.address}
+	    	<c:if test="${empty user.address}">
+	    		<br>
+	    	</c:if>
+	    	<c:if test="${not empty user.address}">
+	    		${user.address}
+	    	</c:if>
 	    </div>
     </div>
 
@@ -39,6 +44,10 @@
     
     <%--주문 정보 --%>
     <h1 class="text-center mt-5">Order</h1>
+     <c:if test="${empty memberPageViewList}">
+	 	<h5 class="text-center">주문이 존재하지 않습니다.</h5>
+	 </c:if>
+	 <c:if test="${not empty memberPageViewList}">
     <table class="table text-center mt-4">
     	<thead class="thead-light">
     		<tr>
@@ -70,10 +79,15 @@
     		</c:forEach>
     	</tbody>
     </table>
-
+	</c:if>
 <%--상품의 리뷰 --%>
 <div class="member_order_box mt-5">
  <h1 class="text-center">Review</h1>
+ <c:if test="${empty reviewList}">
+ 	<h5 class="text-center">작성한 리뷰가 없습니다.</h5>
+ </c:if>
+ <c:if test="${not empty reviewList}">
+
  <table class="table text-center mt-5">
     	<thead class="thead-light">
     		<tr>
@@ -102,6 +116,7 @@
 			</c:forEach>
 		</tbody>    
     </table>
+ </c:if>
 </div>
 
 

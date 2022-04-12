@@ -17,12 +17,12 @@
 			<div class="font-weight-bold">현재 사진</div>
 			<img src="${notice.noticeImage}"  alt="notice_image"><br>
 		</c:if>
-		<c:if test="${memberId == 951011}">
+		<c:if test="${memberId == 1}">
 		<input type="file" id="file" accept=".jpg,.gif,.jpeg,.png">
 		</c:if>
 	</div>
 	
-	<c:if test="${memberId == 0}">
+	<c:if test="${memberId == 1}">
 	<div class="mt-4 d-flex justify-content-around">
 		<button id="deleteBtn" class="btn btn-secondary col-5" data-notice-id="${notice.id}" >삭제하기</button>
 		<button id="modifyBtn" class="btn btn-primary col-5" data-notice-id="${notice.id}">수정하기</button>

@@ -32,7 +32,7 @@
 		</tbody>    
     </table>
     
-    <c:if test="${memberId == 0}" >
+    <c:if test="${memberId == 1}" >
     	<div>
     		<a href="/customer/notice_create_view" class="btn btn-primary">글쓰기</a>
     	</div>

@@ -15,7 +15,10 @@ public interface CalendarDAO {
 			@Param("start") String start,
 			@Param("end") String end, 
 			@Param("backgroundColor") String backgroundColor,
-			@Param("studioId") int studioId); 
+			@Param("studioId") int studioId,
+			@Param("reserveId") int reserveId); 
 	
 	public List<Calendar> selectCalendarList(int studioId);
+	
+	public void deleteCalendar(int reserveId);
 }

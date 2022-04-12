@@ -135,7 +135,7 @@ $(document).ready(function(e){
 		});
 	});
 	
-	
+	//예약 삭제
 	$("#deleteReserveBtn").on('click', function(e){
 		let reserveId = $(this).data("stdio-reserve-id");
 
