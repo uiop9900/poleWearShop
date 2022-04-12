@@ -81,6 +81,12 @@
 <%--상품의 리뷰 --%>
 <div class="member_order_box mt-5">
  <h1 class="text-center">Review</h1>
+ <%--없을시, 문구 출력 --%>
+ <c:if test="${empty reviewList}"> 
+ 	<h5 class="text-center">아직 작성된 리뷰가 없습니다.</h5>
+ </c:if>
+ <%--있으면 리뷰리스트 --%>
+ <c:if test="${not empty reviewList}" >
  <table class="table text-center mt-5">
     	<thead class="thead-light">
     		<tr>
@@ -109,7 +115,7 @@
 			</c:forEach>
 		</tbody>    
     </table>
-    
+</c:if>
     <%--number 페이징 --%>
 	<c:set var="lastPage" value="${Math.ceil(reviewNumber / 5)}"/>
 	<div class="mt-5 text-center paging">

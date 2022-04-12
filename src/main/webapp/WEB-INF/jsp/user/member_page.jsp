@@ -6,7 +6,7 @@
     
 <div class="member_order_box">
 	<%--admin은 로그아웃만 보여진다.--%>
-	<c:if test="${memberId != 951011}">
+	<c:if test="${memberId != 0}">
 	
 	<%--회원 정보 --%>
     <h1 class="text-center">My Page</h1>

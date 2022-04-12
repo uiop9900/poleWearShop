@@ -19,7 +19,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		
 		//로그인이 되어있지 않는 상태에서 admin들어오면 admin으로 내보낸다.
 		String uri = request.getRequestURI();
-		if (adminId == null && (uri.startsWith("/admin/select") || uri.startsWith("/admin/product")) ) {
+		if (adminId == null && (uri.startsWith("/admin/select") || uri.startsWith("/admin/product") || uri.startsWith("/admin/studio")) ) {
 			
 			response.sendRedirect("/admin/sign_in_view");
 			return false;
