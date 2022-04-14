@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.basket.model.BasketView;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/basket")
+@ApiIgnore 
 public class BasketController {
 	
 	@Autowired

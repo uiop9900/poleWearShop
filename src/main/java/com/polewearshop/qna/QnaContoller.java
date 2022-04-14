@@ -13,8 +13,11 @@ import com.polewearshop.comment.model.Comment;
 import com.polewearshop.qna.bo.QnaBO;
 import com.polewearshop.qna.model.Qna;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/customer")
+@ApiIgnore 
 public class QnaContoller {
 
 	@Autowired

@@ -19,8 +19,11 @@ import com.polewearshop.studio.bo.StudioReserveBO;
 import com.polewearshop.studio.model.StudioImages;
 import com.polewearshop.studio.model.StudioReserve;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/admin")
+@ApiIgnore 
 public class AdminController {
 
 	@Autowired

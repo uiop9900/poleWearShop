@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
+@ApiIgnore 
 public class TestController {
 
 	@Autowired

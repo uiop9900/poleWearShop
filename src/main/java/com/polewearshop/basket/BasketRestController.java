@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class BasketRestController {
     @ApiOperation(
             value = "장바구니 목록"
             , notes = "유저가 장바구니에 담으면 상품이 목록에 들어간다.")
-	@RequestMapping("/basket_list")
+	@GetMapping("/basket_list")
 	public Map<String, Object> basketList(
 			@ModelAttribute Basket basket,
 			HttpServletRequest request

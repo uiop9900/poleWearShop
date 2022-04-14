@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.polewearshop.order.bo.OrderProcessBO;
 import com.polewearshop.order.model.OrderProductView;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/nonMember")
+@ApiIgnore 
 public class NonMemberController {
 
 	@Autowired

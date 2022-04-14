@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class CommentRestController {
 	@ApiOperation(
             value = "리뷰 코멘트 저장"
             , notes = "admin이 작성한 comment를 작성한다.")
-	@RequestMapping("/comment_list")
+	@GetMapping("/comment_list")
 	public Map<String, Object> reviewComment(
 			@RequestParam("type") String type,
 			@RequestParam("boardId") int boardId,

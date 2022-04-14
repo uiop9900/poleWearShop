@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,7 @@ public class OrderRestController {
     @ApiOperation(
             value = "상품페이지에서 구매하기 버튼"
             , notes = "상품세부페이지에서 구매하기 버튼을 누르면 basket에 상품정보가 담기고 session에 basketNumber를 담는다.")
-	@RequestMapping("/order/basket_list")
+    @GetMapping("/order/basket_list")
 	public Map<String, Object> orderBasketList(
 			HttpServletRequest request,
 			@ModelAttribute Basket basket
@@ -65,7 +66,7 @@ public class OrderRestController {
     @ApiOperation(
             value = "회원ver의 order창"
             , notes = "order창에서 입력받은 정보를 저장한다.")
-    @RequestMapping("/order_member")
+    @GetMapping("/order_member")
     public Map<String, Object> orderMember(
     		@ModelAttribute Order order,
     		@RequestParam("mileage") int mileage, 
@@ -88,7 +89,7 @@ public class OrderRestController {
     @ApiOperation(
             value = "비회원ver의 order창"
             , notes = "order창에서 입력받은 정보를 저장한다.")
-	@RequestMapping("/order_nonMember")
+    @GetMapping("/order_nonMember")
 	public Map<String, Object> orderNonMember(
 			@ModelAttribute NonMember nonMember,
 			@RequestParam("basketNumber") int basketNumber,

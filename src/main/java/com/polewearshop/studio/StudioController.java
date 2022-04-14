@@ -13,8 +13,11 @@ import com.polewearshop.studio.bo.StudioImagesBO;
 import com.polewearshop.studio.model.Studio;
 import com.polewearshop.studio.model.StudioImages;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/studio")
+@ApiIgnore 
 public class StudioController {
 
 	@Autowired

@@ -15,8 +15,11 @@ import com.polewearshop.product.model.ProductViewCompact;
 import com.polewearshop.review.bo.ReviewBO;
 import com.polewearshop.review.model.Review;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/product")
+@ApiIgnore 
 public class ProductController {
 	
 	@Autowired

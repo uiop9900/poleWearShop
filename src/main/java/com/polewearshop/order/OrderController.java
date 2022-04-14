@@ -17,8 +17,11 @@ import com.polewearshop.basket.model.BasketView;
 import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/order")
+@ApiIgnore 
 public class OrderController {
 	
 	@Autowired

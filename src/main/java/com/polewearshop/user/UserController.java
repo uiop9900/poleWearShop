@@ -15,8 +15,11 @@ import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
 import com.polewearshop.user.model.MemberOrderView;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/user")
+@ApiIgnore 
 public class UserController {
 
 	@Autowired

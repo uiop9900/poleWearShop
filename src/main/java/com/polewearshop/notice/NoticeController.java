@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.polewearshop.notice.bo.NoticeBO;
 import com.polewearshop.notice.model.Notice;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/customer")
+@ApiIgnore 
 public class NoticeController {
 
 	@Autowired
