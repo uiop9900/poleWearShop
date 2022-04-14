@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,8 +16,11 @@ import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
 import com.polewearshop.user.model.MemberOrderView;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/user")
+@ApiIgnore 
 public class UserController {
 
 	@Autowired
@@ -29,28 +33,28 @@ public class UserController {
 	private OrderProcessBO orderProcessBO;
 	
 	// 로그인화면
-	@RequestMapping("/sign_in_view")
+	@GetMapping("/sign_in_view")
 	public String signInview(Model model) {
 		model.addAttribute("viewName", "user/sign_in");
 		return "template/layout";
 	}
 	
 	// 회원가입 화면
-	@RequestMapping("/sign_up_view")
+	@GetMapping("/sign_up_view")
 	public String signUpView(Model model) {
 		model.addAttribute("viewName", "user/sign_up");
 		return "template/layout";
 	}
 	
 	// 비회원 주문조회
-	@RequestMapping("/nonMember/orderNumber_check_view")
+	@GetMapping("/nonMember/orderNumber_check_view")
 	public String nonMemberOrderNumberCheck(Model model) {
 		model.addAttribute("viewName", "user/orderNumber_check");
 		return "template/layout";
 	}
 	
 	//유저화면
-	@RequestMapping("/member_page_view")
+	@GetMapping("/member_page_view")
 	public String memberPageView(
 			Model model,
 			@RequestParam("memberLoginId") String loginId) {
@@ -68,7 +72,7 @@ public class UserController {
 	}
 	
 	//유저info update 화면
-	@RequestMapping("/member_update_page_view")
+	@GetMapping("/member_update_page_view")
 	public String memberUpdatePageView(
 			Model model,
 			@RequestParam("memberId") int memberId

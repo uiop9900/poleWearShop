@@ -1,7 +1,6 @@
 package com.polewearshop.user;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.polewearshop.basket.model.Basket;
 import com.polewearshop.user.bo.NonMemberBO;
 import com.polewearshop.user.model.NonMember;
 

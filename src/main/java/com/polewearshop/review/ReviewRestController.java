@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,7 +51,7 @@ public class ReviewRestController {
     @ApiOperation(
             value = "리뷰 업데이트"
             , notes = "이미 작성된 리뷰는 업데이트되고 작성하지 않은 리뷰는 새롭게 쓴다.")
-	@RequestMapping("/review_is_duplicate")
+    @GetMapping("/review_is_duplicate")
     Map<String, Object> reviewIsDuplicate(
     		@RequestParam("productId") int productId,
     		@RequestParam("logindId") String memberLoginId

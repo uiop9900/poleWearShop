@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ public class QnaRestController {
 	@ApiOperation(
             value = "QnA 작성"
             , notes = "QnA를 작성하면 DB에 insert됩니다.")
-	@RequestMapping("/qna_create")
+	@GetMapping("/qna_create")
 	public Map<String, Object> qnaCreate(
 			@RequestParam("category") String category, 
 			@RequestParam("subject") String subject, 

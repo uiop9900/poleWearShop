@@ -5,19 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.comment.bo.CommentBO;
 import com.polewearshop.comment.model.Comment;
-import com.polewearshop.product.bo.ProductBO;
-import com.polewearshop.product.model.Product;
-import com.polewearshop.product.model.ProductViewCompact;
 import com.polewearshop.review.bo.ReviewBO;
 import com.polewearshop.review.model.Review;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/customer")
+@ApiIgnore 
 public class ReviewController {
 
 	@Autowired
@@ -27,7 +28,7 @@ public class ReviewController {
 	private ReviewBO reviewBO;
 
 	// 리뷰 쓰기 화면
-	@RequestMapping("/review_create_view")
+	@GetMapping("/review_create_view")
 	public String reviewCreateView(Model model, 
 			@RequestParam("productId") int productId,
 			@RequestParam("productName") String productName, 
@@ -44,7 +45,7 @@ public class ReviewController {
 
 
 	//리뷰 디테일 화면
-	 @RequestMapping("/review_detailed_view") public String reviewDetailedView(
+	@GetMapping("/review_detailed_view") public String reviewDetailedView(
 			 Model model,
 			 @RequestParam("reviewId") int reviewId,
 			 @RequestParam("productId") int productId,

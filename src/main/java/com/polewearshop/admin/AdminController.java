@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,19 +34,19 @@ public class AdminController {
 	private ProductBO productBO;
 	
 	//admin 로그인
-	@RequestMapping("/sign_in_view")
+	@GetMapping("/sign_in_view")
 	public String adminSignIn() {
 		return "admin/sign_in";
 	}
 	
 	// admin select창 - product, studio
-	@RequestMapping("/select_view")
+	@GetMapping("/select_view")
 	public String adminSelectView() {
 		return "admin/select";
 	}
 	
 	// admin product - list
-	@RequestMapping("/product/product_list_view")
+	@GetMapping("/product/product_list_view")
 	public String adminProductView(
 			@RequestParam(value="type", required=false) String type,
 			Model model) {
@@ -64,13 +65,13 @@ public class AdminController {
 	
 	
 	// admin product - 새로운 상품 추가
-	@RequestMapping("/product/product_create_view")
+	@GetMapping("/product/product_create_view")
 	public String admingCreateProduct() {
 		return "admin/product/product_create";
 	}
 	
 	// admin product - 상품 update, delete
-	@RequestMapping("/product/product_detailed_view")
+	@GetMapping("/product/product_detailed_view")
 	public String adminProductDetailedView(
 			@RequestParam("productId") int productId,
 			Model model
@@ -82,7 +83,7 @@ public class AdminController {
 	}
 	
 	//admin studio_main화면
-	@RequestMapping("/studio/main_view")
+	@GetMapping("/studio/main_view")
 	public String adminStudioMainView(Model model,
 			@RequestParam(value="studioId", required=false) Integer studioId,
 			@RequestParam(value="visitorDate", required=false) String date,
@@ -99,7 +100,7 @@ public class AdminController {
 	}
 	
 	//admin-update-view
-	@RequestMapping("/studio/update_reserve_list_view")
+	@GetMapping("/studio/update_reserve_list_view")
 	public String adminStudioUpdateReserveListView(Model model,
 			@RequestParam("reserveId") int reserveId ) {
 		
@@ -111,7 +112,7 @@ public class AdminController {
 	
 	
 	//로그아웃
-	@RequestMapping("/sign_out")
+	@GetMapping("/sign_out")
 	public String signOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("adminId");

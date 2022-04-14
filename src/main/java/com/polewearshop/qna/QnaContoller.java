@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,8 +14,11 @@ import com.polewearshop.comment.model.Comment;
 import com.polewearshop.qna.bo.QnaBO;
 import com.polewearshop.qna.model.Qna;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/customer")
+@ApiIgnore 
 public class QnaContoller {
 
 	@Autowired
@@ -23,7 +27,7 @@ public class QnaContoller {
 	@Autowired
 	private CommentBO commentBO;
 	
-	@RequestMapping("/qna_list_view")
+	@GetMapping("/qna_list_view")
 	public String qnaListView(Model model,
 			@RequestParam(value="vpage", required=false) Integer page) {
 
@@ -42,13 +46,13 @@ public class QnaContoller {
 		return "template/layout";
 	}
 	
-	@RequestMapping("/qna_create_view")
+	@GetMapping("/qna_create_view")
 	public String qnaCreateView(Model model) {
 		model.addAttribute("viewName", "customer/qna_create");
 		return "template/layout";
 	}
 	
-	@RequestMapping("/qna_detailed_view")
+	@GetMapping("/qna_detailed_view")
 	public String qnaDetailedView(
 			Model model,
 			@RequestParam("qnaId") int qnaId) {

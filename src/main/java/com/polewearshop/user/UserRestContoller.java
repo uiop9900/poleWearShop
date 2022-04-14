@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +37,7 @@ public class UserRestContoller {
     @ApiOperation(
             value = "로그아웃"
             , notes = "로그아웃시, 장바구니의 목록을 비운다.")
-	@RequestMapping("/sign_out")
+    @GetMapping("/sign_out")
 	public Map<String, Object> signOut(
 			HttpServletRequest request,
 			@RequestParam(value="basketNumber",required=false) Integer basketNumber ){
@@ -150,7 +150,7 @@ public class UserRestContoller {
     @ApiOperation(
             value = "개인정보 업데이트"
             , notes = "입력받은 정보들로 개인정보를 수정한다.")
-    @RequestMapping("/member_update")
+    @GetMapping("/member_update")
     public Map<String, Object> memberUpdate(
     		@RequestParam(value="address", required=false) String address,
     		@RequestParam("name") String name,

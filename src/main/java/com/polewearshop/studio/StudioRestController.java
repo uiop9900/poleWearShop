@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +23,7 @@ public class StudioRestController {
     @ApiOperation(
             value = "스튜디오 예약"
             , notes = "유저가 홈페이지에서 예약을 남긴다.")
-	@RequestMapping("/studio_reserve")
+    @GetMapping("/studio_reserve")
 	public Map<String, Object> studioReserve(
 			@RequestParam("studioId") int studioId,
 			@RequestParam("visitorName") String visitorName,
