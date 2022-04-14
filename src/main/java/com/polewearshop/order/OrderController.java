@@ -8,11 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.polewearshop.basket.bo.BasketBO;
-import com.polewearshop.basket.model.Basket;
 import com.polewearshop.basket.model.BasketView;
 import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
@@ -31,14 +31,14 @@ public class OrderController {
 	private BasketBO basketBO;
 	
 	// 구매하기버튼 - 로그인
-	@RequestMapping("/sign_in_view")
+	@GetMapping("/sign_in_view")
 	public String orderSignInView(Model model) {
 		model.addAttribute("viewName", "order/sign_in");
 		return "template/layout";
 	}
 	
 	//비회원-구매하기-로그인-멤버구매
-	@RequestMapping("/order_member_view")
+	@GetMapping("/order_member_view")
 	public String orderMemberView(
 			Model model,
 			@RequestParam("basketNumber") int basketNumber,
@@ -71,7 +71,7 @@ public class OrderController {
 	
 	
 	// 비회원으로 구매하기
-	@RequestMapping("/order_nonMember_view")
+	@GetMapping("/order_nonMember_view")
 	public String orderNonMemberView(
 			Model model,
 			HttpServletRequest request,

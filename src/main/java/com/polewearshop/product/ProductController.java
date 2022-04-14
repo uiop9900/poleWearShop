@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,7 +34,7 @@ public class ProductController {
 	
 	
 	// 쇼핑몰 메인 화면
-	@RequestMapping("/main_view")
+	@GetMapping("/main_view")
 	public String main(Model model) {
 		model.addAttribute("viewName", "product/main");
 		
@@ -43,7 +44,7 @@ public class ProductController {
 	}
 	
 	// 쇼핑몰 세부화면
-	@RequestMapping("/shop_view")
+	@GetMapping("/shop_view")
 	public String shopPageView(
 			@RequestParam("type") String type,
 			Model model
@@ -58,7 +59,7 @@ public class ProductController {
 	}
 	
 	//상품세부화면
-	@RequestMapping("/shop_detailed_view")
+	@GetMapping("/shop_detailed_view")
 	public String shopDetailedView(
 			Model model,
 			@RequestParam("type") String type,
@@ -92,7 +93,7 @@ public class ProductController {
 	}
 	
 	// 쇼핑몰 베스트화면
-	@RequestMapping("/best_list_view")
+	@GetMapping("/best_list_view")
 	public String bestView(Model model) {
 		
 		List<ProductViewCompact> productList = productBO.generateProductViewCompactListforBest();

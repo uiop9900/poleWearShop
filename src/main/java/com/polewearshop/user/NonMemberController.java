@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,7 +23,7 @@ public class NonMemberController {
 	private OrderProcessBO orderProcessBO;
 	
 	//주문번호로 조회하기
-	@RequestMapping("/orderNumber_check_result_view")
+	@GetMapping("/orderNumber_check_result_view")
 	public String checkOrderNumberView(Model model,
 			@RequestParam("orderNumber") String orderNumber) {
 		

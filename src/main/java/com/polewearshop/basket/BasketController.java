@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,7 +23,7 @@ public class BasketController {
 	private BasketBO basketBO;
 	
 	//회원의 장바구니 화면
-	@RequestMapping("/basket/member_basket_list_view")
+	@GetMapping("/basket/member_basket_list_view")
 	public String memberBasketListView(Model model,
 			@RequestParam("basketNumber") int basketNumber,
 			@RequestParam("memberId") int memberId) {
@@ -35,7 +36,7 @@ public class BasketController {
 	}
 	
 	//비회원의 장바구니 화면
-	@RequestMapping("/basket/nonMember_basket_list_view")
+	@GetMapping("/basket/nonMember_basket_list_view")
 	public String nonMemberBasketListView(Model model,
 			@RequestParam("basketNumber") int basketNumber) {
 		
@@ -47,7 +48,7 @@ public class BasketController {
 	}
 	
 	//장바구니가 비었을때 화면
-	@RequestMapping("/basket/nothing_view")
+	@GetMapping("/basket/nothing_view")
 	public String nonMemberBasketListView(Model model) {
 		
 		model.addAttribute("viewName", "basket/nothing");

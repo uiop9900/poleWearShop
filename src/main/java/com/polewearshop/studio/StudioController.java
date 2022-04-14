@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,14 +28,14 @@ public class StudioController {
 	private StudioBO studioBO;
 	
 	//studio main
-	@RequestMapping("/main_view")
+	@GetMapping("/main_view")
 	public String studioMainView(Model model) {
 		model.addAttribute("viewName", "studio/main");
 		return "template/layout";
 	}
 	
 	//시설안내
-	@RequestMapping("/facility_info_view")
+	@GetMapping("/facility_info_view")
 	public String studioBranchView(
 			Model model,
 			@RequestParam("studioId") int studioId)
@@ -49,7 +50,7 @@ public class StudioController {
 	}
 	
 	//이용안내
-	@RequestMapping("/use_info_view")
+	@GetMapping("/use_info_view")
 	public String userInfoView(
 			Model model,
 			@RequestParam("studioId") int studioId)
@@ -63,7 +64,7 @@ public class StudioController {
 	}
 	
 	//예약현황
-	@RequestMapping("/reserve_status_view")
+	@GetMapping("/reserve_status_view")
 	public String reserveStatusView(
 			Model model,
 			@RequestParam("studioId") int studioId)
@@ -77,7 +78,7 @@ public class StudioController {
 	}
 	
 	//오시는길
-	@RequestMapping("/directions_view")
+	@GetMapping("/directions_view")
 	public String directionView(
 			Model model,
 			@RequestParam("studioId") int studioId)
