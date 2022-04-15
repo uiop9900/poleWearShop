@@ -40,7 +40,7 @@ public class FileManagerService {
 	}
 	
 	public void deleteFile(String imagePath) throws IOException{
-		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/imagePath/", ""));
+		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/upload_images/", ""));
 		
 		//사진 삭제
 		if (Files.exists(path)) {
