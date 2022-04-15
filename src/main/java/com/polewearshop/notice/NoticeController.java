@@ -12,16 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.polewearshop.notice.bo.NoticeBO;
 import com.polewearshop.notice.model.Notice;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/customer")
-@ApiIgnore 
 public class NoticeController {
 
 	@Autowired
 	private NoticeBO noticeBO;
 	
+	@ApiOperation(
+            value = "notice 목록 화면"
+            , notes = "notice 목록 화면")
 	@GetMapping("/notice_list_view")
 	public String noticeListView(Model model) {
 		
@@ -32,6 +34,9 @@ public class NoticeController {
 		return "template/layout";
 	}
 	
+	@ApiOperation(
+            value = "notice 생성 화면"
+            , notes = "notice 생성 화면")
 	@GetMapping("/notice_create_view")
 	public String noticeCreateView(Model model) {
 		
@@ -39,6 +44,9 @@ public class NoticeController {
 		return "template/layout";
 	}
 	
+	@ApiOperation(
+            value = "notice 세부 화면"
+            , notes = "notice 리스트에서 클릭 후 상세 notice 화면")
 	@GetMapping("/notice_detailed_view")
 	public String noticeDetailedView(
 			@RequestParam("noticeId") int noticeId,

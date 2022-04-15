@@ -16,11 +16,10 @@ import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
 import com.polewearshop.user.model.MemberOrderView;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/user")
-@ApiIgnore 
 public class UserController {
 
 	@Autowired
@@ -33,6 +32,9 @@ public class UserController {
 	private OrderProcessBO orderProcessBO;
 	
 	// 로그인화면
+	@ApiOperation(
+            value = "로그인 화면"
+            , notes = "로그인 화면")
 	@GetMapping("/sign_in_view")
 	public String signInview(Model model) {
 		model.addAttribute("viewName", "user/sign_in");
@@ -40,6 +42,9 @@ public class UserController {
 	}
 	
 	// 회원가입 화면
+	@ApiOperation(
+            value = "회원가입 화면"
+            , notes = "회원가입 화면")
 	@GetMapping("/sign_up_view")
 	public String signUpView(Model model) {
 		model.addAttribute("viewName", "user/sign_up");
@@ -47,6 +52,9 @@ public class UserController {
 	}
 	
 	// 비회원 주문조회
+	@ApiOperation(
+            value = "비회원의 주문번호"
+            , notes = "최초의 로그인 화면에서 들어올 수 있는 주문번호로 조회하기 화면")
 	@GetMapping("/nonMember/orderNumber_check_view")
 	public String nonMemberOrderNumberCheck(Model model) {
 		model.addAttribute("viewName", "user/orderNumber_check");
@@ -54,6 +62,9 @@ public class UserController {
 	}
 	
 	//유저화면
+	@ApiOperation(
+            value = "회원페이지"
+            , notes = "로그인 후 들어오는 회원 페이지")
 	@GetMapping("/member_page_view")
 	public String memberPageView(
 			Model model,
@@ -72,6 +83,9 @@ public class UserController {
 	}
 	
 	//유저info update 화면
+	@ApiOperation(
+            value = "회원 정보 수정 화면"
+            , notes = "회원 정보를 수정할 수 있는 화면")
 	@GetMapping("/member_update_page_view")
 	public String memberUpdatePageView(
 			Model model,

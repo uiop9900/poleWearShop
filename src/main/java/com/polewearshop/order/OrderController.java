@@ -17,11 +17,10 @@ import com.polewearshop.basket.model.BasketView;
 import com.polewearshop.user.bo.UserBO;
 import com.polewearshop.user.model.Member;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/order")
-@ApiIgnore 
 public class OrderController {
 	
 	@Autowired
@@ -31,6 +30,9 @@ public class OrderController {
 	private BasketBO basketBO;
 	
 	// 구매하기버튼 - 로그인
+	@ApiOperation(
+            value = "로그인 화면2"
+            , notes = "비로그인상태에서 제품 상세페이지의 구매하기 버튼을 누르면 이동되는 로그인 화면")
 	@GetMapping("/sign_in_view")
 	public String orderSignInView(Model model) {
 		model.addAttribute("viewName", "order/sign_in");
@@ -38,6 +40,9 @@ public class OrderController {
 	}
 	
 	//비회원-구매하기-로그인-멤버구매
+	@ApiOperation(
+            value = "회원의 구매 화면"
+            , notes = "로그인화면에서 로그인 시 이동하는 회원의 구매 화면")
 	@GetMapping("/order_member_view")
 	public String orderMemberView(
 			Model model,
@@ -71,6 +76,9 @@ public class OrderController {
 	
 	
 	// 비회원으로 구매하기
+	@ApiOperation(
+            value = "비회원으로 구매하기"
+            , notes = "로그인하지 않고 비회원으로 구매하는 화면")
 	@GetMapping("/order_nonMember_view")
 	public String orderNonMemberView(
 			Model model,

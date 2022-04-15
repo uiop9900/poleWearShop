@@ -16,11 +16,10 @@ import com.polewearshop.product.model.ProductViewCompact;
 import com.polewearshop.review.bo.ReviewBO;
 import com.polewearshop.review.model.Review;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/product")
-@ApiIgnore 
 public class ProductController {
 	
 	@Autowired
@@ -34,6 +33,9 @@ public class ProductController {
 	
 	
 	// 쇼핑몰 메인 화면
+	@ApiOperation(
+            value = "쇼핑몰 메인 화면"
+            , notes = "쇼핑몰의 첫 화면")
 	@GetMapping("/main_view")
 	public String main(Model model) {
 		model.addAttribute("viewName", "product/main");
@@ -44,6 +46,9 @@ public class ProductController {
 	}
 	
 	// 쇼핑몰 세부화면
+	@ApiOperation(
+            value = "쇼핑몰 세부 화면"
+            , notes = "쇼핑몰의 메뉴를 이용해 들어가는 쇼핑몰의 세부 화면")
 	@GetMapping("/shop_view")
 	public String shopPageView(
 			@RequestParam("type") String type,
@@ -59,6 +64,9 @@ public class ProductController {
 	}
 	
 	//상품세부화면
+	@ApiOperation(
+            value = "상품 세부 화면"
+            , notes = "쇼핑몰안에서 상품 사진을 클릭해 들어가는 상품의 세부화면")
 	@GetMapping("/shop_detailed_view")
 	public String shopDetailedView(
 			Model model,
@@ -93,6 +101,9 @@ public class ProductController {
 	}
 	
 	// 쇼핑몰 베스트화면
+	@ApiOperation(
+            value = "쇼핑몰 best 상품 화면"
+            , notes = "쇼핑몰의 재고가 없는 순으로 나열한 Best 상품 화면")
 	@GetMapping("/best_list_view")
 	public String bestView(Model model) {
 		
