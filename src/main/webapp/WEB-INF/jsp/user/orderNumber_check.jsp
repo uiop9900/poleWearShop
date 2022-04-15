@@ -9,7 +9,7 @@
 		<input type="text" id="name" class="form-control mt-2" placeholder="이름을 입력하세요.">
 
 		<div class="mt-3 font-weight-bold">주문번호</div>
-		<input type="password" id="orderNumber" class="form-control mt-2" placeholder="주문번호를 입력하세요.">
+		<input type="text" id="orderNumber" class="form-control mt-2" placeholder="주문번호를 입력하세요.">
 		
 		<button type="submit" id="checkOrederNumber" class="btn btn-primary w-100 mt-4 font-weight-bold">조회하기</button>
 		</form>
