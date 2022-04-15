@@ -20,6 +20,8 @@ import com.polewearshop.studio.bo.StudioReserveBO;
 import com.polewearshop.studio.model.StudioImages;
 import com.polewearshop.studio.model.StudioReserve;
 
+import io.swagger.annotations.ApiOperation;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -34,18 +36,27 @@ public class AdminController {
 	private ProductBO productBO;
 	
 	//admin 로그인
+	@ApiOperation(
+            value = "어드민 로그인"
+            , notes = "어드민 로그인 화면")
 	@GetMapping("/sign_in_view")
 	public String adminSignIn() {
 		return "admin/sign_in";
 	}
 	
 	// admin select창 - product, studio
+	@ApiOperation(
+            value = "어드민 select"
+            , notes = "어드민 로그인후, product와 studio 선택 화면")
 	@GetMapping("/select_view")
 	public String adminSelectView() {
 		return "admin/select";
 	}
 	
 	// admin product - list
+	@ApiOperation(
+            value = "어드민 product"
+            , notes = "어드민 상품 리스트 화면")
 	@GetMapping("/product/product_list_view")
 	public String adminProductView(
 			@RequestParam(value="type", required=false) String type,
@@ -65,12 +76,18 @@ public class AdminController {
 	
 	
 	// admin product - 새로운 상품 추가
+	@ApiOperation(
+            value = "어드민 product create"
+            , notes = "어드민 상품 추가화면")
 	@GetMapping("/product/product_create_view")
 	public String admingCreateProduct() {
 		return "admin/product/product_create";
 	}
 	
 	// admin product - 상품 update, delete
+	@ApiOperation(
+            value = "어드민 product detailed"
+            , notes = "어드민 상품 리스트에서 상품클릭으로 상품 세부 화면")
 	@GetMapping("/product/product_detailed_view")
 	public String adminProductDetailedView(
 			@RequestParam("productId") int productId,
@@ -83,6 +100,9 @@ public class AdminController {
 	}
 	
 	//admin studio_main화면
+	@ApiOperation(
+            value = "어드민 studio"
+            , notes = "어드민 스튜디오의 메인 화면")
 	@GetMapping("/studio/main_view")
 	public String adminStudioMainView(Model model,
 			@RequestParam(value="studioId", required=false) Integer studioId,
@@ -100,6 +120,9 @@ public class AdminController {
 	}
 	
 	//admin-update-view
+	@ApiOperation(
+            value = "어드민 studio의 예약을 update하기 위한 화면"
+            , notes = "어드민 스튜디오에서 예약 목록을 눌러 보는 세부화면 ")
 	@GetMapping("/studio/update_reserve_list_view")
 	public String adminStudioUpdateReserveListView(Model model,
 			@RequestParam("reserveId") int reserveId ) {
@@ -112,6 +135,9 @@ public class AdminController {
 	
 	
 	//로그아웃
+	@ApiOperation(
+            value = "어드민 로그아웃"
+            , notes = "어드민 로그아웃 화면")
 	@GetMapping("/sign_out")
 	public String signOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();

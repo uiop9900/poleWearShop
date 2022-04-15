@@ -14,11 +14,10 @@ import com.polewearshop.comment.model.Comment;
 import com.polewearshop.qna.bo.QnaBO;
 import com.polewearshop.qna.model.Qna;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/customer")
-@ApiIgnore 
 public class QnaContoller {
 
 	@Autowired
@@ -27,6 +26,9 @@ public class QnaContoller {
 	@Autowired
 	private CommentBO commentBO;
 	
+	@ApiOperation(
+            value = "QnA 목록 화면"
+            , notes = "QnA 목록 화면")
 	@GetMapping("/qna_list_view")
 	public String qnaListView(Model model,
 			@RequestParam(value="vpage", required=false) Integer page) {
@@ -52,6 +54,9 @@ public class QnaContoller {
 		return "template/layout";
 	}
 	
+	@ApiOperation(
+            value = "QnA 상세 화면"
+            , notes = "QnA 목록에서 클릭으로 들어가는 QnA 상세 화면")
 	@GetMapping("/qna_detailed_view")
 	public String qnaDetailedView(
 			Model model,

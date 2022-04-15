@@ -14,11 +14,10 @@ import com.polewearshop.comment.model.Comment;
 import com.polewearshop.review.bo.ReviewBO;
 import com.polewearshop.review.model.Review;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/customer")
-@ApiIgnore 
 public class ReviewController {
 
 	@Autowired
@@ -28,6 +27,9 @@ public class ReviewController {
 	private ReviewBO reviewBO;
 
 	// 리뷰 쓰기 화면
+	@ApiOperation(
+            value = "review 글쓰기 화면"
+            , notes = "review 글쓰기 화면")
 	@GetMapping("/review_create_view")
 	public String reviewCreateView(Model model, 
 			@RequestParam("productId") int productId,
@@ -45,6 +47,9 @@ public class ReviewController {
 
 
 	//리뷰 디테일 화면
+	@ApiOperation(
+            value = "review 상세 화면"
+            , notes = "review 목록에서 클릭 후 들어가는 review 상세 화면")
 	@GetMapping("/review_detailed_view") public String reviewDetailedView(
 			 Model model,
 			 @RequestParam("reviewId") int reviewId,

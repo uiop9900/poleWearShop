@@ -14,11 +14,10 @@ import com.polewearshop.studio.bo.StudioImagesBO;
 import com.polewearshop.studio.model.Studio;
 import com.polewearshop.studio.model.StudioImages;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/studio")
-@ApiIgnore 
 public class StudioController {
 
 	@Autowired
@@ -28,6 +27,9 @@ public class StudioController {
 	private StudioBO studioBO;
 	
 	//studio main
+	@ApiOperation(
+            value = "studio 메인 화면"
+            , notes = "studio 메인화면으로 지점을 선택할 수 있는 화면")
 	@GetMapping("/main_view")
 	public String studioMainView(Model model) {
 		model.addAttribute("viewName", "studio/main");
@@ -35,6 +37,9 @@ public class StudioController {
 	}
 	
 	//시설안내
+	@ApiOperation(
+            value = "studio 시설 안내 화면"
+            , notes = "studio 시설 안내 화면")
 	@GetMapping("/facility_info_view")
 	public String studioBranchView(
 			Model model,
@@ -50,6 +55,9 @@ public class StudioController {
 	}
 	
 	//이용안내
+	@ApiOperation(
+            value = "studio 이용 안내 화면"
+            , notes = "studio 이용 안내 화면")
 	@GetMapping("/use_info_view")
 	public String userInfoView(
 			Model model,
@@ -64,6 +72,9 @@ public class StudioController {
 	}
 	
 	//예약현황
+	@ApiOperation(
+            value = "studio 예약 현황 화면"
+            , notes = "studio 예약 현황 화면")
 	@GetMapping("/reserve_status_view")
 	public String reserveStatusView(
 			Model model,
@@ -78,6 +89,9 @@ public class StudioController {
 	}
 	
 	//오시는길
+	@ApiOperation(
+            value = "studio 오시는 길 화면"
+            , notes = "studio 오시는 길 화면")
 	@GetMapping("/directions_view")
 	public String directionView(
 			Model model,

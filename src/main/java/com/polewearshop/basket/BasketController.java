@@ -12,17 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.polewearshop.basket.bo.BasketBO;
 import com.polewearshop.basket.model.BasketView;
 
-import springfox.documentation.annotations.ApiIgnore;
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/basket")
-@ApiIgnore 
 public class BasketController {
 	
 	@Autowired
 	private BasketBO basketBO;
 	
 	//회원의 장바구니 화면
+	@ApiOperation(
+            value = "회원의 장바구니 화면"
+            , notes = "회원의 장바구니 화면")
 	@GetMapping("/basket/member_basket_list_view")
 	public String memberBasketListView(Model model,
 			@RequestParam("basketNumber") int basketNumber,
@@ -36,6 +38,9 @@ public class BasketController {
 	}
 	
 	//비회원의 장바구니 화면
+	@ApiOperation(
+            value = "비회원의 장바구니 화면"
+            , notes = "비회원의 장바구니 화면")
 	@GetMapping("/basket/nonMember_basket_list_view")
 	public String nonMemberBasketListView(Model model,
 			@RequestParam("basketNumber") int basketNumber) {
@@ -48,6 +53,9 @@ public class BasketController {
 	}
 	
 	//장바구니가 비었을때 화면
+	@ApiOperation(
+            value = "장바구니가 비었을시 화면"
+            , notes = "장바구니가 비었을시 화면")
 	@GetMapping("/basket/nothing_view")
 	public String nonMemberBasketListView(Model model) {
 		
