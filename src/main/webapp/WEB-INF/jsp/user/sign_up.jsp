@@ -74,6 +74,7 @@ $(document).ready(function(e){
 		if (loginId.length < 4 || loginId.length > 11) {
 			alert("아이디는 최소 4글자에서 최대 14글자까지 가능합니다.");
 			$("#loginId").val("");
+			return;
 		}
 		
 		$.ajax({
