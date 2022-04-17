@@ -7,7 +7,7 @@
 	</div>
 	
 	<div class="mt-4">
-		<div class="font-weight-bold mb-2">리뷰 내용</div>
+		<div class="font-weight-bold mb-2">Notice 내용</div>
 		<textarea id="contentArea" class="form-control" rows="5" cols="50" placeholder="내용을 입력해주세요."></textarea>
 	</div>
 	
