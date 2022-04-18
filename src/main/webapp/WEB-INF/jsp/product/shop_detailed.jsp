@@ -157,6 +157,10 @@ $(document).ready(function(e) {
 			memberId = 0;
 		}
 		
+		if (memberId == 1) {
+			alert("관리자는 구매가 불가합니다.");
+			return;
+		}
 		// 로그인 유무에 따라 다른 화면으로 보낸다.
 		$.ajax({
 			type:"Get"
@@ -216,7 +220,10 @@ $(document).ready(function(e) {
 			memberId = 0;
 		}
 		
-		
+		if (memberId == 1) {
+			alert("관리자는 장바구니 사용이 불가합니다.");
+			return;
+		}
 		// 로그인 유무에 따라 다른 화면으로 보낸다.
 		$.ajax({
 			type:"Get"
