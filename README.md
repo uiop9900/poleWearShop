@@ -10,6 +10,15 @@
   - 프레임워크: Spring, MyBatis, Bootstrap
   - 서버: AWS
 
+## Description
+- 초기 기획서: https://ovenapp.io/view/UFWGP4aZAQwtrFkHpcGAnGY40sKGDwA6/
+- URL 설계(Swagger): 
+- 포트폴리오:  
+- 일정:
+- 
+아! 그리고 깃허브에는 일정, 설계, 기획, 포폴 문서도 링크해서
+다시 타고 들어올 수도 있도록 연결만 해주시면 더 좋을 것 같아요 !!!
+
 ## Getting Started / 아래의 URL로 들어오세요.
 - 쇼핑몰 홈페이지:  http://54.193.165.205:8080/product/main_view <br>
 - admin 페이지: http://54.193.165.205:8080/admin/sign_in_view<br>
