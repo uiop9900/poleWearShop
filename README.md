@@ -10,15 +10,12 @@
   - 프레임워크: Spring, MyBatis, Bootstrap
   - 서버: AWS
 
-## Description
+## Project Proposal
 - 초기 기획서: https://ovenapp.io/view/UFWGP4aZAQwtrFkHpcGAnGY40sKGDwA6/
+- 일정: https://docs.google.com/spreadsheets/d/12Juq29pbosLOh2vHluBqmMXBy7UENlMa30yLTuXPQsc/edit?usp=sharing
 - URL 설계(Swagger): http://54.193.165.205:8080/swagger-ui/index.html
 - 포트폴리오: [폴웨어 포트폴리오_최종본_이지아.pdf](https://github.com/uiop9900/poleWearShop/files/8510665/_._.pdf)
-- 일정:
 
-- 
-아! 그리고 깃허브에는 일정, 설계, 기획, 포폴 문서도 링크해서
-다시 타고 들어올 수도 있도록 연결만 해주시면 더 좋을 것 같아요 !!!
 
 ## Getting Started / 아래의 URL로 들어오세요.
 - 쇼핑몰 홈페이지:  http://54.193.165.205:8080/product/main_view <br>
