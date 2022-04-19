@@ -20,7 +20,7 @@
 ## Getting Started / 아래의 URL로 들어오세요.
 - 쇼핑몰 홈페이지:  http://54.193.165.205:8080/product/main_view <br>
 - admin 페이지: http://54.193.165.205:8080/admin/sign_in_view<br>
-- test 사용자 계정: ji9510/dldbwls1128!<br>
+- test 사용자 계정: jia9510/dldbwls1128!<br>
 - admin 계정: admin/dldbwls1128!
 
 ## 1. 구매 테스트
