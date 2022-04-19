@@ -12,9 +12,10 @@
 
 ## Description
 - 초기 기획서: https://ovenapp.io/view/UFWGP4aZAQwtrFkHpcGAnGY40sKGDwA6/
-- URL 설계(Swagger): 
-- 포트폴리오:  
+- URL 설계(Swagger): http://54.193.165.205:8080/swagger-ui/index.html
+- 포트폴리오: [폴웨어 포트폴리오_최종본_이지아.pdf](https://github.com/uiop9900/poleWearShop/files/8510665/_._.pdf)
 - 일정:
+
 - 
 아! 그리고 깃허브에는 일정, 설계, 기획, 포폴 문서도 링크해서
 다시 타고 들어올 수도 있도록 연결만 해주시면 더 좋을 것 같아요 !!!
